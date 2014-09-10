@@ -1,0 +1,251 @@
+################################
+# MAPSEQ 
+################################
+
+export MAPSEQ_PROJECT=@PROJECT@
+export MAPSEQ_WEB_SERVICE_HOST=@WEB_SERVICE_HOST@
+export MAPSEQ_WEB_SERVICE_TIMEOUT=@WEB_SERVICE_TIMEOUT@
+
+export MAPSEQ_BASE_DIRECTORY=/proj/seq/mapseq
+export MAPSEQ_OUTPUT_DIRECTORY=$MAPSEQ_BASE_DIRECTORY/$MAPSEQ_PROJECT
+
+export RSYNC_HOME=/proj/renci/rc_renci/rsync
+
+################################
+# CASAVA
+################################
+
+export CASAVA_CASAVA_HOME=/nas02/apps/casava-1.8.2
+
+################################
+# CHIPSEQ
+################################
+
+export CHIPSEQ_MACS_HOME=/proj/.test/roach/FAIRE
+export CHIPSEQ_BEDTOOLS_HOME=/nas02/apps/bedtools-2.16.1
+export CHIPSEQ_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export CHIPSEQ_GMAP_GSNAP_HOME=/nas02/apps/gmap-2012-06-20
+export CHIPSEQ_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export CHIPSEQ_STADEN_IO_LIB_HOME=/nas02/apps/staden-io_lib-1.12.5
+export CHIPSEQ_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export CHIPSEQ_REFERENCE_SEQUENCE_DIRECTORY=/proj/seq/data/gatk
+export CHIPSEQ_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+
+################################
+# CHIPSEQ ALIGNMENT
+################################
+
+export CHIPSEQALIGNMENT_REFERENCE_SEQUENCE_DIRECTORY=/proj/seq/data/gatk
+export CHIPSEQALIGNMENT_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export CHIPSEQALIGNMENT_GMAP_GSNAP_HOME=/nas02/apps/gmap-2012-06-20
+export CHIPSEQALIGNMENT_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+
+################################
+# CHIPSEQ VARIANT CALLING
+################################
+
+export CHIPSEQVARIANTCALLING_REFERENCE_SEQUENCE_DIRECTORY=/proj/seq/data/gatk
+export CHIPSEQVARIANTCALLING_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+export CHIPSEQVARIANTCALLING_MACS_HOME=/proj/.test/roach/FAIRE
+export CHIPSEQVARIANTCALLING_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export CHIPSEQVARIANTCALLING_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+
+################################
+# FAIRESEQ
+################################
+
+export FAIRESEQ_BOWTIE_INDEX_DIRECTORY=/proj/seq/data/bowtie
+export FAIRESEQ_REFERENCE_SEQUENCE_DIRECTORY=/proj/seq/data/gatk
+export FAIRESEQ_BOWTIE_HOME=/nas02/apps/bowtie-0.12.8
+export FAIRESEQ_MACS_HOME=/proj/.test/roach/FAIRE
+export FAIRESEQ_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export FAIRESEQ_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export FAIRESEQ_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+
+################################
+# FAIRESEQ ALIGNMENT
+################################
+
+export FAIRESEQALIGNMENT_BOWTIE_INDEX_DIRECTORY=/proj/seq/data/bowtie
+export FAIRESEQALIGNMENT_REFERENCE_SEQUENCE_DIRECTORY=/proj/seq/data/gatk
+export FAIRESEQALIGNMENT_BOWTIE_HOME=/nas02/apps/bowtie-0.12.8
+export FAIRESEQALIGNMENT_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export FAIRESEQALIGNMENT_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+
+################################
+# FAIRESEQ VARIANT CALLING
+################################
+
+export FAIRESEQVARIANTCALLING_MACS_HOME=/proj/.test/roach/FAIRE
+export FAIRESEQVARIANTCALLING_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export FAIRESEQVARIANTCALLING_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+
+################################
+# FASTQTRIMANDQC
+################################
+
+export FASTQTRIMANDQC_SEQUENCE_ANALYSIS_DIRECTORY=/proj/seq/LBG/tier1data/nextgenseq/seqware-analysis
+export FASTQTRIMANDQC_BWA_HOME=/nas02/apps/bwa-0.6.1
+export FASTQTRIMANDQC_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+
+################################
+# HELLOWORLD
+################################
+
+export HELLOWORLD_OUTPUT_DIRECTORY=/tmp
+
+################################
+# NCGENES
+################################
+
+export NCGENES_BWA_HOME=/nas02/apps/bwa-0.6.1
+export NCGENES_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export NCGENES_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export NCGENES_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NCGENES_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NCGENES_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+export NCGENES_RESOURCES_DIRECTORY=/proj/renci/rc_renci/resources/ncgenes
+export NCGENES_IRODS_HOME=/proj/renci/bin/iRODS/clients/icommands
+
+################################
+# NCGENES DEPTH OF COVERAGE
+################################
+
+export NCGENESDOC_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export NCGENESDOC_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+
+################################
+# NCGENES ALIGNMENT
+################################
+
+export NCGENESALIGNMENT_BWA_HOME=/nas02/apps/bwa-0.6.1
+export NCGENESALIGNMENT_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export NCGENESALIGNMENT_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NCGENESALIGNMENT_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+
+################################
+# NCGENES DX
+################################
+
+export NCGENESDX_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export NCGENESDX_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NCGENESDX_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NCGENESDX_RESOURCES_DIRECTORY=/proj/renci/rc_renci/resources/ncgenes
+
+################################
+# NCGENES VARIANT CALLING
+################################
+
+export NCGENESVARIANTCALLING_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export NCGENESVARIANTCALLING_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NCGENESVARIANTCALLING_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+export NCGENESVARIANTCALLING_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NCGENESVARIANTCALLING_RESOURCES_DIRECTORY=/proj/renci/rc_renci/resources/ncgenes
+
+################################
+# NIDA NA
+################################
+
+export NIDANA_BWA_HOME=/nas02/apps/bwa-0.6.1
+export NIDANA_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export NIDANA_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export NIDANA_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NIDANA_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NIDANA_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+
+################################
+# NIDA NA ALIGNMENT
+################################
+
+export NIDANAALIGNMENT_BWA_HOME=/nas02/apps/bwa-0.6.1
+export NIDANAALIGNMENT_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export NIDANAALIGNMENT_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NIDANAALIGNMENT_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+
+################################
+# NIDA NA VARIANT CALLING
+################################
+
+export NIDANAVARIANTCALLING_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export NIDANAVARIANTCALLING_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NIDANAVARIANTCALLING_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NIDANAVARIANTCALLING_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+
+################################
+# NIDA UCSF
+################################
+
+export NIDAUCSF_BWA_HOME=/nas02/apps/bwa-0.6.1
+export NIDAUCSF_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export NIDAUCSF_GATK_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-1.4-30-gf2ef8d1
+export NIDAUCSF_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NIDAUCSF_IRODS_HOME=/proj/renci/bin/iRODS/clients/icommands
+export NIDAUCSF_SEQUENCE_ANALYSIS_HOME=/proj/renci/sequence_analysis
+export NIDAUCSF_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NIDAUCSF_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+export NIDAUCSF_RESOURCES_DIRECTORY=/proj/renci/rc_renci/resources
+
+################################
+# NIDA UCSF ALIGNMENT
+################################
+
+export NIDAUCSFALIGNMENT_BWA_HOME=/nas02/apps/bwa-0.6.1
+export NIDAUCSFALIGNMENT_FASTX_TOOLKIT_HOME=/nas02/apps/galaxy-prod/fastx_toolkit-0.0.13
+export NIDAUCSFALIGNMENT_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NIDAUCSFALIGNMENT_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+
+################################
+# NIDA UCSF RECAL MERGE BAM
+################################
+
+export NIDAUCSFRECALMERGEBAM_BWA_HOME=/nas02/apps/bwa-0.6.1
+export NIDAUCSFRECALMERGEBAM_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NIDAUCSFRECALMERGEBAM_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NIDAUCSFRECALMERGEBAM_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+
+################################
+# NIDA UCSF ID CHECK
+################################
+
+export NIDAUCSFIDCHECK_IC_HOME=/proj/renci/nida/ucsf/identity-check
+export NIDAUCSFIDCHECK_RESOURCES_DIRECTORY=/proj/renci/nida/ucsf/identity-check/resources
+
+################################
+# NIDA UCSF VARIANT CALLING
+################################
+
+export NIDAUCSFVARIANTCALLING_GATK2_HOME=/nas02/apps/biojars-1.0/GenomeAnalysisTK-2.1-8-g5efb575
+export NIDAUCSFVARIANTCALLING_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export NIDAUCSFVARIANTCALLING_REFERENCES_DIRECTORY=/proj/renci/sequence_analysis/references
+export NIDAUCSFVARIANTCALLING_SEQUENCE_ANALYSIS_RESOURCES_DIRECTORY=/proj/renci/sequence_analysis/resources
+export NIDAUCSFVARIANTCALLING_RESOURCES_DIRECTORY=/proj/renci/rc_renci/resources
+
+################################
+# RNASEQ
+################################
+
+export RNASEQ_MAPSPLICE2_HOME=/proj/seq/LBG/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/mapsplice/
+export RNASEQ_MAPSPLICE_HOME=/datastore/rclbg/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/MapSplice_multi_threads_2.0.1.9
+export RNASEQ_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export RNASEQ_RSEM_HOME=/datastore/rclbg/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/rsem
+export RNASEQ_MAPSPLICE_RSEM_DIRECTORY=/proj/seq/LBG/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem
+
+################################
+# RNASEQ ALIGNMENT
+################################
+
+export RNASEQALIGNMENT_MAPSPLICE2_HOME=/proj/seq/LBG/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/mapsplice
+export RNASEQALIGNMENT_MAPSPLICE_HOME=/datastore/rclbg/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/MapSplice_multi_threads_2.0.1.9
+export RNASEQALIGNMENT_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export RNASEQALIGNMENT_RSEM_HOME=/datastore/rclbg/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/rsem
+export RNASEQALIGNMENT_MAPSPLICE_RSEM_DIRECTORY=/proj/seq/LBG/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem
+
+################################
+# RNASEQ QUANTIFICATION
+################################
+
+export RNASEQQUANTIFICATION_MAPSPLICE2_HOME=/proj/seq/LBG/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/mapsplice
+export RNASEQQUANTIFICATION_MAPSPLICE_HOME=/datastore/rclbg/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/MapSplice_multi_threads_2.0.1.9
+export RNASEQQUANTIFICATION_SAMTOOLS_HOME=/nas02/apps/samtools-0.1.18
+export RNASEQQUANTIFICATION_RSEM_HOME=/datastore/rclbg/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem/software/rsem
+export RNASEQQUANTIFICATION_MAPSPLICE_RSEM_DIRECTORY=/proj/seq/LBG/tier1data/nextgenseq/seqware-analysis/mapsplice_rsem

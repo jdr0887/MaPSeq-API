@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="MaPSeq">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-stylus-skin</artifactId>
+    <version>1.5</version>
+  </skin>
+  <bannerLeft>
+    <name>${project.name}</name>
+    <src>
+    </src>
+  </bannerLeft>
+  <bannerRight>
+    <name>${project.artifactId}</name>
+    <src>
+    </src>
+  </bannerRight>
+  <body>
+    <links>
+      <item name="gForge" href="https://code.renci.org/gf/project/seqware"/>
+      <item name="Hudson" href="https://ci-dev.renci.org/hudson"/>
+    </links>
+    <menu name="Overview">
+      <item name="Home" href="index.html"/>
+      <item name="Getting Started" href="getting-started.html"/>
+      <item name="Download" href="download.html"/>
+    </menu>
+    <menu name="Documentation">
+      <item name="Manual" href="manual/index.html">
+	<item name="User Guide" href="manual/user-guide/index.html"/>    
+	<item name="Developer Guide" href="manual/developer-guide/index.html"/>    
+      </item>
+    </menu>
+    <menu name="Pipelines">
+      <item name="CASAVA" href="casava.html"/>
+      <item name="RNASeq" href="rnaseq.html"/>    
+      <item name="NCGenes" href="ncgenes.html"/>
+    </menu>
+    <menu ref="reports"/>
+  </body>
+</project>

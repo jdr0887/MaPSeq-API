@@ -1,0 +1,91 @@
+<document>
+  <body>
+    <section name="Message Queues/Listeners">
+      <subsection name="Creating a Message Queue/Listener">
+	<p>Now that a Workflow and a Pipeline have been created, we need to incorporate them into a MessageListener.  The following is taken from the HelloWorldMessageAdapter class:</p>
+	<pre><![CDATA[
+public class HelloWorldMessageAdapter implements BundleActivator, MessageListener {
+
+    private final Logger logger = LoggerFactory.getLogger(HelloWorldMessageAdapter.class);
+
+    private HelloWorldPipeline helloWorldPipeline;
+
+    private ConnectionFactory connectionFactory;
+
+    private Connection connection;
+
+    private Session session;
+
+    private Destination destination;
+
+    public HelloWorldMessageAdapter() {
+        super();
+    }
+
+    @Override
+    public void start(BundleContext context) throws Exception {
+        logger.debug("ENTERING start(BundleContext)");
+        
+        ServiceReference reference = context.getServiceReference(ConnectionFactory.class.getName());
+        this.connectionFactory = (ConnectionFactory) context.getService(reference);
+
+        ServiceReference[] references = context.getServiceReferences(Pipeline.class.getName(), null);
+        for (ServiceReference ref : references) {
+            Object o = context.getService(ref);
+            if (o instanceof HelloWorldPipeline) {
+                this.helloWorldPipeline = (HelloWorldPipeline) o;
+                break;
+            }
+        }
+
+        this.connection = connectionFactory.createConnection();
+        this.connection.start();
+
+        this.session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        this.destination = session.createQueue("queue/HelloWorld");
+
+        MessageConsumer consumer = session.createConsumer(destination);
+        consumer.setMessageListener(this);
+
+    }
+
+    @Override
+    public void stop(BundleContext context) throws Exception {
+        logger.debug("ENTERING stop(BundleContext)");
+        this.session.close();
+        this.connection.stop();
+        this.connection.close();
+    }
+
+    @Override
+    public void onMessage(Message message) {
+        try {
+            if (message instanceof TextMessage) {
+                TextMessage oMessage = (TextMessage) message;
+                String text = oMessage.getText();
+                System.out.println("Received message " + text);
+                
+                HelloWorldWorkflow workflow = new HelloWorldWorkflow();
+                workflow.addBean(new HelloWorldBean(text));
+
+                helloWorldPipeline.setWorkflow(workflow);
+                try {
+                    helloWorldPipeline.call();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+
+}]]></pre>
+      </subsection>
+      <subsection name="Notes">
+	<p>See <a href="mapseq-messaging/index.html">MaPSeq Messaging</a></p>     
+      </subsection>      
+    </section>
+    <p><span id="pageNavLeft"><a href="frontToEndIntegration-step2.html"> &lt;&lt; Back</a></span><span id="pageNavRight"><a href="frontToEndIntegration-step4.html">Continue &gt;&gt;</a></span></p>
+  </body>
+</document>

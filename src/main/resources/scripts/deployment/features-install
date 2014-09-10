@@ -1,0 +1,14 @@
+features:addurl mvn:edu.unc.mapseq.pipelines.casava/casava-features/0.1.1/xml/features
+features:install mapseq-pipeline-casava
+features:addurl mvn:edu.unc.mapseq.pipelines.nida-ucsf-alignment/nida-ucsf-alignment-features/0.1.1/xml/features
+features:install mapseq-pipeline-nida-ucsf-alignment
+features:addurl mvn:edu.unc.mapseq.pipelines.nida-ucsf-id-check/nida-ucsf-id-check-features/0.1.1/xml/features
+features:install mapseq-pipeline-nida-ucsf-id-check
+features:addurl mvn:edu.unc.mapseq.pipelines.nida-ucsf-variant-calling/nida-ucsf-variant-calling-features/0.1.1/xml/features
+features:install mapseq-pipeline-nida-ucsf-variant-calling
+features:addurl mvn:edu.unc.mapseq.pipelines.ncgenes/ncgenes-features/0.1.2/xml/features
+features:install mapseq-pipeline-ncgenes
+features:addurl mvn:edu.unc.mapseq.pipelines.ncgenes-depth-of-coverage/ncgenes-depth-of-coverage-features/0.1.1/xml/features
+features:install mapseq-pipeline-ncgenes-depth-of-coverage
+features:addurl mvn:edu.unc.mapseq.pipelines.ncgenes-dx/ncgenes-dx-features/0.1.1/xml/features
+features:install mapseq-pipeline-ncgenes-dx

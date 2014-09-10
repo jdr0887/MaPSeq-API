@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+  version="1.0">
+  <persistence-unit name="mapseq" transaction-type="JTA">
+
+    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+
+    <jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/mapseqJTA)</jta-data-source>
+    <non-jta-data-source>aries:services/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/mapseqNoJTA)</non-jta-data-source>
+
+    <class>edu.unc.mapseq.dao.model.Attribute</class>
+    <class>edu.unc.mapseq.dao.model.DictionaryEntity</class>
+    <class>edu.unc.mapseq.dao.model.FileData</class>
+    <class>edu.unc.mapseq.dao.model.Job</class>
+    <class>edu.unc.mapseq.dao.model.Flowcell</class>
+    <class>edu.unc.mapseq.dao.model.NamedEntity</class>
+    <class>edu.unc.mapseq.dao.model.Sample</class>
+    <class>edu.unc.mapseq.dao.model.Study</class>
+    <class>edu.unc.mapseq.dao.model.TransferInfo</class>
+    <class>edu.unc.mapseq.dao.model.Workflow</class>
+    <class>edu.unc.mapseq.dao.model.WorkflowRun</class>
+    <class>edu.unc.mapseq.dao.model.WorkflowRunAttempt</class>
+
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+    <properties>
+      <!-- <property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=TRACE, Tool=TRACE, SQL=TRACE" /> -->
+      <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict" />
+      <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+<!--       <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=WARN" /> -->
+      <property name="openjpa.Log" value="slf4j" />
+      <property name="openjpa.Multithreaded" value="true" />
+      <property name="openjpa.jdbc.DBDictionary" value="postgres(SearchStringEscape=\, SupportsXMLColumn=false)" />
+      <property name="openjpa.DataCache" value="true" />
+      <property name="openjpa.RemoteCommitProvider" value="sjvm" />
+      <property name="openjpa.QueryCache" value="false" />
+    </properties>
+
+  </persistence-unit>
+</persistence>

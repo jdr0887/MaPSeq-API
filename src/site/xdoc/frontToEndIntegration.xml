@@ -1,0 +1,15 @@
+<document>
+  <body>
+    <section name="Front To End Integration">
+      <p>This documentation details the steps required to do the following:</p>
+      <ol>
+	<li><a href="frontToEndIntegration-step1.html">Create a Module</a></li>
+	<li><a href="frontToEndIntegration-step2.html">Create a Pipeline and add a Workflow to it</a></li>
+	<li><a href="frontToEndIntegration-step3.html">Couple a Pipeline to a Message Listener</a></li>
+	<li><a href="frontToEndIntegration-step4.html">Deploy MaPSeq to Apache Karaf</a></li>
+	<li><a href="frontToEndIntegration-step5.html">Trigger a Message Listener</a></li>
+      </ol>
+    </section>
+    <p><span id="pageNavRight"><a href="frontToEndIntegration-step1.html">Start (Modules) &gt;&gt;</a></span></p>
+  </body>
+</document>

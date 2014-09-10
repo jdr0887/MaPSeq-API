@@ -1,0 +1,7 @@
+<document>
+  <body>
+    <section name="About MaPSeq">
+      <p>The Massively Parallel Sequencing project (MaPSeq), jointly developed by UNC Research Computing and RENCI, is a service oriented application (SOA) that facilitates and manages the execution of the computational aspect of sequencing projects. As an OSGi-based plugin architecture, MaPSeq provides researchers with a framework facilitating the construction, deployment, and activation of sequence analysis workflows.  Designed to opportunistically make use of available institution-wide computational resources,  MaPSeq enables researchers to perform and manage elaborate analysis workflow on a specified set of data while keeping the data centralized and secure.</p>
+    </section>
+  </body>
+</document>

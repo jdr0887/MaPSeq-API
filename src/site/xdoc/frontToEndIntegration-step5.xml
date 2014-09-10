@@ -1,0 +1,37 @@
+<document>
+  <body>
+    <section name="Messaging Client (How to trigger the Pipeline)">
+      <p></p>
+      <subsection name="Java client">
+	<p>Note that the host and port (tcp://localhost:61616) may need to change depending on your configuration.</p>
+	<pre>
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+        
+        Connection connection = null;
+        Session session = null;
+        try {
+            connection = connectionFactory.createConnection();
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Destination destination = session.createQueue("queue/HelloWorld");
+            MessageProducer producer = session.createProducer(destination);
+            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+            TextMessage message = session.createTextMessage("Hello World!");
+            producer.send(message);
+        } catch (JMSException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                session.close();
+                connection.close();
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
+        }</pre>
+      </subsection>
+      <!-- <subsection name="Python client"> -->
+      <!-- 	<p></p> -->
+      <!-- </subsection> -->
+    </section>
+    <p><span id="pageNavLeft"><a href="frontToEndIntegration-step4.html"> &lt;&lt; Back</a></span></p>
+  </body>
+</document>

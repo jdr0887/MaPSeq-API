@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>edu.unc</groupId>
+    <artifactId>mapseq</artifactId>
+    <version>0.5.6-SNAPSHOT</version>
+  </parent>
+  <name>MaPSeq :: Config</name>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.unc.mapseq</groupId>
+  <artifactId>mapseq-config</artifactId>
+  <version>0.5.6-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+	<artifactId>maven-antrun-plugin</artifactId>
+	<executions>
+	  <execution>
+	    <id>0</id>
+	    <phase>validate</phase>
+	    <configuration>
+	      <tasks>
+		<delete file="${basedir}/src/main/resources/edu/unc/mapseq/config/mapseq.properties" />
+		<touch file="${basedir}/src/main/resources/edu/unc/mapseq/config/mapseq.properties" mkdirs="true" />
+		<echo file="${basedir}/src/main/resources/edu/unc/mapseq/config/mapseq.properties" append="true">
+version=${project.version}
+		</echo>
+	      </tasks>
+	    </configuration>
+	    <goals>
+	      <goal>run</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+      <plugin>
+	<groupId>org.apache.felix</groupId>
+	<artifactId>maven-bundle-plugin</artifactId>
+	<configuration>
+	  <instructions>
+	    <Private-Package />
+	    <Export-Package>edu.unc.mapseq.config</Export-Package>
+	    <Import-Package>*</Import-Package>
+	  </instructions>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

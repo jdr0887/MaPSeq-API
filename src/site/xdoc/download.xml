@@ -1,0 +1,8 @@
+<document>
+  <body>
+    <section name="Download">
+      <p><a href="http://ci-dev.renci.org/nexus/service/local/repositories/releases/content/edu/unc/mapseq/distribution/mapseq-client/0.2.64/mapseq-client-0.2.64.tar.gz">Latest Client Release</a></p>
+      <p><a href="http://ci-dev.renci.org/nexus/service/local/repositories/releases/content/edu/unc/mapseq/distribution/mapseq-server/0.2.64/mapseq-server-0.2.64.tar.gz">Latest Server Release</a></p>
+    </section>
+  </body>
+</document>
