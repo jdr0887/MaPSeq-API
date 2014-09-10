@@ -23,9 +23,9 @@
     </license>
   </licenses>
   <scm>
+    <url>https://github.com/jdr0887/MaPSeq-API.git</url>
     <developerConnection>scm:git:ssh://${user.name}@code.renci.org/gitroot/seqware</developerConnection>
     <connection>scm:git:ssh://developername@code.renci.org/gitroot/seqware</connection>
-    <tag>HEAD</tag>
   </scm>
   <dependencyManagement>
     <dependencies>
@@ -169,8 +169,8 @@
 	      <artifactId>maven-project-info-reports-plugin</artifactId>
 	      <version>${maven.project.info.reports.plugin.version}</version>
 	      <configuration>
-		<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-		<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+		<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+		<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
 	      </configuration>
 	      <reports>
 	      </reports>
@@ -179,17 +179,6 @@
 	      <groupId>org.apache.maven.plugins</groupId>
 	      <artifactId>maven-javadoc-plugin</artifactId>
 	      <version>${maven.javadoc.plugin.version}</version>
-	      <!-- <configuration> -->
-	      <!-- 	<additionalparam>-Xdoclint:none</additionalparam> -->
-	      <!-- </configuration> -->
-	    </plugin>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-jxr-plugin</artifactId>
-	      <version>${maven.jxr.plugin.version}</version>
-	      <configuration>
-		<aggregate>true</aggregate>
-	      </configuration>
 	    </plugin>
 	    <plugin>
 	      <groupId>org.apache.maven.plugins</groupId>
