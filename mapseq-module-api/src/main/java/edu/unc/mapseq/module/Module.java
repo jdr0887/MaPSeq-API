@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
@@ -24,8 +23,8 @@ import org.renci.common.exec.ExecutorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.unc.mapseq.dao.model.Attribute;
 import edu.unc.mapseq.dao.model.FileData;
-import edu.unc.mapseq.dao.model.Job;
 import edu.unc.mapseq.module.annotations.Executable;
 import edu.unc.mapseq.module.annotations.InputArgument;
 import edu.unc.mapseq.module.annotations.OutputArgument;
@@ -44,16 +43,14 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     private Boolean persistFileData = Boolean.FALSE;
 
-    private Properties properties;
-
-    private Set<Job> parentJobs;
-
     private Set<FileData> fileDatas;
+
+    private Set<Attribute> attributes;
 
     public Module() {
         super();
-        this.parentJobs = new HashSet<Job>();
         this.fileDatas = new HashSet<FileData>();
+        this.attributes = new HashSet<Attribute>();
     }
 
     public abstract Class<?> getModuleClass();
@@ -225,7 +222,7 @@ public abstract class Module implements Callable<ModuleOutput> {
                         FileData fileData = new FileData();
                         fileData.setMimeType(arg.mimeType());
                         fileData.setName(f.getName());
-                        addFileData(fileData);
+                        getFileDatas().add(fileData);
                     }
                 }
             }
@@ -235,20 +232,8 @@ public abstract class Module implements Callable<ModuleOutput> {
         return null;
     }
 
-    public void addParentJob(Job job) {
-        this.parentJobs.add(job);
-    }
-
-    public Set<Job> getParentJobs() {
-        return this.parentJobs;
-    }
-
     public Set<FileData> getFileDatas() {
         return this.fileDatas;
-    }
-
-    public void addFileData(FileData fileData) {
-        this.fileDatas.add(fileData);
     }
 
     public Boolean getDryRun() {
@@ -265,14 +250,6 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     public void setPersistFileData(Boolean persistFileData) {
         this.persistFileData = persistFileData;
-    }
-
-    public Properties getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Properties properties) {
-        this.properties = properties;
     }
 
     public String getWorkflowName() {
@@ -297,6 +274,18 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     public void setWorkflowRunAttemptId(Long workflowRunAttemptId) {
         this.workflowRunAttemptId = workflowRunAttemptId;
+    }
+
+    public Set<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Set<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
+    public void setFileDatas(Set<FileData> fileDatas) {
+        this.fileDatas = fileDatas;
     }
 
 }
