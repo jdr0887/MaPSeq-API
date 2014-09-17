@@ -16,16 +16,17 @@
   <body>
     <menu name="Overview">
       <item name="Home" href="index.html"/>
-      <item name="Building" href="building.html"/>
       <item name="Download" href="download.html"/>
     </menu>
     <menu name="Documentation">
       <item name="Overview" href="overview.html"/>
       <item name="Manual" href="manual/index.html">
+	<item name="Building" href="manual/building.html"/>
 	<item name="Modules" href="manual/modules.html"/>    
 	<item name="Workflows" href="manual/workflows.html"/>    
 	<item name="Pipeline Archetype" href="manual/pipeline-archetype.html"/>
 	<item name="Commands" href="manual/commands.html"/>
+	<item name="Reporting" href="manual/reporting.html"/>
 	<item name="Pipeline Deployment" href="manual/pipeline-deployment.html"/>    
 	<item name="Web Service clients" href="manual/ws-clients.html"/>    
       </item>    
