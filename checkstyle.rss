@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2014 UNC</copyright>
     <item>
       <title>File: 94,
-             Errors: 2171,
+             Errors: 2166,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ShellModuleOutput.java">edu/unc/mapseq/module/ShellModuleOutput.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.JobService.java">edu/unc/mapseq/ws/JobService.java</a>
                 </td>
                 <td>
                   0
@@ -55,133 +55,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.DictionaryEntityDAO.java">edu/unc/mapseq/dao/DictionaryEntityDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.NamedEntity.java">edu/unc/mapseq/dao/model/NamedEntity.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  69
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.TransferDirectionType.java">edu/unc/mapseq/dao/model/TransferDirectionType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.FlowcellDAO.java">edu/unc/mapseq/dao/FlowcellDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  12
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.WorkflowRunService.java">edu/unc/mapseq/ws/WorkflowRunService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  40
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ModuleExecutor.java">edu/unc/mapseq/module/ModuleExecutor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  52
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.Fastq.java">edu/unc/mapseq/module/constraints/Fastq.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  12
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.FlowcellDAOImpl.java">edu/unc/mapseq/dao/jpa/FlowcellDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  24
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.MimeType.java">edu/unc/mapseq/dao/model/MimeType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  67
+                  19
                 </td>
               </tr>
                           <tr>
@@ -200,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.ContainsValidator.java">edu/unc/mapseq/module/constraints/impl/ContainsValidator.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.PersistantJobObserver.java">edu/unc/mapseq/module/PersistantJobObserver.java</a>
                 </td>
                 <td>
                   0
@@ -210,34 +84,6 @@ under the License.
                 </td>
                 <td>
                   12
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Sample.java">edu/unc/mapseq/dao/model/Sample.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  67
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.StopCondorMonitor.java">edu/unc/mapseq/workflow/StopCondorMonitor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
                 </td>
               </tr>
                           <tr>
@@ -256,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.JobService.java">edu/unc/mapseq/ws/JobService.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.WorkflowDAOImpl.java">edu/unc/mapseq/dao/jpa/WorkflowDAOImpl.java</a>
                 </td>
                 <td>
                   0
@@ -265,119 +111,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  19
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.OutputValidations.java">edu/unc/mapseq/module/annotations/OutputValidations.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.FlowcellService.java">edu/unc/mapseq/ws/FlowcellService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  19
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.JobDAO.java">edu/unc/mapseq/dao/JobDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.SampleDAO.java">edu/unc/mapseq/dao/SampleDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.FileData.java">edu/unc/mapseq/dao/model/FileData.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  75
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.WorkflowService.java">edu/unc/mapseq/ws/WorkflowService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  17
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.WorkflowRunAttemptDAO.java">edu/unc/mapseq/dao/WorkflowRunAttemptDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  17
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.FileDataService.java">edu/unc/mapseq/ws/FileDataService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  17
+                  9
                 </td>
               </tr>
                           <tr>
@@ -396,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl.java">edu/unc/mapseq/dao/jpa/WorkflowRunDAOImpl.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.OutputArgument.java">edu/unc/mapseq/module/annotations/OutputArgument.java</a>
                 </td>
                 <td>
                   0
@@ -405,12 +139,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  78
+                  7
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.BaseDAOImpl.java">edu/unc/mapseq/dao/jpa/BaseDAOImpl.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.Workflow.java">edu/unc/mapseq/workflow/Workflow.java</a>
                 </td>
                 <td>
                   0
@@ -419,12 +153,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  22
+                  29
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.MaPSeqConfigurationService.java">edu/unc/mapseq/config/MaPSeqConfigurationService.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.NamedEntity.java">edu/unc/mapseq/dao/model/NamedEntity.java</a>
                 </td>
                 <td>
                   0
@@ -433,7 +167,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  26
+                  69
                 </td>
               </tr>
                           <tr>
@@ -452,49 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.WorkflowBeanService.java">edu/unc/mapseq/workflow/WorkflowBeanService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  23
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Workflow.java">edu/unc/mapseq/dao/model/Workflow.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.SampleDAOImpl.java">edu/unc/mapseq/dao/jpa/SampleDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  19
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.InputArgument.java">edu/unc/mapseq/module/annotations/InputArgument.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileIsNotEmpty.java">edu/unc/mapseq/module/constraints/FileIsNotEmpty.java</a>
                 </td>
                 <td>
                   0
@@ -504,216 +196,6 @@ under the License.
                 </td>
                 <td>
                   7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.FileIsExecutableValidator.java">edu/unc/mapseq/module/constraints/impl/FileIsExecutableValidator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileIsReadable.java">edu/unc/mapseq/module/constraints/FileIsReadable.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.TransferInfo.java">edu/unc/mapseq/dao/model/TransferInfo.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  76
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.Application.java">edu/unc/mapseq/module/annotations/Application.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.RunModeType.java">edu/unc/mapseq/config/RunModeType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.FileDataDAO.java">edu/unc/mapseq/dao/FileDataDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.InputValidations.java">edu/unc/mapseq/module/annotations/InputValidations.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.NamedEntityDAOImpl.java">edu/unc/mapseq/dao/jpa/NamedEntityDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.BaseDAO.java">edu/unc/mapseq/dao/BaseDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Persistable.java">edu/unc/mapseq/dao/model/Persistable.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.StudyDAOImpl.java">edu/unc/mapseq/dao/jpa/StudyDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileListIsReadable.java">edu/unc/mapseq/module/constraints/FileListIsReadable.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.FileListIsReadableValidator.java">edu/unc/mapseq/module/constraints/impl/FileListIsReadableValidator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType.java">edu/unc/mapseq/dao/model/WorkflowRunAttemptStatusType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  16
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.StartCondorMonitor.java">edu/unc/mapseq/workflow/StartCondorMonitor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  36
                 </td>
               </tr>
                           <tr>
@@ -732,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileIsExecutable.java">edu/unc/mapseq/module/constraints/FileIsExecutable.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.StudyDAO.java">edu/unc/mapseq/dao/StudyDAO.java</a>
                 </td>
                 <td>
                   0
@@ -741,12 +223,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  5
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileIsNotEmpty.java">edu/unc/mapseq/module/constraints/FileIsNotEmpty.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.EndsWithValidator.java">edu/unc/mapseq/module/constraints/impl/EndsWithValidator.java</a>
                 </td>
                 <td>
                   0
@@ -755,12 +237,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  12
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Attribute.java">edu/unc/mapseq/dao/model/Attribute.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.SampleDAO.java">edu/unc/mapseq/dao/SampleDAO.java</a>
                 </td>
                 <td>
                   0
@@ -769,7 +251,91 @@ under the License.
                   0
                 </td>
                 <td>
-                  49
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.Application.java">edu/unc/mapseq/module/annotations/Application.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.model.WorkflowAttribute.java">edu/unc/mapseq/workflow/model/WorkflowAttribute.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.SampleService.java">edu/unc/mapseq/ws/SampleService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  24
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.FileListIsReadableValidator.java">edu/unc/mapseq/module/constraints/impl/FileListIsReadableValidator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.WorkflowDAO.java">edu/unc/mapseq/dao/WorkflowDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.StartCondorMonitor.java">edu/unc/mapseq/workflow/StartCondorMonitor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  36
                 </td>
               </tr>
                           <tr>
@@ -788,7 +354,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.WorkflowRunAttemptDAOImpl.java">edu/unc/mapseq/dao/jpa/WorkflowRunAttemptDAOImpl.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.WorkflowException.java">edu/unc/mapseq/workflow/WorkflowException.java</a>
                 </td>
                 <td>
                   0
@@ -797,12 +363,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  47
+                  13
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.StudyService.java">edu/unc/mapseq/ws/StudyService.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.BaseDAO.java">edu/unc/mapseq/dao/BaseDAO.java</a>
                 </td>
                 <td>
                   0
@@ -811,68 +377,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  19
+                  9
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Job.java">edu/unc/mapseq/dao/model/Job.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  85
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.WorkflowRun.java">edu/unc/mapseq/dao/model/WorkflowRun.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  41
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ModuleOutput.java">edu/unc/mapseq/module/ModuleOutput.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Flowcell.java">edu/unc/mapseq/dao/model/Flowcell.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  40
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.JobStatusType.java">edu/unc/mapseq/dao/model/JobStatusType.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.Fastq.java">edu/unc/mapseq/module/constraints/Fastq.java</a>
                 </td>
                 <td>
                   0
@@ -900,7 +410,63 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.model.WorkflowMessage.java">edu/unc/mapseq/workflow/model/WorkflowMessage.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.FileDataService.java">edu/unc/mapseq/ws/FileDataService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.NamedEntityDAOImpl.java">edu/unc/mapseq/dao/jpa/NamedEntityDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.SampleDAOImpl.java">edu/unc/mapseq/dao/jpa/SampleDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.StudyService.java">edu/unc/mapseq/ws/StudyService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.FileIsNotEmptyValidator.java">edu/unc/mapseq/module/constraints/impl/FileIsNotEmptyValidator.java</a>
                 </td>
                 <td>
                   0
@@ -914,7 +480,91 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.EndsWithValidator.java">edu/unc/mapseq/module/constraints/impl/EndsWithValidator.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.Module.java">edu/unc/mapseq/module/Module.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  84
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType.java">edu/unc/mapseq/dao/model/WorkflowRunAttemptStatusType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.NamedEntityDAO.java">edu/unc/mapseq/dao/NamedEntityDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ModuleExecutor.java">edu/unc/mapseq/module/ModuleExecutor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  52
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.Contains.java">edu/unc/mapseq/module/constraints/Contains.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.Ignore.java">edu/unc/mapseq/module/annotations/Ignore.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.JobStatusType.java">edu/unc/mapseq/dao/model/JobStatusType.java</a>
                 </td>
                 <td>
                   0
@@ -928,7 +578,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.Workflow.java">edu/unc/mapseq/workflow/Workflow.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Attribute.java">edu/unc/mapseq/dao/model/Attribute.java</a>
                 </td>
                 <td>
                   0
@@ -937,12 +587,194 @@ under the License.
                   0
                 </td>
                 <td>
-                  29
+                  49
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.EndsWith.java">edu/unc/mapseq/module/constraints/EndsWith.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.FileDataDAO.java">edu/unc/mapseq/dao/FileDataDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.FileIsExecutableValidator.java">edu/unc/mapseq/module/constraints/impl/FileIsExecutableValidator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.MaPSeqDAOException.java">edu/unc/mapseq/dao/MaPSeqDAOException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.WorkflowRunAttempt.java">edu/unc/mapseq/dao/model/WorkflowRunAttempt.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  127
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.WorkflowRunAttemptDAOImpl.java">edu/unc/mapseq/dao/jpa/WorkflowRunAttemptDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  47
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.FileData.java">edu/unc/mapseq/dao/model/FileData.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  75
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.MaPSeqConfigurationService.java">edu/unc/mapseq/config/MaPSeqConfigurationService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.JobDAO.java">edu/unc/mapseq/dao/JobDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.TransferInfo.java">edu/unc/mapseq/dao/model/TransferInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  76
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.WorkflowRunDAO.java">edu/unc/mapseq/dao/WorkflowRunDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileListIsReadable.java">edu/unc/mapseq/module/constraints/FileListIsReadable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.WorkflowExecutor.java">edu/unc/mapseq/workflow/WorkflowExecutor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  32
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Persistable.java">edu/unc/mapseq/dao/model/Persistable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileIsReadable.java">edu/unc/mapseq/module/constraints/FileIsReadable.java</a>
                 </td>
                 <td>
                   0
@@ -952,6 +784,34 @@ under the License.
                 </td>
                 <td>
                   8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.FlowcellDAOImpl.java">edu/unc/mapseq/dao/jpa/FlowcellDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  24
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.FlowcellService.java">edu/unc/mapseq/ws/FlowcellService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
                 </td>
               </tr>
                           <tr>
@@ -984,105 +844,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Study.java">edu/unc/mapseq/dao/model/Study.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.Ignore.java">edu/unc/mapseq/module/annotations/Ignore.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.DictionaryEntityDAOImpl.java">edu/unc/mapseq/dao/jpa/DictionaryEntityDAOImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.mapseq.properties">edu/unc/mapseq/config/mapseq.properties</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.MaPSeqDAOException.java">edu/unc/mapseq/dao/MaPSeqDAOException.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.SampleService.java">edu/unc/mapseq/ws/SampleService.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  24
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.PersistantJobObserver.java">edu/unc/mapseq/module/PersistantJobObserver.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  12
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.WorkflowRunDAO.java">edu/unc/mapseq/dao/WorkflowRunDAO.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.BaseDAOImpl.java">edu/unc/mapseq/dao/jpa/BaseDAOImpl.java</a>
                 </td>
                 <td>
                   0
@@ -1096,35 +858,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.NamedEntityDAO.java">edu/unc/mapseq/dao/NamedEntityDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.StudyDAO.java">edu/unc/mapseq/dao/StudyDAO.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.DefaultModuleOutput.java">edu/unc/mapseq/module/DefaultModuleOutput.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.WorkflowBeanService.java">edu/unc/mapseq/workflow/WorkflowBeanService.java</a>
                 </td>
                 <td>
                   0
@@ -1138,7 +872,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.model.WorkflowAttribute.java">edu/unc/mapseq/workflow/model/WorkflowAttribute.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.FlowcellDAO.java">edu/unc/mapseq/dao/FlowcellDAO.java</a>
                 </td>
                 <td>
                   0
@@ -1147,12 +881,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  18
+                  12
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.Executable.java">edu/unc/mapseq/module/annotations/Executable.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl.java">edu/unc/mapseq/dao/jpa/WorkflowRunDAOImpl.java</a>
                 </td>
                 <td>
                   0
@@ -1161,12 +895,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  78
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.FileIsNotEmptyValidator.java">edu/unc/mapseq/module/constraints/impl/FileIsNotEmptyValidator.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.WorkflowRunService.java">edu/unc/mapseq/ws/WorkflowRunService.java</a>
                 </td>
                 <td>
                   0
@@ -1175,12 +909,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  9
+                  40
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.WorkflowDAO.java">edu/unc/mapseq/dao/WorkflowDAO.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.impl.ContainsValidator.java">edu/unc/mapseq/module/constraints/impl/ContainsValidator.java</a>
                 </td>
                 <td>
                   0
@@ -1189,12 +923,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
+                  12
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ModuleException.java">edu/unc/mapseq/module/ModuleException.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.StudyDAOImpl.java">edu/unc/mapseq/dao/jpa/StudyDAOImpl.java</a>
                 </td>
                 <td>
                   0
@@ -1203,12 +937,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  11
+                  10
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.WorkflowRunAttempt.java">edu/unc/mapseq/dao/model/WorkflowRunAttempt.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.DictionaryEntityDAO.java">edu/unc/mapseq/dao/DictionaryEntityDAO.java</a>
                 </td>
                 <td>
                   0
@@ -1217,12 +951,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  127
+                  7
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.WorkflowException.java">edu/unc/mapseq/workflow/WorkflowException.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Sample.java">edu/unc/mapseq/dao/model/Sample.java</a>
                 </td>
                 <td>
                   0
@@ -1231,12 +965,26 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  67
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.OutputArgument.java">edu/unc/mapseq/module/annotations/OutputArgument.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Workflow.java">edu/unc/mapseq/dao/model/Workflow.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ModuleOutput.java">edu/unc/mapseq/module/ModuleOutput.java</a>
                 </td>
                 <td>
                   0
@@ -1264,7 +1012,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.DictionaryEntity.java">edu/unc/mapseq/dao/model/DictionaryEntity.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.StopCondorMonitor.java">edu/unc/mapseq/workflow/StopCondorMonitor.java</a>
                 </td>
                 <td>
                   0
@@ -1273,12 +1021,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  52
+                  15
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.Module.java">edu/unc/mapseq/module/Module.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ShellModuleOutput.java">edu/unc/mapseq/module/ShellModuleOutput.java</a>
                 </td>
                 <td>
                   0
@@ -1287,7 +1035,217 @@ under the License.
                   0
                 </td>
                 <td>
-                  89
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.EndsWith.java">edu/unc/mapseq/module/constraints/EndsWith.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Flowcell.java">edu/unc/mapseq/dao/model/Flowcell.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  40
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.MimeType.java">edu/unc/mapseq/dao/model/MimeType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  67
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.WorkflowRun.java">edu/unc/mapseq/dao/model/WorkflowRun.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  41
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.MaPSeqConfigurationServiceImpl.java">edu/unc/mapseq/config/MaPSeqConfigurationServiceImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  39
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.mapseq.properties">edu/unc/mapseq/config/mapseq.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Study.java">edu/unc/mapseq/dao/model/Study.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.ModuleException.java">edu/unc/mapseq/module/ModuleException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.Job.java">edu/unc/mapseq/dao/model/Job.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  85
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.FileIsExecutable.java">edu/unc/mapseq/module/constraints/FileIsExecutable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.InputValidations.java">edu/unc/mapseq/module/annotations/InputValidations.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.ws.WorkflowService.java">edu/unc/mapseq/ws/WorkflowService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.DictionaryEntityDAOImpl.java">edu/unc/mapseq/dao/jpa/DictionaryEntityDAOImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.RunModeType.java">edu/unc/mapseq/config/RunModeType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.Executable.java">edu/unc/mapseq/module/annotations/Executable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
                 </td>
               </tr>
                           <tr>
@@ -1306,7 +1264,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.constraints.Contains.java">edu/unc/mapseq/module/constraints/Contains.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.OutputValidations.java">edu/unc/mapseq/module/annotations/OutputValidations.java</a>
                 </td>
                 <td>
                   0
@@ -1315,12 +1273,82 @@ under the License.
                   0
                 </td>
                 <td>
-                  8
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.jpa.WorkflowDAOImpl.java">edu/unc/mapseq/dao/jpa/WorkflowDAOImpl.java</a>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.WorkflowRunAttemptDAO.java">edu/unc/mapseq/dao/WorkflowRunAttemptDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.DictionaryEntity.java">edu/unc/mapseq/dao/model/DictionaryEntity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  52
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.DefaultModuleOutput.java">edu/unc/mapseq/module/DefaultModuleOutput.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.module.annotations.InputArgument.java">edu/unc/mapseq/module/annotations/InputArgument.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.dao.model.TransferDirectionType.java">edu/unc/mapseq/dao/model/TransferDirectionType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.model.WorkflowMessage.java">edu/unc/mapseq/workflow/model/WorkflowMessage.java</a>
                 </td>
                 <td>
                   0
@@ -1330,34 +1358,6 @@ under the License.
                 </td>
                 <td>
                   9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.workflow.WorkflowExecutor.java">edu/unc/mapseq/workflow/WorkflowExecutor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  32
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://ci-dev.renci.org/site/mapseq/checkstyle.html#edu.unc.mapseq.config.MaPSeqConfigurationServiceImpl.java">edu/unc/mapseq/config/MaPSeqConfigurationServiceImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  39
                 </td>
               </tr>
                       </tbody>
