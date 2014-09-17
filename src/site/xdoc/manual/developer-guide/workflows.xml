@@ -14,9 +14,9 @@
       the purposes of high throughput sequencing, MaPSeq is only
       concerned with directed acyclic graphs.  Using the CondorJob
       &amp; CondorJobEdge classes availabe from <a
-      href="http://jdr0887.github.io/jrlm">jLRM</a>, one can, along
-      with other sequencing information, construct a workflow that can
-      be exported into a HTCondor queue. </p>
+      href="http://jdr0887.github.io/jrlm">jLRM</a>, one can
+      programmatically construct a workflow that can be exported into
+      a HTCondor queue.</p>
 
       <subsection name="Lifecycle">
 	<p>Execution of a Workflow in MaPSeq is comprised of 5 lifecycle events:
