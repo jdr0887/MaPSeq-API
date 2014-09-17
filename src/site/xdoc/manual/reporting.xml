@@ -1,0 +1,39 @@
+<document>
+  <body>
+    <section name="Reporting">
+      <p>MaPSeq has a suite of reports that can be run to better
+      visualize how long jobs are taking to run on average and at max
+      duration.  These reports also indicate where your jobs have been
+      run overall and on a per Workflow instance.  Here are a few
+      example:</p>
+      <subsection name="Weekly Report">
+	<p>The command to run this from the MaPSeq console:</p>
+	<pre>
+$ mapseq:generate-weekly-report &lt;email.address&gt;
+	</pre>
+	<p><a href="../weeklyReport-1904323478883881709.pdf">PDF of report</a></p>
+      </subsection>
+      <subsection name="Workflow Jobs Weekly Report">
+	<p>The command to run this from the MaPSeq console:</p>
+	<pre>
+$ mapseq:generate-workflow-jobs-weekly-report &lt;workflowId&gt; &lt;email.address&gt;
+	</pre>
+	<p><img src="../images/chart-4617259736062005459.png"/></p>
+      </subsection>
+      <subsection name="WorkflowRun Count Monthly Report">
+	<p>The command to run this from the MaPSeq console:</p>
+	<pre>
+$ mapseq:generate-workflow-run-count-monthly-report &lt;email.address&gt;
+	</pre>
+	<p><img src="../images/chart-2953037891714137906.png"/></p>
+      </subsection>
+      <subsection name="Workflow Run Count Weekly Report">
+	<p>The command to run this from the MaPSeq console:</p>
+	<pre>
+$ mapseq:generate-workflow-run-count-weekly-report &lt;email.address&gt;
+	</pre>
+	<p><img src="../images/chart-4993071289055186764.png"/></p>
+      </subsection>
+    </section>
+  </body>
+</document>
