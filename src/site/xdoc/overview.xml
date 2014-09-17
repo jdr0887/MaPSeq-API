@@ -3,14 +3,16 @@
     <section name="Overview">
       <p><img src="images/MaPSeqArchitecture.png"/></p>
       <subsection name="Web Services">
-	<p>MaPSeq is fronted by a collection of service interfaces
-	(SOAP, RESTful, and Messaging).  When a pipeline is deployed,
-	a Java Messaging Service destination will be exposed.  That
-	messaging destination, only accepting valid JSON messages,
-	will persist WorkflowRun instance for that cooresponding
-	workflow along with a specified Flowcell/Sample to process.
-	This enqueued WorkflowRun instance will be dequeued by the
-	Pipeline Executor.</p>
+	<p>MaPSeq service interfaces are available as both RESTful and
+	SOAP services using <a href="http://cxf.apache.org">Apache
+	CXF</a>.  The MaPSeq services are used by MaPSeq Modules to
+	persist provenance of job metadata (where job ran, start time,
+	end time, exit code, etc.).  The web services can also be used
+	to upload/download files (ie, SampleSheets for CASAVA) or
+	integrated into external clients.</p>
+	<p>Please refer to the <a
+	href="images/edu.unc.mapseq.ws.png">Web Service API</a> for
+	further details.</p>
       </subsection>
       <subsection name="Pipelines">
 	<p>MaPSeq is built upon the OSGi framework (a plugin
@@ -83,17 +85,6 @@
 	Matchmaking is performed by HTCondor's negotiator deamon and
 	is based on resolving set of ClassAd (attribues) at both the
 	Job &amp; Machine level.</p>
-      </subsection>
-      <subsection name="Web Services">
-	<p>MaPSeq service interfaces are deployed as both RESTful
-	services as well as SOAP services using Apache CXF.  They are
-	used by MaPSeq Modules to persist provenance of job metadata
-	(where job ran, start time, end time, exit code, etc.).  The
-	web services can also be used to upload/download files (ie,
-	SampleSheets for CASAVA) or integrated into external clients.</p>
-	<p>Please refer to the <a
-	href="images/edu.unc.mapseq.ws.png">Web Service API</a> for
-	details.</p>
       </subsection>
     </section>
   </body>
