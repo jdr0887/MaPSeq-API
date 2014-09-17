@@ -2,15 +2,6 @@
   <body>
     <section name="Developer Guide">
       <subsection name="Definition a MaPSeq Pipeline">
-	<p>MaPSeq is built upon the OSGi framework (a plugin
-	framework), and as such, a Pipeline is defined as a composite
-	of bundles that contain, at a minimum, the following:
-	<ul>
-	  <li>a messaging destination and listener</li>
-	  <li>a workflow</li>
-	  <li>and an executor service</li>
-	</ul>
-	</p>
 	<p>These bundles are to be organzied into a features project
 	that can be used to deploy the pipeline.  The following is an
 	exmaple features.xml file:</p>
