@@ -1,24 +1,87 @@
 <document>
   <body>
-    <section name="Architecture">
-      <p>MaPSeq is fronted by a collection of service interfaces
-      (SOAP, RESTful, and Messaging).  When a pipeline is deployed, a
-      Java Messaging Service destination will be exposed.  That
-      messaging destination, only accepting valid JSON messages, will
-      enqueue a WorkflowRun instance for that cooresponding workflow
-      along with a specified Flowcell/Sample to process.</p>
+    <section name="Overview">
       <p><img src="images/MaPSeqArchitecture.png"/></p>
+      <subsection name="MaPSeq">
+	<p>MaPSeq is fronted by a collection of service interfaces
+	(SOAP, RESTful, and Messaging).  When a pipeline is deployed,
+	a Java Messaging Service destination will be exposed.  That
+	messaging destination, only accepting valid JSON messages,
+	will persist WorkflowRun instance for that cooresponding
+	workflow along with a specified Flowcell/Sample to process.
+	This enqueue WorkflowRun instance will be dequeued by the
+	Pipeline Executor.</p>
+      </subsection>
+      <subsection name="Pipelines">
+	<p>MaPSeq is built upon the OSGi framework (a plugin
+	framework), and as such, a Pipeline is defined as a collection
+	of plugins.  More specifically, a collection of plugins that
+	are comprised of bundles that contain, at a minimum, the
+	following:
+	  <table border="1" class="bodyTable">
+	    <tr class="a">
+	      <td align="left">a messaging destination and listener</td>
+	      <td align="left">A JMS destination is used to trigger
+	      WorkflowRun instances.</td>
+	    </tr>
+	    <tr class="a">
+	      <td align="left">a workflow</td>
+	      <td align="left">The programmatic structure of which
+	      serial executables to be run.</td>
+	    </tr>
+	    <tr class="a">
+	      <td align="left">an executor</td>
+	      <td align="left">The executor dequeues WorkflowRun instances at
+	      a specified frequency and quantity. (ie, 10 WorkflowRun
+	      instances every 5 minutes)</td>
+	    </tr>
+	    <tr class="a">
+	      <td align="left">and a features file</td>
+	      <td align="left">The features file is used at deployment
+	      time.  It describes all the bundles associated with this
+	      pipeline (messaging, workflow, and executor).</td>
+	    </tr>
+	  </table>
+	</p>
+      </subsection>
+      <subsection name="HTCondor as a meta-scheduler">
+	<p>A meta-scheduler is essentially a linked queue.  MaPSeq
+	uses HTCondor to queue up DAGMan jobs, none of which will
+	actually be executed on any compute nodes directly configured
+	to that MaPSeq's central manager.  HTCondor Glideins are used
+	to dynamically provision compute resources to MaPSeq's central
+	manager.  This allows for the growing or shrinking of compute
+	resources as the demand grows or shrinks.</p>
+      </subsection>
+      <subsection name="Grid Access Triage Engine (GATE)">
+	<p>GATE is also built using Apache Karaf (an OSGi based
+	container).  Where Pipelines are plugins for MaPSeq, compute
+	resource plugins exist for GATE.  Here is a short list of
+	actively used plugins:</p>
+	<ul>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-UNC-Kure">UNC Kure</a></li>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-UNC-Topsail">UNC Topsail</a></li>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-RENCI-Hatteras">RENCI Hatteras</a></li>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-RENCI-BlueRidge">RENCI BlueRidge</a></li>
+	</ul>
+	<p>The GATE engine traverses the available plugins and submits
+	HTCondor Glideins to the appropriate cluster's submit host
+	over SSH.  These Glideins are configured to register
+	themselves back to the originating MaPSeq central manager.
+	Once a compute resource is successfully registered, a job can
+	be matched with compute element.  Matchmaking is performed by
+	HTCondor's negotiator deamon.</p>
+      </subsection>
       <subsection name="Web Services">
 	<p>The MaPSeq service interfaces are deployed as both RESTful
-	services as well as SOAP services using Apache CXF.  Please
-	refer to the <a href="images/edu.unc.mapseq.ws.png">Web
-	Service API</a> for details</p>
-      </subsection>
-      <subsection name="Schema">
-	<p>The MaPSeq data model is a joined inheritance model.  There
-	are two distinct inheritance models, one for dictionary items
-	(Workflow, Study) and another for named entities (Flowcell,
-	Sample).  For reference, <a href="schema1.xsd">MaPSeq XSD</a></p>
+	services as well as SOAP services using Apache CXF.  They are
+	used by MaPSeq Modules to persist provenance of job metadata
+	(where job ran, start time, end time, exit code, etc.).  The
+	web services can also be used to upload/download files (ie,
+	SampleSheets for CASAVA) or integrated into external clients.</p>
+	<p>Please refer to the <a
+	href="images/edu.unc.mapseq.ws.png">Web Service API</a> for
+	details.</p>
       </subsection>
     </section>
   </body>
