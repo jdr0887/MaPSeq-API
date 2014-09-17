@@ -1,0 +1,70 @@
+<document>
+  <body>
+    <section name="Commands">
+      <subsection name="SSH to MaPSeq">
+      
+	<p>MaPSeq is built from a custom Apache Karaf distribution.
+	This means that all the operations available from a default
+	installation of Karaf are available in MaPSeq...which includes
+	remote access via SSH to a sandboxed console.  The default port
+	for the SSH daemon is 8101 and can be changed by
+	etc/org.apache.karaf.shell.cfg configuration file.  Replace
+	"localhost" with the hostname of your server.</p>
+	<pre>$ ssh -p 8101 -l karaf localhost</pre>
+      </subsection>
+
+      <subsection name="List Workflows">
+	<pre>
+karaf@mapseq()> mapseq:list-workflows
+ID       Name                          
+8        CASAVA                        
+21       DemoTest                      
+9        NCGenes                       
+11       NCGenesAlignment
+...
+	</pre>
+      </subsection>
+      <subsection name="List Studies">
+	<pre>
+karaf@mapseq()> mapseq:list-studies
+ID       Name                                    
+2        NC_GENES                                
+4        NEC                                     
+3        UC                           
+...
+	</pre>
+      </subsection>
+      <subsection name="List Flowcells">
+	<pre>
+karaf@mapseq()> mapseq:list-flowcells 
+ID       Name                                   Base Directory                            
+27352    120712_UNC13-SN749_0183_AD13LKACXX     /proj/seq/mapseq/nc_genes/out             
+27478    120517_UNC15-SN850_0212_AD0VD1ACXX     /proj/seq/mapseq/nc_genes/out             
+48432    120817_UNC16-SN851_0178_AD13KNACXX     /proj/seq/mapseq/nc_genes/out             
+52421    121008_UNC14-SN744_0273_AD1526ACXX     /proj/seq/mapseq/nc_genes/out  
+...
+	</pre>
+      </subsection>
+      <subsection name="List Samples">
+	<p>By Flowcell Identifier:</p>
+	<pre>
+karaf@mapseq()> mapseq:list-samples --flowcellId 2070762
+Sample ID    Sample Name                              Lane   Barcode             Output Directory
+2070763      L001_ATTACTCG-TATAGCCT                   1      ATTACTCG-TATAGCCT   
+2070764      L001_ATTACTCG-ATAGAGGC                   1      ATTACTCG-ATAGAGGC   
+2070765      L001_ATTACTCG-CCTATCCT                   1      ATTACTCG-CCTATCCT   
+...
+	</pre>
+	<p>By Sample Name:</p>
+	<pre>
+karaf@mapseq()> mapseq:list-samples --name NCG_000%
+Sample ID    Sample Name                              Lane   Barcode          Output Directory
+86854        NCG_00073-LT_3                           1      GCCAAT           /proj/seq/mapseq/RENCI/121213_UNC11-SN627_0270_AC1G9CACXX/NCGenes/NCG_00073-LT_3
+86858        NCG_00095-PEDS_1                         2      CGATGT           /proj/seq/mapseq/RENCI/121213_UNC11-SN627_0270_AC1G9CACXX/NCGenes/NCG_00095-PEDS_1
+86857        NCG_00099-LT_1                           2      TGACCA           /proj/seq/mapseq/RENCI/121213_UNC11-SN627_0270_AC1G9CACXX/NCGenes/NCG_00099-LT_1
+...
+	</pre>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,78 @@
+<document>
+  <body>
+    <section name="Pipeline Archetype">
+      <p>As SOA applications have a distinct learning curve and MaPSeq
+      Pipelines are elaborate and extensible, MaPSeq provides a
+      template to start developing your own Sequencing Pipelines.</p>
+      <subsection name="Creating a Pipeline">
+	<p>As a prerequisite, the developer will need to have Java
+	installed.  And as the MaPSeq archetype is highly
+	parameterized, a number of properties must be satisfied. Here
+	are a list required parameters to be set as arguments:
+	<ul>
+	  <li>mapseqTitle</li>
+	  <li>mapseqDotPackageName</li>
+	  <li>mapseqSlashPackageName</li>
+	  <li>mapseqGroupName</li>
+	  <li>mapseqGitRepo</li>
+	  <li>mapseqWorkflowName</li>
+	</ul>
+	</p>
+      </subsection>
+      <subsection name="Example">
+	<pre>
+$ mvn archetype:generate -B \
+-DarchetypeGroupId=edu.unc.mapseq.pipelines \
+-DarchetypeArtifactId=pipeline-archetype \ 
+-DarchetypeVersion=0.0.6 \
+-DgroupId=edu.unc.mapseq.pipelines \
+-DartifactId=test-vcf \
+-Dversion=0.0.1-SNAPSHOT \
+-Dpackage=1.5 \
+-DmapseqTitle="Test VCF" \
+-DmapseqDotPackageName=test.vcf \
+-DmapseqSlashPackageName=test/vcf \
+-DmapseqGroupName=test-vcf \
+-DmapseqGitRepo=mps_test_vcf \
+-DmapseqWorkflowName=TestVCF 
+	</pre>
+      </subsection>
+      <subsection name="Directory Layout of a MaPSeq Pipeline">
+	<p>Using the MaPSeq Pipeline Archetype, if the name of the
+	project is "test-vcf", then following directories will be
+	created.</p>
+	<table border="1" class="bodyTable">
+	  <tr class="a">
+	    <td align="left">test-vcf/test-vcf-commands</td>
+	    <td align="left">This project is reserved for commands to
+	    be used from within the Apache Karaf container.  See
+	    <a href="commands.html">MaPSeq commands</a> for examples.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">test-vcf/test-vcf-executor</td>
+	    <td align="left">This project is used to managing
+	    monitoring of pipelines as they are enqueue/dequeued to HTCondor.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">test-vcf/test-vcf-features</td>
+	    <td align="left">This project aggregates commands, the
+	    executor, messaging, and workflow projects into a
+	    deployable into the container.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">test-vcf/test-vcf-messaging</td>
+	    <td align="left">This project exposes a Java Messaging Service
+	    destination which can be called to trigger a MaPSeq Workflow.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">test-vcf/test-vcf-workflow</td>
+	    <td align="left">This project houses construction of the
+	    directed acyclic graph (DAG) which HTCondor will
+	    sequentially execute.</td>
+	  </tr>
+	</table>
+      </subsection>
+    </section>
+  </body>
+</document>
+
