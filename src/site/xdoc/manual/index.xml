@@ -1,8 +1,25 @@
 <document>
   <body>
-    <section name="Manual">
-      <p><a href="user-guide/index.html">User Guide</a></p>
-      <p><a href="developer-guide/index.html">Developer Guide</a></p>
+    <section name="Developer Guide">
+      <subsection name="Definition a MaPSeq Pipeline">
+	<p>These bundles are to be organzied into a features project
+	that can be used to deploy the pipeline.  The following is an
+	exmaple features.xml file:</p>
+	<pre>
+&lt;features name="mapseq-pipeline-test-vcf-0.0.1-SNAPSHOT"&gt;
+  &lt;feature name="mapseq-pipeline-test-vcf" version="0.0.1-SNAPSHOT" resolver="(obr)"&gt;
+    &lt;bundle&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-workflow/0.0.1-SNAPSHOT&lt;/bundle&gt;
+    &lt;bundle&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-commands/0.0.1-SNAPSHOT&lt;/bundle&gt;
+    &lt;bundle start-level="100"&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-executor/0.0.1-SNAPSHOT&lt;/bundle&gt;
+    &lt;bundle start-level="100"&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-messaging/0.0.1-SNAPSHOT&lt;/bundle&gt;
+  &lt;/feature&gt;
+&lt;/features&gt;
+	</pre>
+	<p>The MaPSeq data model is a joined inheritance model.  There
+	are two distinct inheritance models, one for dictionary items
+	(Workflow, Study) and another for named entities (Flowcell,
+	Sample).  For reference, <a href="schema1.xsd">MaPSeq XSD</a></p>
+      </subsection>
     </section>
   </body>
 </document>
