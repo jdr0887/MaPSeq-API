@@ -1,0 +1,25 @@
+<document>
+  <body>
+    <section name="Architecture">
+      <p>MaPSeq is fronted by a collection of service interfaces
+      (SOAP, RESTful, and Messaging).  When a pipeline is deployed, a
+      Java Messaging Service destination will be exposed.  That
+      messaging destination, only accepting valid JSON messages, will
+      enqueue a WorkflowRun instance for that cooresponding workflow
+      along with a specified Flowcell/Sample to process.</p>
+      <p><img src="images/MaPSeqArchitecture.png"/></p>
+      <subsection name="Web Services">
+	<p>The MaPSeq service interfaces are deployed as both RESTful
+	services as well as SOAP services using Apache CXF.  Please
+	refer to the <a href="images/edu.unc.mapseq.ws.png">Web
+	Service API</a> for details</p>
+      </subsection>
+      <subsection name="Schema">
+	<p>The MaPSeq data model is a joined inheritance model.  There
+	are two distinct inheritance models, one for dictionary items
+	(Workflow, Study) and another for named entities (Flowcell,
+	Sample).  For reference, <a href="schema1.xsd">MaPSeq XSD</a></p>
+      </subsection>
+    </section>
+  </body>
+</document>
