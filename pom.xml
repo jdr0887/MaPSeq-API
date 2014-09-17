@@ -10,7 +10,7 @@
   <artifactId>mapseq</artifactId>
   <version>0.5.6-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <url>https://ci-dev.renci.org/site/mapseq</url>
+  <url>https://jdr0887.github.io/MaPSeq-API</url>
   <issueManagement>
     <system>gForge</system>
     <url>https://code.renci.org/gf/project/mapseq/tracker/</url>
