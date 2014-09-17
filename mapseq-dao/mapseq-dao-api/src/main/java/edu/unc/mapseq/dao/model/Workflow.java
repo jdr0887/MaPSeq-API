@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlRootElement(name = "workflow")
 @Entity
 @Table(name = "workflow")
-@NamedQueries({ @NamedQuery(name = "Workflow.findAll", query = "SELECT a FROM Workflow a order by a.name") })
+@NamedQueries({ @NamedQuery(name = "Workflow.findAll", query = "SELECT a FROM Workflow a where a.active is true order by a.name") })
 public class Workflow extends DictionaryEntity {
 
     private static final long serialVersionUID = -6745909962563675950L;

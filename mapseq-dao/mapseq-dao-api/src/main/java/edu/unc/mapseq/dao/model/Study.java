@@ -23,8 +23,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Entity
 @Table(name = "study")
 @NamedQueries({
-        @NamedQuery(name = "Study.findAll", query = "SELECT a FROM Study a order by a.name"),
-        @NamedQuery(name = "Study.findSampleId", query = "SELECT a FROM Study a where a.samples.id = :id order by a.name") })
+        @NamedQuery(name = "Study.findAll", query = "SELECT a FROM Study a where a.active is true order by a.name"),
+        @NamedQuery(name = "Study.findSampleId", query = "SELECT a FROM Study a where a.active is true and a.samples.id = :id order by a.name") })
 public class Study extends DictionaryEntity {
 
     private static final long serialVersionUID = -8860506395856309697L;
