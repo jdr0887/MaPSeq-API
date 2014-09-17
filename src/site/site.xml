@@ -22,17 +22,13 @@
     <menu name="Documentation">
       <item name="Overview" href="overview.html"/>
       <item name="Manual" href="manual/index.html">
-	<item name="User Guide" href="manual/user-guide/index.html">
-	  <item name="Commands" href="manual/user-guide/commands.html"/>
-	  <item name="Pipeline Deployment" href="manual/user-guide/pipeline-deployment.html"/>    
-	  <item name="Web Service clients" href="manual/user-guide/ws-clients.html"/>    
-	</item>
-	<item name="Developer Guide" href="manual/developer-guide/index.html">    
-	  <item name="Modules" href="manual/developer-guide/modules.html"/>    
-	  <item name="Workflows" href="manual/developer-guide/workflows.html"/>    
-	  <item name="Pipeline Archetype" href="manual/developer-guide/pipeline-archetype.html"/>
-	</item>    
-      </item>
+	<item name="Modules" href="manual/modules.html"/>    
+	<item name="Workflows" href="manual/workflows.html"/>    
+	<item name="Pipeline Archetype" href="manual/pipeline-archetype.html"/>
+	<item name="Commands" href="manual/commands.html"/>
+	<item name="Pipeline Deployment" href="manual/pipeline-deployment.html"/>    
+	<item name="Web Service clients" href="manual/ws-clients.html"/>    
+      </item>    
       <item name="Migration" href="migration/index.html">
 	<item name="v0.4 to v0.5" href="migration/04to05.html"/>
       </item>
