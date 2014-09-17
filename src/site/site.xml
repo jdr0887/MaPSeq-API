@@ -15,7 +15,7 @@
   </bannerLeft>
   <body>
     <menu name="Overview">
-      <item name="About" href="index.html"/>
+      <item name="Home" href="index.html"/>
       <item name="Building" href="building.html"/>
       <item name="Download" href="download.html"/>
     </menu>
