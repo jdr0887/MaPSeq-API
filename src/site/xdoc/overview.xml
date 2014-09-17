@@ -2,32 +2,31 @@
   <body>
     <section name="Overview">
       <p><img src="images/MaPSeqArchitecture.png"/></p>
-      <subsection name="MaPSeq">
+      <subsection name="Web Services">
 	<p>MaPSeq is fronted by a collection of service interfaces
 	(SOAP, RESTful, and Messaging).  When a pipeline is deployed,
 	a Java Messaging Service destination will be exposed.  That
 	messaging destination, only accepting valid JSON messages,
 	will persist WorkflowRun instance for that cooresponding
 	workflow along with a specified Flowcell/Sample to process.
-	This enqueue WorkflowRun instance will be dequeued by the
+	This enqueued WorkflowRun instance will be dequeued by the
 	Pipeline Executor.</p>
       </subsection>
       <subsection name="Pipelines">
 	<p>MaPSeq is built upon the OSGi framework (a plugin
-	framework), and as such, a Pipeline is defined as a collection
-	of plugins.  More specifically, a collection of plugins that
-	are comprised of bundles that contain, at a minimum, the
-	following:
+	framework), and as such, a Pipeline is a defined as a plugin.
+	More specifically, a MaPSeq Pipeline is a collection of
+	bundles that include, at a minimum, the following:
 	  <table border="1" class="bodyTable">
 	    <tr class="a">
-	      <td align="left">a messaging destination and listener</td>
-	      <td align="left">A JMS destination is used to trigger
-	      WorkflowRun instances.</td>
+	      <td align="left">a messaging destination/listener</td>
+	      <td align="left">A JMS destination is used as an
+	      accessor to trigger WorkflowRun instances.</td>
 	    </tr>
 	    <tr class="a">
 	      <td align="left">a workflow</td>
-	      <td align="left">The programmatic structure of which
-	      serial executables to be run.</td>
+	      <td align="left">The programmatic structure of a
+	      collection of executables to be run serially.</td>
 	    </tr>
 	    <tr class="a">
 	      <td align="left">an executor</td>
@@ -44,20 +43,22 @@
 	  </table>
 	</p>
       </subsection>
-      <subsection name="HTCondor as a meta-scheduler">
-	<p>A meta-scheduler is essentially a linked queue.  MaPSeq
-	uses HTCondor to queue up DAGMan jobs, none of which will
-	actually be executed on any compute nodes directly configured
-	to that MaPSeq's central manager.  HTCondor Glideins are used
-	to dynamically provision compute resources to MaPSeq's central
-	manager.  This allows for the growing or shrinking of compute
-	resources as the demand grows or shrinks.</p>
+      <subsection name="Meta-scheduling">
+	<p>HTCondor is used for MaPSeq's meta-scheduling.  DAGMan jobs
+	are submitted to a locally configured HTCondor queue once a
+	WorkflowRun instance is dequeued.  No jobs will be executed on
+	any compute nodes directly configured to the HTCondor central
+	manager where MaPSeq is installed.  Instead, HTCondor Glideins
+	are used to dynamically provision remote compute resources.
+	This allows for the growing or shrinking of compute resources
+	as the demand grows or shrinks.</p>
       </subsection>
       <subsection name="Grid Access Triage Engine (GATE)">
-	<p>GATE is also built using Apache Karaf (an OSGi based
-	container).  Where Pipelines are plugins for MaPSeq, compute
-	resource plugins exist for GATE.  Here is a short list of
-	actively used plugins:</p>
+	<p><a href="https://github.com/jdr0887/GATE/">GATE</a> is also
+	built using Apache Karaf (an OSGi based container).  Where
+	Pipelines are plugins for MaPSeq, GATE plugins exist for each
+	compute resource.  Here is a short list of actively used
+	plugins:</p>
 	<ul>
 	  <li><a href="https://github.com/jdr0887/GATE-Plugin-UNC-Kure">UNC Kure</a></li>
 	  <li><a href="https://github.com/jdr0887/GATE-Plugin-UNC-Topsail">UNC Topsail</a></li>
@@ -66,14 +67,25 @@
 	</ul>
 	<p>The GATE engine traverses the available plugins and submits
 	HTCondor Glideins to the appropriate cluster's submit host
-	over SSH.  These Glideins are configured to register
-	themselves back to the originating MaPSeq central manager.
-	Once a compute resource is successfully registered, a job can
-	be matched with compute element.  Matchmaking is performed by
-	HTCondor's negotiator deamon.</p>
+	over SSH.  GATE will submit Glideins based on number of
+	different factors, the most important of which include:</p>
+	<ul>
+	  <li>number of remote running Glidein jobs</li>
+	  <li>number of remote idle/pending Glidein jobs</li>
+	  <li>number of local running jobs</li>
+	  <li>number of local idle/pending jobs</li>
+	  <li>number of local held jobs</li>
+	</ul>
+	<p>These Glideins are configured to register themselves back
+	to the HTCondor central manager where MaPSeq is deployed.
+	Once a compute resource is successfully registered, a
+	matchmaking routine can pair a job to a compute element.
+	Matchmaking is performed by HTCondor's negotiator deamon and
+	is based on resolving set of ClassAd (attribues) at both the
+	Job &amp; Machine level.</p>
       </subsection>
       <subsection name="Web Services">
-	<p>The MaPSeq service interfaces are deployed as both RESTful
+	<p>MaPSeq service interfaces are deployed as both RESTful
 	services as well as SOAP services using Apache CXF.  They are
 	used by MaPSeq Modules to persist provenance of job metadata
 	(where job ran, start time, end time, exit code, etc.).  The
