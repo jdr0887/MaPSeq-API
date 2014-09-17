@@ -1,7 +1,8 @@
 <document>
   <body>
     <section name="Manual">
-      <p></p>
+      <p><a href="user-guide/index.html">User Guide</a></p>
+      <p><a href="developer-guide/index.html">Developer Guide</a></p>
     </section>
   </body>
 </document>
