@@ -184,21 +184,22 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
 
             }
 
-            if (module.getSerializeFile() != null) {
-                try {
-                    JAXBContext context = JAXBContext.newInstance(Job.class);
-                    Marshaller m = context.createMarshaller();
-                    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-                    File moduleClassXMLFile = module.getSerializeFile();
-                    logger.info("serializing: {}", moduleClassXMLFile.getAbsolutePath());
-                    FileWriter fw = new FileWriter(moduleClassXMLFile);
-                    m.marshal(getJob(), fw);
-                } catch (JAXBException | IOException e) {
-                    logger.error("MaPSeq Error", e);
-                }
-            }
-
         }
+
+        if (module.getSerializeFile() != null) {
+            try {
+                JAXBContext context = JAXBContext.newInstance(Job.class);
+                Marshaller m = context.createMarshaller();
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                File moduleClassXMLFile = module.getSerializeFile();
+                logger.info("serializing: {}", moduleClassXMLFile.getAbsolutePath());
+                FileWriter fw = new FileWriter(moduleClassXMLFile);
+                m.marshal(getJob(), fw);
+            } catch (JAXBException | IOException e) {
+                logger.error("MaPSeq Error", e);
+            }
+        }
+
         return output;
     }
 
