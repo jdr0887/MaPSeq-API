@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.DataCache;
@@ -54,7 +55,7 @@ public class DictionaryEntity implements Persistable {
     @Column(name = "name")
     protected String name;
 
-    @XmlAttribute(name = "active")
+    @XmlTransient
     @Column(name = "active")
     private Boolean active;
 
