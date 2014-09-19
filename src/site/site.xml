@@ -24,10 +24,11 @@
 	<item name="Building" href="manual/building.html"/>
 	<item name="Modules" href="manual/modules.html"/>    
 	<item name="Workflows" href="manual/workflows.html"/>    
+	<item name="Pipelines" href="manual/pipelines.html"/>
 	<item name="Pipeline Archetype" href="manual/pipeline-archetype.html"/>
 	<item name="Commands" href="manual/commands.html"/>
 	<item name="Reporting" href="manual/reporting.html"/>
-	<item name="Pipeline Deployment" href="manual/pipeline-deployment.html"/>    
+
 	<item name="Web Service clients" href="manual/ws-clients.html"/>    
       </item>    
       <item name="Migration" href="migration/index.html">
