@@ -1,0 +1,63 @@
+<document>
+  <body>
+    <section name="Pipelines">
+      <p>MaPSeq is built upon the OSGi framework (a plugin
+      framework), and as such, a Pipeline is a defined as a plugin.
+      More specifically, a MaPSeq Pipeline is a collection of
+      bundles that include, at a minimum, the following:
+      <table border="1" class="bodyTable">
+	<tr class="a">
+	  <td align="left">a messaging destination/listener</td>
+	  <td align="left">A JMS destination is used as an
+	  accessor to trigger WorkflowRun instances.</td>
+	</tr>
+	<tr class="a">
+	  <td align="left">a workflow</td>
+	  <td align="left">The programmatic structure of a
+	  collection of executables to be run serially.</td>
+	</tr>
+	<tr class="a">
+	  <td align="left">an executor</td>
+	  <td align="left">The executor dequeues WorkflowRun instances at
+	  a specified frequency and quantity. (ie, 10 WorkflowRun
+	  instances every 5 minutes)</td>
+	</tr>
+	<tr class="a">
+	  <td align="left">and a features file</td>
+	  <td align="left">The features file is used at deployment
+	  time.  It describes all the bundles associated with this
+	  pipeline (messaging, workflow, and executor).</td>
+	</tr>
+      </table>
+      </p>
+      <subsection name="Pipeline Deployment">
+	<p>Apache Karaf allows for the addition of artifact
+	repositories.  Once added, you can add the features of a MaPSeq
+	Pipeline using described features.</p>
+	<pre>
+$ feature:repo-add mvn:&lt;groupId&gt;/&lt;artifactId&gt;/&lt;version&gt;/xml/features
+$ feature:repo-remove mvn:&lt;groupId&gt;/&lt;artifactId&gt;/&lt;version&gt;/xml/features
+	</pre>
+      </subsection>
+      <subsection name="Install &amp; Uninstalling">
+	<p></p>
+	<pre>
+$ feature:install &lt;feature&gt;
+$ feature:uninstall &lt;feature&gt;
+	</pre>
+      </subsection>
+      <subsection name="Example features file">      
+	<pre>
+&lt;features name="mapseq-pipeline-test-vcf-0.0.1-SNAPSHOT"&gt;
+  &lt;feature name="mapseq-pipeline-test-vcf" version="0.0.1-SNAPSHOT" resolver="(obr)"&gt;
+    &lt;bundle&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-workflow/0.0.1-SNAPSHOT&lt;/bundle&gt;
+    &lt;bundle&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-commands/0.0.1-SNAPSHOT&lt;/bundle&gt;
+    &lt;bundle start-level="100"&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-executor/0.0.1-SNAPSHOT&lt;/bundle&gt;
+    &lt;bundle start-level="100"&gt;mvn:edu.unc.mapseq.pipelines.test-vcf/test-vcf-messaging/0.0.1-SNAPSHOT&lt;/bundle&gt;
+  &lt;/feature&gt;
+&lt;/features&gt;
+	</pre>
+      </subsection>
+    </section>
+  </body>
+</document>
