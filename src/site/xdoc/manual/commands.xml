@@ -9,8 +9,8 @@
 	remote access via SSH to a sandboxed console.  The default port
 	for the SSH daemon is 8101 and can be changed by
 	etc/org.apache.karaf.shell.cfg configuration file.  Replace
-	"localhost" with the hostname of your server.</p>
-	<pre>$ ssh -p 8101 -l karaf localhost</pre>
+	"serverName" with the hostname of your server.</p>
+	<pre>$ ssh -p 8101 -l karaf &lt;serverName&gt;</pre>
       </subsection>
 
       <subsection name="List Workflows">
