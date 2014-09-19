@@ -4,8 +4,10 @@
       <p>MaPSeq has a suite of reports that can be run to better
       visualize how long jobs are taking to run on average and at max
       duration.  These reports also indicate where your jobs have been
-      run overall and on a per Workflow instance.  Here are a few
-      example:</p>
+      run overall and on a per Workflow instance.  As a prerequisite,
+      the user must connect to the console:</p>
+      <pre>$ ssh -p 8101 -l karaf &lt;serverName&gt;</pre>
+      <p>Here are a few examples:</p>
       <subsection name="Weekly Report">
 	<p>The command to run this from the MaPSeq console:</p>
 	<pre>
