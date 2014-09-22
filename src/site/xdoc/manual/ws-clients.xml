@@ -3,22 +3,22 @@
     <section name="Web Service clients">
       <subsection name="RESTful">
 	<p>RESTful Java Client to list all Study instances:</p>
-	<pre>
-List&lt;Object&gt; providers = new ArrayList&lt;Object&gt;();
+	<source><![CDATA[
+List<Object> providers = new ArrayList<Object>();
 JacksonJaxbJsonProvider provider = new JacksonJaxbJsonProvider();
 ObjectMapper mapper = new ObjectMapper();
 mapper.getDeserializationConfig().useRootWrapping();
 provider.setMapper(mapper);
 providers.add(provider);
 WebClient client = WebClient.create(getRestServiceURL(), providers, true);
-Collection&lt;? extends Study&gt; ret = client.path("findAll").accept(MediaType.APPLICATION_JSON)
+Collection<? extends Study> ret = client.path("findAll").accept(MediaType.APPLICATION_JSON)
         .getCollection(Study.class);
-List&lt;Study&gt; studyList = new ArrayList&lt;Study&gt;(ret); 
-	</pre>
+List<Study> studyList = new ArrayList<Study>(ret); 
+	]]></source>
       </subsection>
       <subsection name="SOAP">
 	<p>SOAP Java Client to list all Study instances:</p>
-	<pre>
+	<source><![CDATA[
 QName serviceQName = new QName("http://ws.mapseq.unc.edu", "StudyService");
 Service service = Service.create(serviceQName);
 QName portQName = new QName("http://ws.mapseq.unc.edu", "StudyPort");
@@ -29,8 +29,8 @@ HTTPConduit httpConduit = (HTTPConduit) cl.getConduit();
 httpConduit.getClient().setReceiveTimeout(getConfigurationService().getWebServiceTimeout());
 httpConduit.getClient().setConnectionTimeout(0);
 httpConduit.getClient().setConnection(ConnectionType.CLOSE);
-List&lt;Study&gt; ret = studyService.findAll();
-	</pre>
+List<Study> ret = studyService.findAll();
+	]]></source>
       </subsection>
     </section>
   </body>
