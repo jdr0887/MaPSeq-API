@@ -1,0 +1,46 @@
+<document>
+  <body>
+    <section name="FAQ">
+      <subsection name="Can jobs be exported to LSF/SGE/other?">
+	<p>Yes and no.  HTCondor manages execution of jobs within the
+	directed acyclic graph.  If the batch scheduler supports DAG
+	job types, then it is possible.  For example LSF can have the
+	"name" of a job specified as a dependency...allowing a
+	chaining of the vertexes of the graph.  Not all batch
+	schedulers support this.</p>
+      </subsection>
+      <subsection name="Why another Workflow Management System?">
+	<p>MaPSeq offers a few distinct advantages over some of it's
+	competitors.  Here is a short list:</p>
+	<table border="1" class="bodyTable">
+	  <tr class="a">
+	    <td align="left">service oriented architecture (SOA)</td>
+	    <td align="left">Being service oriented allows for
+	    integration into other clients.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">OSGi based</td> 
+	    <td align="left">Leveraging the OSGi framework &amp;
+	    Apache Karaf allows for quick developmental iterations on
+	    Pipeline creation by Pipeline authors.  Pipelines can be
+	    created, altered, deploy, triggered, and removed without
+	    having to stop/restart the container.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">Graphing library is highly flexible</td>
+	    <td align="left"><a href="http://jgrapht.org/">JGraphT</a>
+	    is strongly typed, and well designed, graphing library
+	    which is not tightly coupled to a user interface.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">Use of HTCondor as a meta-scheduler</td>
+	    <td align="left">The addition of GATE plugins to extend
+	    cluster resources within the University domain allows for
+	    opportunistic utilization of trusted compute
+	    resources.</td>
+	  </tr>
+	</table>
+      </subsection>
+    </section>
+  </body>
+</document>
