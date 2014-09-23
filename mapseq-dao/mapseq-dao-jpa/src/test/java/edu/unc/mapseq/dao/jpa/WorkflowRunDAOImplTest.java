@@ -85,13 +85,11 @@ public class WorkflowRunDAOImplTest {
         em.getTransaction().begin();
         Long id = workflowRunDAO.save(workflowRun);
         workflowRun.setId(id);
-        em.getTransaction().commit();
-
-        em.getTransaction().begin();
+        
         Set<Sample> samples = new HashSet<Sample>();
         samples.add(sample);
         workflowRun.setSamples(samples);
-        workflowRunDAO.save(workflowRun);
+        
         em.getTransaction().commit();
 
         System.out.println(workflowRun.toString());
