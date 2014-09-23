@@ -55,7 +55,7 @@ public class WorkflowRun extends NamedEntity {
     @XmlElementWrapper(name = "samples")
     @XmlElement(name = "sample")
     @ElementDependent
-    @ManyToMany(targetEntity = Sample.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Sample.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @ContainerTable(name = "workflow_run_sample", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
     @JoinTable(name = "workflow_run_sample", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "sample_fid"))
     private Set<Sample> samples;
@@ -63,7 +63,7 @@ public class WorkflowRun extends NamedEntity {
     @XmlElementWrapper(name = "flowcells")
     @XmlElement(name = "flowcell")
     @ElementDependent
-    @ManyToMany(targetEntity = Flowcell.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Flowcell.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @ContainerTable(name = "workflow_run_flowcell", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
     @JoinTable(name = "workflow_run_flowcell", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "flowcell_fid"))
     private Set<Flowcell> flowcells;
