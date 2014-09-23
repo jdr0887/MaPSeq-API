@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.unc</groupId>
   <artifactId>mapseq</artifactId>
-  <version>0.5.6-SNAPSHOT</version>
+  <version>0.5.6</version>
   <packaging>pom</packaging>
   <url>https://jdr0887.github.io/MaPSeq-API</url>
   <issueManagement>
@@ -26,6 +26,7 @@
     <url>https://github.com/jdr0887/MaPSeq-API</url>
     <developerConnection>scm:git:git@github.com:jdr0887/MaPSeq-API.git</developerConnection>
     <connection>scm:git:git@github.com:jdr0887/MaPSeq-API.git</connection>
+    <tag>mapseq-0.5.6</tag>
   </scm>
   <dependencyManagement>
     <dependencies>
@@ -92,7 +93,7 @@
       <dependency>
       	<groupId>edu.unc.mapseq.mapseq-dao</groupId>
       	<artifactId>mapseq-dao-api</artifactId>
-      	<version>0.5.6-SNAPSHOT</version>
+      	<version>0.5.6</version>
       </dependency>
       <dependency>
       	<groupId>org.apache.geronimo.specs</groupId>
@@ -102,7 +103,7 @@
       <dependency>
       	<groupId>edu.unc.mapseq.mapseq-dao</groupId>
       	<artifactId>mapseq-dao-jpa</artifactId>
-      	<version>0.5.6-SNAPSHOT</version>
+      	<version>0.5.6</version>
       </dependency>
       <dependency>
 	<groupId>commons-httpclient</groupId>
@@ -117,7 +118,7 @@
       <dependency>
       	<groupId>edu.unc.mapseq</groupId>
       	<artifactId>mapseq-module-api</artifactId>
-      	<version>0.5.6-SNAPSHOT</version>
+      	<version>0.5.6</version>
       </dependency>
       <dependency>
       	<groupId>org.apache.aries.transaction</groupId>
@@ -127,7 +128,7 @@
       <dependency>
       	<groupId>edu.unc.mapseq</groupId>
       	<artifactId>mapseq-config</artifactId>
-      	<version>0.5.6-SNAPSHOT</version>
+      	<version>0.5.6</version>
       </dependency>
       <dependency>
       	<groupId>org.apache.geronimo.specs</groupId>
