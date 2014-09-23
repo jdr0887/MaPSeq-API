@@ -1,6 +1,7 @@
 package edu.unc.mapseq.dao.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
@@ -176,6 +177,9 @@ public class WorkflowRunAttempt implements Persistable {
     }
 
     public Set<Job> getJobs() {
+        if (jobs == null) {
+            return new HashSet<Job>();
+        }
         return jobs;
     }
 

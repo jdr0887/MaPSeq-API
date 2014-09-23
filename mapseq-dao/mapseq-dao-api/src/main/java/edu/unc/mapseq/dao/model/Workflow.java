@@ -1,5 +1,6 @@
 package edu.unc.mapseq.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -35,6 +36,9 @@ public class Workflow extends DictionaryEntity {
     }
 
     public Set<WorkflowRun> getWorkflowRuns() {
+        if (workflowRuns == null) {
+            return new HashSet<WorkflowRun>();
+        }
         return workflowRuns;
     }
 

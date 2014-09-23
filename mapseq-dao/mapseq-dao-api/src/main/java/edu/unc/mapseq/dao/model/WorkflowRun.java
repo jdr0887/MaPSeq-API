@@ -89,6 +89,9 @@ public class WorkflowRun extends NamedEntity {
     }
 
     public Set<Flowcell> getFlowcells() {
+        if (flowcells == null) {
+            return new HashSet<Flowcell>();
+        }
         return flowcells;
     }
 
@@ -97,6 +100,9 @@ public class WorkflowRun extends NamedEntity {
     }
 
     public Set<Sample> getSamples() {
+        if (samples == null) {
+            return new HashSet<Sample>();
+        }
         return samples;
     }
 

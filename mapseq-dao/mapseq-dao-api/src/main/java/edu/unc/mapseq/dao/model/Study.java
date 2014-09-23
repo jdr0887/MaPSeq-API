@@ -1,5 +1,6 @@
 package edu.unc.mapseq.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -37,6 +38,9 @@ public class Study extends DictionaryEntity {
     }
 
     public Set<Sample> getSamples() {
+        if (samples == null) {
+            return new HashSet<Sample>();
+        }
         return samples;
     }
 

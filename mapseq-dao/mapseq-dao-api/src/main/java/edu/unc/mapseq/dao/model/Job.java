@@ -1,6 +1,7 @@
 package edu.unc.mapseq.dao.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
@@ -137,6 +138,9 @@ public class Job extends NamedEntity {
     }
 
     public Set<TransferInfo> getTransfers() {
+        if (transfers == null) {
+            return new HashSet<TransferInfo>();
+        }
         return transfers;
     }
 
