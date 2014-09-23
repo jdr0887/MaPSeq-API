@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.DataCache;
+import org.apache.openjpa.persistence.ElementDependent;
 import org.apache.openjpa.persistence.jdbc.ContainerTable;
 import org.apache.openjpa.persistence.jdbc.Index;
 
@@ -42,7 +43,7 @@ public class WorkflowRun extends NamedEntity {
 
     private static final long serialVersionUID = 8700198002784754453L;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "workflow_fid")
     private Workflow workflow;
 
@@ -53,14 +54,16 @@ public class WorkflowRun extends NamedEntity {
 
     @XmlElementWrapper(name = "samples")
     @XmlElement(name = "sample")
-    @ManyToMany(targetEntity = Sample.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @ElementDependent
+    @ManyToMany(targetEntity = Sample.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
     @ContainerTable(name = "workflow_run_sample", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
     @JoinTable(name = "workflow_run_sample", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "sample_fid"))
     private Set<Sample> samples;
 
     @XmlElementWrapper(name = "flowcells")
     @XmlElement(name = "flowcell")
-    @ManyToMany(targetEntity = Flowcell.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @ElementDependent
+    @ManyToMany(targetEntity = Flowcell.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
     @ContainerTable(name = "workflow_run_flowcell", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
     @JoinTable(name = "workflow_run_flowcell", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "flowcell_fid"))
     private Set<Flowcell> flowcells;
@@ -78,9 +81,6 @@ public class WorkflowRun extends NamedEntity {
     }
 
     public Set<WorkflowRunAttempt> getAttempts() {
-        if (attempts == null) {
-            return new HashSet<WorkflowRunAttempt>();
-        }
         return attempts;
     }
 
@@ -89,9 +89,6 @@ public class WorkflowRun extends NamedEntity {
     }
 
     public Set<Flowcell> getFlowcells() {
-        if (flowcells == null) {
-            return new HashSet<Flowcell>();
-        }
         return flowcells;
     }
 
@@ -100,9 +97,6 @@ public class WorkflowRun extends NamedEntity {
     }
 
     public Set<Sample> getSamples() {
-        if (samples == null) {
-            return new HashSet<Sample>();
-        }
         return samples;
     }
 
