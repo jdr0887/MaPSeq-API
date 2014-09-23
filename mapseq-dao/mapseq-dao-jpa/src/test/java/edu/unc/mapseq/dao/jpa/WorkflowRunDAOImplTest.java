@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.persistence.EntityManager;
@@ -25,8 +26,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.unc.mapseq.dao.MaPSeqDAOException;
-import edu.unc.mapseq.dao.WorkflowRunAttemptDAO;
+import edu.unc.mapseq.dao.model.Sample;
 import edu.unc.mapseq.dao.model.Study;
+import edu.unc.mapseq.dao.model.Workflow;
 import edu.unc.mapseq.dao.model.WorkflowRun;
 import edu.unc.mapseq.dao.model.WorkflowRunAttempt;
 
@@ -61,6 +63,47 @@ public class WorkflowRunDAOImplTest {
     }
 
     @Test
+    public void testSave() throws MaPSeqDAOException {
+        WorkflowRunDAOImpl workflowRunDAO = new WorkflowRunDAOImpl();
+        workflowRunDAO.setEntityManager(em);
+
+        WorkflowDAOImpl workflowDAO = new WorkflowDAOImpl();
+        workflowDAO.setEntityManager(em);
+
+        Workflow workflow = workflowDAO.findById(15L);
+        System.out.println(workflow.toString());
+
+        SampleDAOImpl sampleDAO = new SampleDAOImpl();
+        sampleDAO.setEntityManager(em);
+
+        Sample sample = sampleDAO.findById(591832L);
+        System.out.println(sample.toString());
+
+        WorkflowRun workflowRun = new WorkflowRun();
+        workflowRun.setName("test");
+        workflowRun.setWorkflow(workflow);
+        em.getTransaction().begin();
+        Long id = workflowRunDAO.save(workflowRun);
+        workflowRun.setId(id);
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        Set<Sample> samples = new HashSet<Sample>();
+        samples.add(sample);
+        workflowRun.setSamples(samples);
+        workflowRunDAO.save(workflowRun);
+        em.getTransaction().commit();
+
+        System.out.println(workflowRun.toString());
+
+        // em.getTransaction().begin();
+        // sample.getWorkflowRuns().add(workflowRun);
+        // sampleDAO.save(sample);
+        // em.getTransaction().commit();
+
+    }
+
+    @Test
     public void testFindStudyId() throws MaPSeqDAOException {
         WorkflowRunDAOImpl workflowRunDAO = new WorkflowRunDAOImpl();
         workflowRunDAO.setEntityManager(em);
@@ -91,7 +134,7 @@ public class WorkflowRunDAOImplTest {
                     "Submit Directory");
 
             List<WorkflowRun> workflowRunList = workflowRunDAO.findByWorkflowId(8L);
-            
+
             if (workflowRunList != null && !workflowRunList.isEmpty()) {
                 for (WorkflowRun workflowRun : workflowRunList) {
 
