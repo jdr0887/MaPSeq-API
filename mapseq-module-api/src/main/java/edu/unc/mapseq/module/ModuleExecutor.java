@@ -134,8 +134,11 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                     WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
                     try {
                         List<Sample> aggregatedSampleList = new ArrayList<>();
+                        
                         aggregatedSampleList.addAll(sampleDAO.findByWorkflowRunId(workflowRun.getId()));
+                        
                         List<Flowcell> flowcells = flowcellDAO.findByWorkflowRunId(workflowRun.getId());
+                        
                         if (flowcells != null && !flowcells.isEmpty()) {
                             for (Flowcell flowcell : flowcells) {
                                 aggregatedSampleList.addAll(sampleDAO.findByFlowcellId(flowcell.getId()));
@@ -192,7 +195,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 Marshaller m = context.createMarshaller();
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
                 File moduleClassXMLFile = module.getSerializeFile();
-                logger.info("serializing: {}", moduleClassXMLFile.getAbsolutePath());
                 FileWriter fw = new FileWriter(moduleClassXMLFile);
                 m.marshal(getJob(), fw);
             } catch (JAXBException | IOException e) {
