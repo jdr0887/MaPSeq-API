@@ -51,9 +51,6 @@ public class Flowcell extends NamedEntity {
     }
 
     public Set<WorkflowRun> getWorkflowRuns() {
-        if (workflowRuns == null) {
-            return new HashSet<WorkflowRun>();
-        }
         return workflowRuns;
     }
 
@@ -82,8 +79,8 @@ public class Flowcell extends NamedEntity {
 
     @Override
     public String toString() {
-        return String.format("Flowcell [baseDirectory=%s, id=%s, name=%s, created=%s]", baseDirectory, id, name,
-                created);
+        return String.format("Flowcell [id=%s, name=%s, created=%s, baseDirectory=%s]", id, name, created,
+                baseDirectory);
     }
 
     @Override
