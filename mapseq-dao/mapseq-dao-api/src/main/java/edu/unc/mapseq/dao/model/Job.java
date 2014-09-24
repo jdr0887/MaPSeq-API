@@ -74,7 +74,6 @@ public class Job extends NamedEntity {
     private Date finished;
 
     @OneToMany(mappedBy = "job", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @ElementDependent
     private Set<TransferInfo> transfers;
 
     public Job() {

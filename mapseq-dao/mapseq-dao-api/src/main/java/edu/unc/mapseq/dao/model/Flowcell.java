@@ -39,7 +39,6 @@ public class Flowcell extends NamedEntity {
     private String baseDirectory;
 
     @OneToMany(mappedBy = "flowcell", fetch = FetchType.LAZY, orphanRemoval = true)
-    @ElementDependent
     private Set<Sample> samples;
 
     @ManyToMany(mappedBy = "flowcells")
