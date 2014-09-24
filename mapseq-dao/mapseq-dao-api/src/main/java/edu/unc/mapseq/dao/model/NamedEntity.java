@@ -30,7 +30,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.DataCache;
-import org.apache.openjpa.persistence.ElementDependent;
 import org.apache.openjpa.persistence.jdbc.ContainerTable;
 import org.apache.openjpa.persistence.jdbc.Index;
 
@@ -71,7 +70,6 @@ public class NamedEntity implements Persistable {
 
     @XmlElementWrapper(name = "attributes")
     @XmlElement(name = "attribute")
-    @ElementDependent
     @ManyToMany(targetEntity = Attribute.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @ContainerTable(name = "named_entity_attribute", joinIndex = @Index(columnNames = { "named_entity_fid" }))
     @JoinTable(name = "named_entity_attribute", joinColumns = @JoinColumn(name = "named_entity_fid"), inverseJoinColumns = @JoinColumn(name = "attribute_fid"))
@@ -79,7 +77,6 @@ public class NamedEntity implements Persistable {
 
     @XmlElementWrapper(name = "files")
     @XmlElement(name = "file")
-    @ElementDependent
     @ManyToMany(targetEntity = FileData.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @ContainerTable(name = "named_entity_file_data", joinIndex = @Index(columnNames = { "named_entity_fid" }))
     @JoinTable(name = "named_entity_file_data", joinColumns = @JoinColumn(name = "named_entity_fid"), inverseJoinColumns = @JoinColumn(name = "file_data_fid"))

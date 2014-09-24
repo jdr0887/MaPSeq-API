@@ -1,6 +1,5 @@
 package edu.unc.mapseq.dao.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
@@ -23,7 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.DataCache;
-import org.apache.openjpa.persistence.ElementDependent;
 import org.apache.openjpa.persistence.jdbc.ContainerTable;
 import org.apache.openjpa.persistence.jdbc.Index;
 
@@ -54,7 +52,6 @@ public class WorkflowRun extends NamedEntity {
 
     @XmlElementWrapper(name = "samples")
     @XmlElement(name = "sample")
-    @ElementDependent
     @ManyToMany(targetEntity = Sample.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @ContainerTable(name = "workflow_run_sample", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
     @JoinTable(name = "workflow_run_sample", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "sample_fid"))
@@ -62,7 +59,6 @@ public class WorkflowRun extends NamedEntity {
 
     @XmlElementWrapper(name = "flowcells")
     @XmlElement(name = "flowcell")
-    @ElementDependent
     @ManyToMany(targetEntity = Flowcell.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @ContainerTable(name = "workflow_run_flowcell", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
     @JoinTable(name = "workflow_run_flowcell", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "flowcell_fid"))
