@@ -56,4 +56,10 @@ public interface FlowcellService {
     @WebMethod
     public List<Flowcell> findByName(@PathParam("flowcellName") @WebParam(name = "flowcellName") String flowcellName);
 
+    @GET
+    @Path("/findByWorkflowRunId/{workflowRunId}")
+    @WebMethod
+    public List<Flowcell> findByWorkflowRunId(
+            @PathParam("workflowRunId") @WebParam(name = "workflowRunlId") Long workflowRunId);
+
 }

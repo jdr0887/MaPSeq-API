@@ -38,7 +38,13 @@ public interface SampleService {
     @GET
     @Path("/findByFlowcellId/{flowcellId}")
     @WebMethod
-    public List<Sample> findByFlowcellId(@PathParam("flowcellId") @WebParam(name = "flowcellId") Long slowcellId);
+    public List<Sample> findByFlowcellId(@PathParam("flowcellId") @WebParam(name = "flowcellId") Long flowcellId);
+
+    @GET
+    @Path("/findByWorkflowRunId/{workflowRunId}")
+    @WebMethod
+    public List<Sample> findByWorkflowRunId(
+            @PathParam("workflowRunId") @WebParam(name = "workflowRunlId") Long workflowRunId);
 
     @GET
     @Path("/findByNameAndFlowcellId/{name}/{flowcellId}")
