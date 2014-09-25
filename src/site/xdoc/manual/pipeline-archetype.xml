@@ -24,7 +24,7 @@
 $ mvn archetype:generate -B \
 -DarchetypeGroupId=edu.unc.mapseq.pipelines \
 -DarchetypeArtifactId=pipeline-archetype \ 
--DarchetypeVersion=0.0.7 \
+-DarchetypeVersion=0.0.8 \
 -DgroupId=edu.unc.mapseq.pipelines \
 -DartifactId=test-vcf \
 -Dversion=0.0.1-SNAPSHOT \
