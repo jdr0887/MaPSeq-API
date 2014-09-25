@@ -4,7 +4,7 @@
       <p>MaPSeq is built upon the OSGi framework (a plugin
       framework), and as such, a Pipeline is a defined as a plugin.
       More specifically, a MaPSeq Pipeline is a collection of
-      bundles that include, at a minimum, the following:
+      bundles that include, at a minimum, the following:</p>
       <table border="1" class="bodyTable">
 	<tr class="a">
 	  <td align="left">a messaging destination/listener</td>
@@ -29,7 +29,6 @@
 	  pipeline (messaging, workflow, and executor).</td>
 	</tr>
       </table>
-      </p>
       <subsection name="Pipeline Deployment">
 	<p>Apache Karaf allows for the addition of artifact
 	repositories.  Once added, you can add the features of a MaPSeq
