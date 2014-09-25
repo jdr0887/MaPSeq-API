@@ -37,6 +37,14 @@ public class WorkflowDAOImplTest {
         assertTrue(workflowList != null && workflowList.size() > 1);
     }
 
+    @Test
+    public void testFindAll() throws MaPSeqDAOException {
+        WorkflowDAOImpl workflowDAO = new WorkflowDAOImpl();
+        workflowDAO.setEntityManager(em);
+        List<Workflow> workflowList = workflowDAO.findAll();
+        assertTrue(workflowList != null && !workflowList.isEmpty());
+    }
+
     @AfterClass
     public static void tearDown() {
         em.close();
