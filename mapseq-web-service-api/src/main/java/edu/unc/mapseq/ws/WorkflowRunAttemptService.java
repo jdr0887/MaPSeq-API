@@ -10,6 +10,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -49,5 +50,10 @@ public interface WorkflowRunAttemptService {
     @WebMethod
     public List<WorkflowRunAttempt> findByWorkflowId(
             @PathParam("workflowId") @WebParam(name = "workflowId") Long workflowId) throws MaPSeqDAOException;
+
+    @POST
+    @Path("/")
+    @WebMethod
+    public Long save(@WebParam(name = "workflowRunAttempt") WorkflowRunAttempt workflowRunAttempt);
 
 }
