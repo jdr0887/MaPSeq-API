@@ -124,7 +124,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 SampleDAO sampleDAO = daoBean.getSampleDAO();
                 JobDAO jobDAO = daoBean.getJobDAO();
 
-                if (module.getFileDatas() != null && !module.getFileDatas().isEmpty()) {
+                if (module.getFileDatas() != null && !module.getFileDatas().isEmpty() && module.getSampleId() != null) {
                     logger.debug("module.getFileDatas().size() = {}", module.getFileDatas().size());
 
                     WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
