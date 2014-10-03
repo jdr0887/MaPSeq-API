@@ -7,7 +7,6 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -26,14 +25,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.FileDataDAO;
-import edu.unc.mapseq.dao.FlowcellDAO;
 import edu.unc.mapseq.dao.JobDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOBean;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.SampleDAO;
 import edu.unc.mapseq.dao.model.Attribute;
 import edu.unc.mapseq.dao.model.FileData;
-import edu.unc.mapseq.dao.model.Flowcell;
 import edu.unc.mapseq.dao.model.Job;
 import edu.unc.mapseq.dao.model.JobStatusType;
 import edu.unc.mapseq.dao.model.Sample;
@@ -125,7 +122,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
 
                 FileDataDAO fileDataDAO = daoBean.getFileDataDAO();
                 SampleDAO sampleDAO = daoBean.getSampleDAO();
-                FlowcellDAO flowcellDAO = daoBean.getFlowcellDAO();
                 JobDAO jobDAO = daoBean.getJobDAO();
 
                 if (module.getFileDatas() != null && !module.getFileDatas().isEmpty()) {
@@ -133,51 +129,28 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
 
                     WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
                     try {
-                        List<Sample> aggregatedSampleList = new ArrayList<Sample>();
+                        Sample sample = sampleDAO.findById(module.getSampleId());
 
-                        List<Sample> samples = sampleDAO.findByWorkflowRunId(workflowRun.getId());
-                        List<Flowcell> flowcells = flowcellDAO.findByWorkflowRunId(workflowRun.getId());
-
-                        if (samples != null && !samples.isEmpty()) {
-                            aggregatedSampleList.addAll(samples);
-                        }
-
-                        if (flowcells != null && !flowcells.isEmpty()) {
-                            for (Flowcell flowcell : flowcells) {
-                                List<Sample> sampleFromFlowcellList = sampleDAO.findByFlowcellId(flowcell.getId());
-                                if (sampleFromFlowcellList != null && !sampleFromFlowcellList.isEmpty()) {
-                                    aggregatedSampleList.addAll(sampleFromFlowcellList);
-                                }
+                        for (FileData fileData : module.getFileDatas()) {
+                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflowRun
+                                    .getWorkflow().getName()));
+                            List<FileData> fileDataList = fileDataDAO.findByExample(fileData);
+                            // if already exists, don't recreate duplicate FileData
+                            FileData tmpFileData = null;
+                            if (fileDataList != null && !fileDataList.isEmpty()) {
+                                tmpFileData = fileDataList.get(0);
+                            } else {
+                                Long fileDataId = fileDataDAO.save(fileData);
+                                fileData.setId(fileDataId);
+                                tmpFileData = fileData;
                             }
+                            logger.debug(tmpFileData.toString());
+                            job.getFileDatas().add(tmpFileData);
+                            sample.getFileDatas().add(tmpFileData);
                         }
 
-                        if (aggregatedSampleList.isEmpty()) {
-                            throw new ModuleException("No Samples Found");
-                        }
-
-                        for (Sample sample : aggregatedSampleList) {
-
-                            for (FileData fileData : module.getFileDatas()) {
-                                fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflowRun
-                                        .getWorkflow().getName()));
-                                List<FileData> fileDataList = fileDataDAO.findByExample(fileData);
-                                // if already exists, don't recreate duplicate FileData
-                                FileData tmpFileData = null;
-                                if (fileDataList != null && !fileDataList.isEmpty()) {
-                                    tmpFileData = fileDataList.get(0);
-                                } else {
-                                    Long fileDataId = fileDataDAO.save(fileData);
-                                    fileData.setId(fileDataId);
-                                    tmpFileData = fileData;
-                                }
-                                logger.debug(tmpFileData.toString());
-                                job.getFileDatas().add(tmpFileData);
-                                sample.getFileDatas().add(tmpFileData);
-                            }
-
-                            sampleDAO.save(sample);
-                        }
-                        jobDAO.save(this.job);
+                        sampleDAO.save(sample);
+                        jobDAO.save(job);
                     } catch (MaPSeqDAOException e) {
                         logger.error("MaPSeq Error", e);
                     }
