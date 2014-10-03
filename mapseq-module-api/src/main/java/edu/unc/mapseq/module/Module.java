@@ -37,6 +37,8 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     private Long workflowRunAttemptId;
 
+    private Long sampleId;
+
     private String workflowName = "TEST";
 
     private Boolean dryRun = Boolean.FALSE;
@@ -63,7 +65,7 @@ public abstract class Module implements Callable<ModuleOutput> {
     }
 
     @Override
-    public ModuleOutput call() throws Exception {
+    public ModuleOutput call() throws Exception {   
         logger.info("ENTERING call()");
 
         Class<?> moduleClass = getModuleClass();
@@ -286,6 +288,14 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     public void setFileDatas(Set<FileData> fileDatas) {
         this.fileDatas = fileDatas;
+    }
+
+    public Long getSampleId() {
+        return sampleId;
+    }
+
+    public void setSampleId(Long sampleId) {
+        this.sampleId = sampleId;
     }
 
 }
