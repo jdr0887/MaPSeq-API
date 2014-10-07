@@ -6,8 +6,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -23,6 +25,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.unc.mapseq.dao.MaPSeqDAOException;
+import edu.unc.mapseq.dao.SampleDAO;
 import edu.unc.mapseq.dao.model.Attribute;
 import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.Job;
@@ -222,6 +225,36 @@ public class SampleTest {
         } catch (MaPSeqDAOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @Test
+    public void testFileDataFormat() {
+
+        SampleDAOImpl sampleDAO = new SampleDAOImpl();
+        sampleDAO.setEntityManager(em);
+
+        Sample entity = null;
+        try {
+            entity = sampleDAO.findById(2053565L);
+        } catch (MaPSeqDAOException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        Formatter formatter = new Formatter(sb, Locale.US);
+        formatter.format("%1$-9s %2$-24s %3$-80s %4$s%n", "ID", "MimeType", "Path", "Name");
+
+        Set<FileData> fileDataSet = entity.getFileDatas();
+        if (fileDataSet != null && !fileDataSet.isEmpty()) {
+            for (FileData fileData : fileDataSet) {
+                formatter.format("%1$-9s %2$-24s %3$-80s %4$s%n", fileData.getId(), fileData.getMimeType(),
+                        fileData.getPath(), fileData.getName());
+                formatter.flush();
+            }
+        }
+        System.out.println(formatter.toString());
+        formatter.close();
 
     }
 
