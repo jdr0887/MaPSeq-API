@@ -22,4 +22,8 @@ public interface WorkflowRunDAO extends NamedEntityDAO<WorkflowRun, Long> {
 
     public abstract List<WorkflowRun> findByStudyId(Long studyId) throws MaPSeqDAOException;
 
+    public abstract void addAttribute(Long attributeId, Long workflowRunId) throws MaPSeqDAOException;
+
+    public abstract void addFileData(Long fileDataId, Long workflowRunId) throws MaPSeqDAOException;
+
 }
