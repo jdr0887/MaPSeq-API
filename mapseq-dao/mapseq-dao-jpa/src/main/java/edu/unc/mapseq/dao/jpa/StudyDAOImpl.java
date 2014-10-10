@@ -11,7 +11,7 @@ import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.StudyDAO;
 import edu.unc.mapseq.dao.model.Study;
 
-public class StudyDAOImpl extends NamedEntityDAOImpl<Study, Long> implements StudyDAO {
+public class StudyDAOImpl extends DictionaryEntityDAOImpl<Study, Long> implements StudyDAO {
 
     private final Logger logger = LoggerFactory.getLogger(StudyDAOImpl.class);
 

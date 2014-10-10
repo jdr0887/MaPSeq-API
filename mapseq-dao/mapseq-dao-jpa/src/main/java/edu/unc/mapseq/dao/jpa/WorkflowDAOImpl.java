@@ -11,7 +11,7 @@ import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.WorkflowDAO;
 import edu.unc.mapseq.dao.model.Workflow;
 
-public class WorkflowDAOImpl extends NamedEntityDAOImpl<Workflow, Long> implements WorkflowDAO {
+public class WorkflowDAOImpl extends DictionaryEntityDAOImpl<Workflow, Long> implements WorkflowDAO {
 
     private final Logger logger = LoggerFactory.getLogger(WorkflowDAOImpl.class);
 
