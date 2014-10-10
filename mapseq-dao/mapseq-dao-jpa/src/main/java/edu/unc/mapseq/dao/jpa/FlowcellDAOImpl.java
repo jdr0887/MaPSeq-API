@@ -1,7 +1,9 @@
 package edu.unc.mapseq.dao.jpa;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +19,8 @@ import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.FlowcellDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
+import edu.unc.mapseq.dao.model.Attribute;
+import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.Flowcell;
 import edu.unc.mapseq.dao.model.Flowcell_;
 import edu.unc.mapseq.dao.model.Sample;
@@ -97,4 +101,57 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
         List<Flowcell> ret = query.getResultList();
         return ret;
     }
+
+    @Override
+    public void addFileData(Long fileDataId, Long flowcellId) throws MaPSeqDAOException {
+        logger.debug("ENTERING addFileData(Long, Long)");
+        if (flowcellId == null) {
+            logger.warn("flowcellId arg was null");
+            return;
+        }
+        Flowcell entity = findById(flowcellId);
+        if (entity == null) {
+            logger.warn("no Flowcell found");
+            return;
+        }
+        Set<FileData> fileDataSet = entity.getFileDatas();
+        if (fileDataSet == null) {
+            fileDataSet = new HashSet<FileData>();
+        }
+        FileData fileData = getFileDataDAO().findById(fileDataId);
+        if (fileData == null) {
+            logger.warn("no FileData found: {}", fileDataId);
+            return;
+        }
+        fileDataSet.add(fileData);
+        entity.setFileDatas(fileDataSet);
+        save(entity);
+    }
+
+    @Override
+    public void addAttribute(Long attributeId, Long flowcellId) throws MaPSeqDAOException {
+        logger.debug("ENTERING addAttribute(Long, Long)");
+        if (flowcellId == null) {
+            logger.warn("flowcellId arg was null");
+            return;
+        }
+        Flowcell entity = findById(flowcellId);
+        if (entity == null) {
+            logger.warn("no Flowcell found");
+            return;
+        }
+        Set<Attribute> attributeSet = entity.getAttributes();
+        if (attributeSet == null) {
+            attributeSet = new HashSet<Attribute>();
+        }
+        Attribute attribute = getAttributeDAO().findById(attributeId);
+        if (attribute == null) {
+            logger.warn("no Attribute found: {}", attributeId);
+            return;
+        }
+        attributeSet.add(attribute);
+        entity.setAttributes(attributeSet);
+        save(entity);
+    }
+
 }
