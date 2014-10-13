@@ -59,6 +59,7 @@ public class JobDAOImplTest {
     public void testFindByCreatedDateRange() throws MaPSeqDAOException {
         JobDAOImpl jobDAO = new JobDAOImpl();
         jobDAO.setEntityManager(em);
+
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -125,23 +126,31 @@ public class JobDAOImplTest {
         job.setStarted(new Date());
         job.setStatus(JobStatusType.RUNNING);
 
-        Set<Attribute> attributeSet = new HashSet<Attribute>();
-
-        Attribute attribute = new Attribute();
-        attribute.setName("foo");
-        attribute.setValue("bar");
-        attributeSet.add(attribute);
-
-        attribute = new Attribute();
-        attribute.setName("fuzz");
-        attribute.setValue("buzz");
-        attributeSet.add(attribute);
-
-        job.setAttributes(attributeSet);
-
         try {
+
+            Set<Attribute> attributeSet = new HashSet<Attribute>();
+
+            AttributeDAOImpl attributeDAO = new AttributeDAOImpl();
+            attributeDAO.setEntityManager(em);
+
+            Attribute attribute = new Attribute("foo", "bar");
+            em.getTransaction().begin();
+            attribute.setId(attributeDAO.save(attribute));
+            em.getTransaction().commit();
+            attributeSet.add(attribute);
+
+            attribute = new Attribute("fuzz", "buzz");
+            em.getTransaction().begin();
+            attribute.setId(attributeDAO.save(attribute));
+            em.getTransaction().commit();
+            attributeSet.add(attribute);
+
+            job.setAttributes(attributeSet);
+
             JobDAOImpl jobDAO = new JobDAOImpl();
             jobDAO.setEntityManager(em);
+            jobDAO.setAttributeDAO(attributeDAO);
+
             em.getTransaction().begin();
             Long id = jobDAO.save(job);
             em.getTransaction().commit();
