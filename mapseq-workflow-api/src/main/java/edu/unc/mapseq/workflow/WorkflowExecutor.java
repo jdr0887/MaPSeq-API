@@ -88,6 +88,15 @@ public class WorkflowExecutor extends Observable implements Runnable {
             logger.warn("Problem with postRun: ", e);
         }
 
+        try {
+            workflow.cleanUp();
+        } catch (WorkflowException e) {
+            setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
+            logger.error("Problem with cleanUp: ", e);
+        } catch (Exception e) {
+            logger.warn("Problem with cleanUp: ", e);
+        }
+
     }
 
     public void setWorkflowStatus(WorkflowRunAttemptStatusType workflowStatus) {
