@@ -3,6 +3,12 @@
   xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0" xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
   default-activation="eager">
 
+  <bean id="attributeDAOImpl" class="edu.unc.mapseq.dao.jpa.AttributeDAOImpl">
+    <tx:transaction method="*" value="Required" />
+    <jpa:context property="entityManager" unitname="mapseq" />
+  </bean>
+  <service ref="attributeDAOImpl" interface="edu.unc.mapseq.dao.AttributeDAO" />
+
   <bean id="fileDataDAOImpl" class="edu.unc.mapseq.dao.jpa.FileDataDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="mapseq" />
@@ -12,18 +18,24 @@
   <bean id="sampleDAOImpl" class="edu.unc.mapseq.dao.jpa.SampleDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="mapseq" />
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
   </bean>
   <service ref="sampleDAOImpl" interface="edu.unc.mapseq.dao.SampleDAO" />
 
   <bean id="jobDAOImpl" class="edu.unc.mapseq.dao.jpa.JobDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="mapseq" />
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
   </bean>
   <service ref="jobDAOImpl" interface="edu.unc.mapseq.dao.JobDAO" />
 
   <bean id="flowcellDAOImpl" class="edu.unc.mapseq.dao.jpa.FlowcellDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="mapseq" />
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
   </bean>
   <service ref="flowcellDAOImpl" interface="edu.unc.mapseq.dao.FlowcellDAO" />
 
@@ -42,6 +54,8 @@
   <bean id="workflowRunDAOImpl" class="edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl">
     <tx:transaction method="*" value="Required" />
     <jpa:context property="entityManager" unitname="mapseq" />
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
   </bean>
   <service ref="workflowRunDAOImpl" interface="edu.unc.mapseq.dao.WorkflowRunDAO" />
 
