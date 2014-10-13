@@ -30,9 +30,9 @@ public interface Workflow extends Callable<CondorJob> {
 
     public abstract void preRun() throws WorkflowException;
 
-    public abstract CondorJob call() throws WorkflowException;
-
     public abstract void postRun() throws WorkflowException;
+
+    public abstract void cleanUp() throws WorkflowException;
 
     public abstract WorkflowRunAttempt getWorkflowRunAttempt();
 
