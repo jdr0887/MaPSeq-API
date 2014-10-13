@@ -11,10 +11,12 @@ import javax.jws.soap.SOAPBinding.Use;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import edu.unc.mapseq.dao.model.Sample;
 
@@ -68,5 +70,16 @@ public interface SampleService {
     @Path("/findByName/{name}")
     @WebMethod
     public List<Sample> findByName(@PathParam("name") @WebParam(name = "name") String name);
+
+    @PUT
+    @Path("/addAttribute/{attributeId}")
+    @WebMethod
+    public Response addAttribute(@PathParam("attributeId") @WebParam(name = "attributeId") Long attributeId,
+            Long sampleId);
+
+    @PUT
+    @Path("/addFileData/{fileDataId}")
+    @WebMethod
+    public Response addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId, Long sampleId);
 
 }
