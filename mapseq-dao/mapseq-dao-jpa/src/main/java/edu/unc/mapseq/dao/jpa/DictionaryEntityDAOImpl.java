@@ -2,6 +2,7 @@ package edu.unc.mapseq.dao.jpa;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -36,6 +37,21 @@ public abstract class DictionaryEntityDAOImpl<T extends Persistable, ID extends 
         predicates.add(critBuilder.like(root.<String> get("name"), name));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         crit.orderBy(critBuilder.asc(root.<String> get("name")));
+        TypedQuery<T> query = getEntityManager().createQuery(crit);
+        List<T> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<T> findByCreatedDateRange(Date startDate, Date endDate) throws MaPSeqDAOException {
+        logger.debug("ENTERING findByCreatedDateRange");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<T> crit = critBuilder.createQuery(getPersistentClass());
+        Root<T> root = crit.from(getPersistentClass());
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        predicates.add(critBuilder.between(root.<Date> get("created"), startDate, endDate));
+        crit.where(predicates.toArray(new Predicate[predicates.size()]));
+        crit.orderBy(critBuilder.asc(root.<Date> get("created")));
         TypedQuery<T> query = getEntityManager().createQuery(crit);
         List<T> ret = query.getResultList();
         return ret;
