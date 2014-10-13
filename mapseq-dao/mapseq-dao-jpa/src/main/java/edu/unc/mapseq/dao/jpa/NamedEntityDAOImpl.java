@@ -15,6 +15,8 @@ import javax.persistence.criteria.SetJoin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.unc.mapseq.dao.AttributeDAO;
+import edu.unc.mapseq.dao.FileDataDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.NamedEntityDAO;
 import edu.unc.mapseq.dao.model.FileData;
@@ -25,6 +27,10 @@ public abstract class NamedEntityDAOImpl<T extends Persistable, ID extends Seria
         implements NamedEntityDAO<T, ID> {
 
     private final Logger logger = LoggerFactory.getLogger(NamedEntityDAOImpl.class);
+
+    private FileDataDAO fileDataDAO;
+
+    private AttributeDAO attributeDAO;
 
     public NamedEntityDAOImpl() {
         super();
@@ -74,6 +80,22 @@ public abstract class NamedEntityDAOImpl<T extends Persistable, ID extends Seria
         TypedQuery<T> query = getEntityManager().createQuery(crit);
         List<T> ret = query.getResultList();
         return ret;
+    }
+
+    public FileDataDAO getFileDataDAO() {
+        return fileDataDAO;
+    }
+
+    public void setFileDataDAO(FileDataDAO fileDataDAO) {
+        this.fileDataDAO = fileDataDAO;
+    }
+
+    public AttributeDAO getAttributeDAO() {
+        return attributeDAO;
+    }
+
+    public void setAttributeDAO(AttributeDAO attributeDAO) {
+        this.attributeDAO = attributeDAO;
     }
 
 }
