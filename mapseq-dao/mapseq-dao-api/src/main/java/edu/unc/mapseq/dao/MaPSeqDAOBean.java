@@ -2,6 +2,8 @@ package edu.unc.mapseq.dao;
 
 public class MaPSeqDAOBean {
 
+    private AttributeDAO attributeDAO;
+
     private FileDataDAO fileDataDAO;
 
     private SampleDAO sampleDAO;
@@ -20,6 +22,14 @@ public class MaPSeqDAOBean {
 
     public MaPSeqDAOBean() {
         super();
+    }
+
+    public AttributeDAO getAttributeDAO() {
+        return attributeDAO;
+    }
+
+    public void setAttributeDAO(AttributeDAO attributeDAO) {
+        this.attributeDAO = attributeDAO;
     }
 
     public FileDataDAO getFileDataDAO() {
