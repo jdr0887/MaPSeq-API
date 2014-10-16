@@ -64,15 +64,4 @@ public interface FlowcellService {
     public List<Flowcell> findByWorkflowRunId(
             @PathParam("workflowRunId") @WebParam(name = "workflowRunlId") Long workflowRunId);
 
-    @PUT
-    @Path("/addAttribute/{attributeId}")
-    @WebMethod
-    public Response addAttribute(@PathParam("attributeId") @WebParam(name = "attributeId") Long attributeId,
-            Long flowcellId);
-
-    @PUT
-    @Path("/addFileData/{fileDataId}")
-    @WebMethod
-    public Response addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId, Long flowcellId);
-
 }

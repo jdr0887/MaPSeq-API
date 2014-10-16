@@ -71,15 +71,4 @@ public interface SampleService {
     @WebMethod
     public List<Sample> findByName(@PathParam("name") @WebParam(name = "name") String name);
 
-    @PUT
-    @Path("/addAttribute/{attributeId}")
-    @WebMethod
-    public Response addAttribute(@PathParam("attributeId") @WebParam(name = "attributeId") Long attributeId,
-            Long sampleId);
-
-    @PUT
-    @Path("/addFileData/{fileDataId}")
-    @WebMethod
-    public Response addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId, Long sampleId);
-
 }

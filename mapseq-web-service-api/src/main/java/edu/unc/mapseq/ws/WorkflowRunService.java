@@ -94,16 +94,4 @@ public interface WorkflowRunService {
     public List<WorkflowRun> findByStudyId(@PathParam("studyId") @WebParam(name = "studyId") Long studyId)
             throws MaPSeqDAOException;
 
-    @PUT
-    @Path("/addAttribute/{attributeId}")
-    @WebMethod
-    public Response addAttribute(@PathParam("attributeId") @WebParam(name = "attributeId") Long attributeId,
-            Long workflowRunId);
-
-    @PUT
-    @Path("/addFileData/{fileDataId}")
-    @WebMethod
-    public Response addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
-            Long workflowRunId);
-
 }
