@@ -48,6 +48,7 @@
 	    javax.xml.bind.annotation,
 	    javax.xml.ws,
 	    javax.xml.ws.soap,
+	    javax.ws.rs,
 	    javax.jws,
 	    javax.jws.soap,
 	    javax.wsdl,
