@@ -2,9 +2,7 @@ package edu.unc.mapseq.dao.jpa;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -20,7 +18,6 @@ import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.JobDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
-import edu.unc.mapseq.dao.model.Attribute;
 import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.FileData_;
 import edu.unc.mapseq.dao.model.Job;
@@ -120,58 +117,6 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
         TypedQuery<Job> query = getEntityManager().createQuery(crit);
         List<Job> ret = query.getResultList();
         return ret;
-    }
-
-    @Override
-    public void addFileData(Long fileDataId, Long jobId) throws MaPSeqDAOException {
-        logger.debug("ENTERING addFileData(Long, Job)");
-        if (jobId == null) {
-            logger.warn("jobId arg was null");
-            return;
-        }
-        Job entity = findById(jobId);
-        if (entity == null) {
-            logger.warn("no Job found");
-            return;
-        }
-        Set<FileData> fileDataSet = entity.getFileDatas();
-        if (fileDataSet == null) {
-            fileDataSet = new HashSet<FileData>();
-        }
-        FileData fileData = getFileDataDAO().findById(fileDataId);
-        if (fileData == null) {
-            logger.warn("no FileData found: {}", fileDataId);
-            return;
-        }
-        fileDataSet.add(fileData);
-        entity.setFileDatas(fileDataSet);
-        save(entity);
-    }
-
-    @Override
-    public void addAttribute(Long attributeId, Long jobId) throws MaPSeqDAOException {
-        logger.debug("ENTERING addAttribute(Long, Long)");
-        if (jobId == null) {
-            logger.warn("jobId arg was null");
-            return;
-        }
-        Job entity = findById(jobId);
-        if (entity == null) {
-            logger.warn("no Job found");
-            return;
-        }
-        Set<Attribute> attributeSet = entity.getAttributes();
-        if (attributeSet == null) {
-            attributeSet = new HashSet<Attribute>();
-        }
-        Attribute attribute = getAttributeDAO().findById(attributeId);
-        if (attribute == null) {
-            logger.warn("no Attribute found: {}", attributeId);
-            return;
-        }
-        attributeSet.add(attribute);
-        entity.setAttributes(attributeSet);
-        save(entity);
     }
 
 }
