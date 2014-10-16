@@ -24,6 +24,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.unc.mapseq.dao.AttributeDAO;
 import edu.unc.mapseq.dao.FileDataDAO;
 import edu.unc.mapseq.dao.JobDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOBean;
@@ -79,13 +80,13 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             this.job.setWorkflowRunAttempt(workflowRunAttempt);
         }
 
-        this.job.setAttributes(createJobAttributes());
-
         if (!module.getDryRun()) {
             try {
                 JobDAO jobDAO = daoBean.getJobDAO();
-                Long id = jobDAO.save(this.job);
-                this.job.setId(id);
+                this.job.setId(jobDAO.save(this.job));
+                for (Attribute attribute : createJobAttributes()) {
+                    jobDAO.addAttribute(attribute.getId(), job.getId());
+                }
             } catch (MaPSeqDAOException e) {
                 e.printStackTrace();
             }
@@ -145,12 +146,9 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                                 tmpFileData = fileData;
                             }
                             logger.debug(tmpFileData.toString());
-                            job.getFileDatas().add(tmpFileData);
-                            sample.getFileDatas().add(tmpFileData);
+                            jobDAO.addFileData(tmpFileData.getId(), job.getId());
+                            sampleDAO.addFileData(tmpFileData.getId(), sample.getId());
                         }
-
-                        sampleDAO.save(sample);
-                        jobDAO.save(job);
                     } catch (MaPSeqDAOException e) {
                         logger.error("MaPSeq Error", e);
                     }
@@ -182,13 +180,17 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
         notifyObservers(statusType);
     }
 
-    private Set<Attribute> createJobAttributes() {
+    private Set<Attribute> createJobAttributes() throws MaPSeqDAOException {
+
+        AttributeDAO attributeDAO = daoBean.getAttributeDAO();
 
         Set<Attribute> attributeSet = new HashSet<Attribute>();
 
         String siteName = System.getenv("JLRM_SITE_NAME");
         if (StringUtils.isNotEmpty(siteName)) {
-            attributeSet.add(new Attribute("siteName", siteName));
+            Attribute attribute = new Attribute("siteName", siteName);
+            attribute.setId(attributeDAO.save(attribute));
+            attributeSet.add(attribute);
         }
 
         Map<String, String> envMap = System.getenv();
@@ -196,7 +198,9 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             String value = envMap.get(key);
             String executable = module.getExecutable();
             if (StringUtils.isNotEmpty(executable) && executable.contains(key) && key.length() > 1) {
-                attributeSet.add(new Attribute(key, value));
+                Attribute attribute = new Attribute(key, value);
+                attribute.setId(attributeDAO.save(attribute));
+                attributeSet.add(attribute);
             }
         }
 
@@ -214,7 +218,9 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                         continue;
                     }
                     if (current_addr instanceof Inet4Address && current.getName().contains("eth")) {
-                        attributeSet.add(new Attribute("inet4Address", current_addr.getHostAddress()));
+                        Attribute attribute = new Attribute("inet4Address", current_addr.getHostAddress());
+                        attribute.setId(attributeDAO.save(attribute));
+                        attributeSet.add(attribute);
                     }
                 }
             }
