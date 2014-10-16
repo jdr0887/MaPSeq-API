@@ -11,12 +11,10 @@ import javax.jws.soap.SOAPBinding.Use;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.xml.ws.BindingType;
 import javax.xml.ws.soap.MTOM;
 
@@ -60,15 +58,5 @@ public interface JobService {
     @WebMethod
     public List<Job> findByCreatedDateRange(@PathParam("started") @WebParam(name = "started") String started,
             @PathParam("finished") @WebParam(name = "finished") String finished);
-
-    @PUT
-    @Path("/addAttribute/{attributeId}")
-    @WebMethod
-    public Response addAttribute(@PathParam("attributeId") @WebParam(name = "attributeId") Long attributeId, Long jobId);
-
-    @PUT
-    @Path("/addFileData/{fileDataId}")
-    @WebMethod
-    public Response addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId, Long jobId);
 
 }

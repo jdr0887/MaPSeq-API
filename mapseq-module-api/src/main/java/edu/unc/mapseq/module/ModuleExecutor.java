@@ -10,7 +10,6 @@ import java.net.SocketException;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
@@ -35,6 +34,7 @@ import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.Job;
 import edu.unc.mapseq.dao.model.JobStatusType;
 import edu.unc.mapseq.dao.model.Sample;
+import edu.unc.mapseq.dao.model.Workflow;
 import edu.unc.mapseq.dao.model.WorkflowRun;
 import edu.unc.mapseq.dao.model.WorkflowRunAttempt;
 
@@ -80,13 +80,17 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             this.job.setWorkflowRunAttempt(workflowRunAttempt);
         }
 
+        Set<Attribute> jobAttributeSet = job.getAttributes();
+        if (jobAttributeSet == null) {
+            jobAttributeSet = new HashSet<Attribute>();
+        }
+        jobAttributeSet.addAll(createJobAttributes());
+        job.setAttributes(jobAttributeSet);
+
         if (!module.getDryRun()) {
             try {
                 JobDAO jobDAO = daoBean.getJobDAO();
                 this.job.setId(jobDAO.save(this.job));
-                for (Attribute attribute : createJobAttributes()) {
-                    jobDAO.addAttribute(attribute.getId(), job.getId());
-                }
             } catch (MaPSeqDAOException e) {
                 e.printStackTrace();
             }
@@ -132,23 +136,27 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                     try {
                         Sample sample = sampleDAO.findById(module.getSampleId());
 
+                        Set<FileData> fileDataSet = new HashSet<FileData>();
+                        Workflow workflow = workflowRun.getWorkflow();
                         for (FileData fileData : module.getFileDatas()) {
-                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflowRun
-                                    .getWorkflow().getName()));
-                            List<FileData> fileDataList = fileDataDAO.findByExample(fileData);
-                            // if already exists, don't recreate duplicate FileData
-                            FileData tmpFileData = null;
-                            if (fileDataList != null && !fileDataList.isEmpty()) {
-                                tmpFileData = fileDataList.get(0);
-                            } else {
-                                Long fileDataId = fileDataDAO.save(fileData);
-                                fileData.setId(fileDataId);
-                                tmpFileData = fileData;
-                            }
-                            logger.debug(tmpFileData.toString());
-                            jobDAO.addFileData(tmpFileData.getId(), job.getId());
-                            sampleDAO.addFileData(tmpFileData.getId(), sample.getId());
+                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
+                            fileData.setId(fileDataDAO.save(fileData));
+                            fileDataSet.add(fileData);
                         }
+
+                        Set<FileData> jobFileDataSet = job.getFileDatas();
+                        if (jobFileDataSet == null) {
+                            jobFileDataSet = new HashSet<FileData>();
+                        }
+                        jobFileDataSet.addAll(fileDataSet);
+                        jobDAO.save(job);
+
+                        Set<FileData> sampleFileDataSet = sample.getFileDatas();
+                        if (sampleFileDataSet == null) {
+                            sampleFileDataSet = new HashSet<FileData>();
+                        }
+                        sampleFileDataSet.addAll(fileDataSet);
+                        sampleDAO.save(sample);
                     } catch (MaPSeqDAOException e) {
                         logger.error("MaPSeq Error", e);
                     }
@@ -180,17 +188,14 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
         notifyObservers(statusType);
     }
 
-    private Set<Attribute> createJobAttributes() throws MaPSeqDAOException {
+    private Set<Attribute> createJobAttributes() {
 
         AttributeDAO attributeDAO = daoBean.getAttributeDAO();
-
         Set<Attribute> attributeSet = new HashSet<Attribute>();
 
         String siteName = System.getenv("JLRM_SITE_NAME");
         if (StringUtils.isNotEmpty(siteName)) {
-            Attribute attribute = new Attribute("siteName", siteName);
-            attribute.setId(attributeDAO.save(attribute));
-            attributeSet.add(attribute);
+            attributeSet.add(new Attribute("siteName", siteName));
         }
 
         Map<String, String> envMap = System.getenv();
@@ -198,9 +203,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             String value = envMap.get(key);
             String executable = module.getExecutable();
             if (StringUtils.isNotEmpty(executable) && executable.contains(key) && key.length() > 1) {
-                Attribute attribute = new Attribute(key, value);
-                attribute.setId(attributeDAO.save(attribute));
-                attributeSet.add(attribute);
+                attributeSet.add(new Attribute(key, value));
             }
         }
 
@@ -213,14 +216,13 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 }
                 Enumeration<InetAddress> addresses = current.getInetAddresses();
                 while (addresses.hasMoreElements()) {
-                    InetAddress current_addr = addresses.nextElement();
-                    if (current_addr.isLoopbackAddress()) {
+                    InetAddress currentAddr = addresses.nextElement();
+                    if (currentAddr.isLoopbackAddress()) {
                         continue;
                     }
-                    if (current_addr instanceof Inet4Address && current.getName().contains("eth")) {
-                        Attribute attribute = new Attribute("inet4Address", current_addr.getHostAddress());
-                        attribute.setId(attributeDAO.save(attribute));
-                        attributeSet.add(attribute);
+                    String name = current.getName();
+                    if (currentAddr instanceof Inet4Address && StringUtils.isNotEmpty(name) && name.contains("eth")) {
+                        attributeSet.add(new Attribute("inet4Address", currentAddr.getHostAddress()));
                     }
                 }
             }

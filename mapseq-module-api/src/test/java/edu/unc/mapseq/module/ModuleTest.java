@@ -13,9 +13,11 @@ import javax.validation.ValidatorFactory;
 import org.junit.Test;
 
 import edu.unc.mapseq.dao.MaPSeqDAOBean;
+import edu.unc.mapseq.dao.jpa.AttributeDAOImpl;
 import edu.unc.mapseq.dao.jpa.FileDataDAOImpl;
 import edu.unc.mapseq.dao.jpa.JobDAOImpl;
 import edu.unc.mapseq.dao.jpa.SampleDAOImpl;
+import edu.unc.mapseq.dao.jpa.WorkflowRunAttemptDAOImpl;
 import edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl;
 import edu.unc.mapseq.module.annotations.InputValidations;
 import edu.unc.mapseq.module.annotations.OutputValidations;
@@ -27,16 +29,18 @@ public class ModuleTest {
 
         MaPSeqDAOBean daoBean = new MaPSeqDAOBean();
         daoBean.setWorkflowRunDAO(new WorkflowRunDAOImpl());
+        daoBean.setWorkflowRunAttemptDAO(new WorkflowRunAttemptDAOImpl());
         daoBean.setJobDAO(new JobDAOImpl());
         daoBean.setFileDataDAO(new FileDataDAOImpl());
         daoBean.setSampleDAO(new SampleDAOImpl());
+        daoBean.setAttributeDAO(new AttributeDAOImpl());
 
         SampleModule app = new SampleModule();
         // app.setZip(new File("asdf.zip"));
         app.setZip(new File("asdf.zip"));
         app.setExtract(new File("/home/jdr0887/test"));
         app.setWorkflowName("TEST");
-        app.setDryRun(Boolean.TRUE);
+        app.setDryRun(Boolean.FALSE);
         // try {
         // new ModuleExecutor(module).call();
         // } catch (Exception e) {
@@ -60,7 +64,8 @@ public class ModuleTest {
             ModuleExecutor executor = new ModuleExecutor();
             executor.setDaoBean(daoBean);
             executor.setModule(app);
-            executor.addObserver(new DryRunJobObserver());
+            // executor.addObserver(new DryRunJobObserver());
+            executor.addObserver(new PersistantJobObserver(daoBean));
             output = Executors.newSingleThreadExecutor().submit(executor).get();
             constraintViolations = validator.validate(app, OutputValidations.class);
             if (constraintViolations.size() > 0) {

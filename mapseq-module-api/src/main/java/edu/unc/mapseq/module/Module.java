@@ -65,7 +65,7 @@ public abstract class Module implements Callable<ModuleOutput> {
     }
 
     @Override
-    public ModuleOutput call() throws Exception {   
+    public ModuleOutput call() throws Exception {
         logger.info("ENTERING call()");
 
         Class<?> moduleClass = getModuleClass();
@@ -202,7 +202,7 @@ public abstract class Module implements Callable<ModuleOutput> {
             System.out.println(command.toString());
 
             if (dryRun) {
-                return null;
+                return new DefaultModuleOutput();
             }
 
             commandInput.setCommand(command.toString());
