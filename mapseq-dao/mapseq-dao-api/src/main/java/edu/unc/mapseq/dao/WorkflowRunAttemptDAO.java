@@ -19,7 +19,7 @@ public interface WorkflowRunAttemptDAO extends BaseDAO<WorkflowRunAttempt, Long>
 
     public abstract List<WorkflowRunAttempt> findEnqueued(Long workflowId) throws MaPSeqDAOException;
 
-    public abstract List<WorkflowRunAttempt> findByWorkflowIdAndStatus(Long workflowId,
+    public abstract List<WorkflowRunAttempt> findByWorkflowNameAndStatus(String workflowName,
             WorkflowRunAttemptStatusType status) throws MaPSeqDAOException;
 
 }
