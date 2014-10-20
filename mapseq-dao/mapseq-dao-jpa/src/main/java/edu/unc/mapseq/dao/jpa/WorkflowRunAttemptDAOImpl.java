@@ -118,4 +118,29 @@ public class WorkflowRunAttemptDAOImpl extends BaseDAOImpl<WorkflowRunAttempt, L
         return ret;
     }
 
+    @Override
+    public List<WorkflowRunAttempt> findByWorkflowIdAndStatus(Long workflowId, WorkflowRunAttemptStatusType status)
+            throws MaPSeqDAOException {
+        logger.debug("ENTERING findByWorkflowIdAndStatus(Long, WorkflowRunAttemptStatusType)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<WorkflowRunAttempt> crit = critBuilder.createQuery(WorkflowRunAttempt.class);
+        Root<WorkflowRunAttempt> root = crit.from(WorkflowRunAttempt.class);
+
+        List<Predicate> predicateList = new ArrayList<Predicate>();
+        predicateList.add(critBuilder.equal(root.get(WorkflowRunAttempt_.status), status));
+
+        Join<WorkflowRunAttempt, WorkflowRun> workflowRunAttemptWorkflowRunJoin = root
+                .join(WorkflowRunAttempt_.workflowRun);
+        Join<WorkflowRun, Workflow> workflowRunWorkflowJoin = workflowRunAttemptWorkflowRunJoin
+                .join(WorkflowRun_.workflow);
+        predicateList.add(critBuilder.equal(workflowRunWorkflowJoin.get(Workflow_.id), workflowId));
+
+        crit.where(predicateList.toArray(new Predicate[predicateList.size()]));
+        crit.orderBy(critBuilder.asc(root.get(WorkflowRunAttempt_.created)));
+        TypedQuery<WorkflowRunAttempt> query = getEntityManager().createQuery(crit);
+        List<WorkflowRunAttempt> ret = query.getResultList();
+        return ret;
+
+    }
+
 }

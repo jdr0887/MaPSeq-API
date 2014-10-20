@@ -56,4 +56,11 @@ public interface WorkflowRunAttemptService {
     @WebMethod
     public Long save(@WebParam(name = "workflowRunAttempt") WorkflowRunAttempt workflowRunAttempt);
 
+    @GET
+    @Path("/findByWorkflowIdAndStatus/{workflowId}/{status}")
+    @WebMethod
+    public List<WorkflowRunAttempt> findByWorkflowIdAndStatus(
+            @PathParam("workflowId") @WebParam(name = "workflowId") Long workflowId,
+            @PathParam("status") @WebParam(name = "status") String status) throws MaPSeqDAOException;
+
 }

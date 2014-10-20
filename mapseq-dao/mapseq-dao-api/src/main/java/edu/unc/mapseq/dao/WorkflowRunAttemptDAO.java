@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.unc.mapseq.dao.model.WorkflowRunAttempt;
+import edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType;
 
 public interface WorkflowRunAttemptDAO extends BaseDAO<WorkflowRunAttempt, Long> {
 
@@ -17,5 +18,8 @@ public interface WorkflowRunAttemptDAO extends BaseDAO<WorkflowRunAttempt, Long>
     public abstract List<WorkflowRunAttempt> findEnqueued(Long workflowId, int maxResults) throws MaPSeqDAOException;
 
     public abstract List<WorkflowRunAttempt> findEnqueued(Long workflowId) throws MaPSeqDAOException;
+
+    public abstract List<WorkflowRunAttempt> findByWorkflowIdAndStatus(Long workflowId,
+            WorkflowRunAttemptStatusType status) throws MaPSeqDAOException;
 
 }
