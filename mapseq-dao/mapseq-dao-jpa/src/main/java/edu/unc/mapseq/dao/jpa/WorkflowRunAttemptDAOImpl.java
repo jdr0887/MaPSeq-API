@@ -57,7 +57,7 @@ public class WorkflowRunAttemptDAOImpl extends BaseDAOImpl<WorkflowRunAttempt, L
     @Override
     public List<WorkflowRunAttempt> findByCreatedDateRangeAndWorkflowId(Date started, Date finished, Long workflowId)
             throws MaPSeqDAOException {
-        logger.debug("ENTERING findByCreatedDateRangeAndWorkflowId(Long)");
+        logger.debug("ENTERING findByCreatedDateRangeAndWorkflowId(Date, Date, Long)");
         CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<WorkflowRunAttempt> crit = critBuilder.createQuery(WorkflowRunAttempt.class);
         Root<WorkflowRunAttempt> root = crit.from(WorkflowRunAttempt.class);
@@ -68,6 +68,21 @@ public class WorkflowRunAttemptDAOImpl extends BaseDAOImpl<WorkflowRunAttempt, L
         List<Predicate> predicateList = new ArrayList<Predicate>();
         predicateList.add(critBuilder.between(root.<Date> get("created"), started, finished));
         predicateList.add(critBuilder.equal(workflowRunWorkflowJoin.get(Workflow_.id), workflowId));
+        crit.where(predicateList.toArray(new Predicate[predicateList.size()]));
+        crit.orderBy(critBuilder.asc(root.get(WorkflowRunAttempt_.created)));
+        TypedQuery<WorkflowRunAttempt> query = getEntityManager().createQuery(crit);
+        List<WorkflowRunAttempt> ret = query.getResultList();
+        return ret;
+    }
+
+    @Override
+    public List<WorkflowRunAttempt> findByCreatedDateRange(Date started, Date finished) throws MaPSeqDAOException {
+        logger.debug("ENTERING findByCreatedDateRange(Date, Date)");
+        CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<WorkflowRunAttempt> crit = critBuilder.createQuery(WorkflowRunAttempt.class);
+        Root<WorkflowRunAttempt> root = crit.from(WorkflowRunAttempt.class);
+        List<Predicate> predicateList = new ArrayList<Predicate>();
+        predicateList.add(critBuilder.between(root.<Date> get("created"), started, finished));
         crit.where(predicateList.toArray(new Predicate[predicateList.size()]));
         crit.orderBy(critBuilder.asc(root.get(WorkflowRunAttempt_.created)));
         TypedQuery<WorkflowRunAttempt> query = getEntityManager().createQuery(crit);
