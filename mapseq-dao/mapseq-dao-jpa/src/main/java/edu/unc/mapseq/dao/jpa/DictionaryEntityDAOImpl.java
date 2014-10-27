@@ -36,7 +36,7 @@ public abstract class DictionaryEntityDAOImpl<T extends Persistable, ID extends 
         List<Predicate> predicates = new ArrayList<Predicate>();
         predicates.add(critBuilder.like(root.<String> get("name"), name));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
-        crit.orderBy(critBuilder.asc(root.<String> get("name")));
+        crit.orderBy(critBuilder.asc(root.<String> get("created")));
         TypedQuery<T> query = getEntityManager().createQuery(crit);
         List<T> ret = query.getResultList();
         return ret;
