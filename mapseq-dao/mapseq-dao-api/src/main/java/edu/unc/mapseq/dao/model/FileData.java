@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.DataCache;
+import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -45,10 +46,12 @@ public class FileData implements Persistable {
     private Long id;
 
     @XmlAttribute(name = "name")
+    @Index
     @Column(name = "name")
     private String name;
 
     @XmlAttribute(name = "path")
+    @Index
     @Column(name = "path", length = 2048)
     private String path;
 
