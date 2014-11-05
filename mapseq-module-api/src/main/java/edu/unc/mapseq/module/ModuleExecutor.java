@@ -10,6 +10,7 @@ import java.net.SocketException;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
@@ -23,6 +24,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.unc.mapseq.dao.FileDataDAO;
 import edu.unc.mapseq.dao.JobDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOBean;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
@@ -123,7 +125,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
 
             if (!module.getDryRun() && module.getPersistFileData()) {
 
-                // FileDataDAO fileDataDAO = daoBean.getFileDataDAO();
+                FileDataDAO fileDataDAO = daoBean.getFileDataDAO();
                 SampleDAO sampleDAO = daoBean.getSampleDAO();
                 JobDAO jobDAO = daoBean.getJobDAO();
 
@@ -138,8 +140,12 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                         Workflow workflow = workflowRun.getWorkflow();
                         for (FileData fileData : module.getFileDatas()) {
                             fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
-                            // fileData.setId(fileDataDAO.save(fileData));
-                            fileDataSet.add(fileData);
+                            List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
+                            if (foundFileDataList != null && !foundFileDataList.isEmpty()) {
+                                fileDataSet.add(foundFileDataList.get(0));
+                            } else {
+                                fileDataSet.add(fileData);
+                            }
                         }
 
                         Set<FileData> jobFileDataSet = job.getFileDatas();
