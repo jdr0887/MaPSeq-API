@@ -144,23 +144,19 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                             if (foundFileDataList != null && !foundFileDataList.isEmpty()) {
                                 fileDataSet.add(foundFileDataList.get(0));
                             } else {
+                                fileData.setId(fileDataDAO.save(fileData));
                                 fileDataSet.add(fileData);
                             }
                         }
 
-                        Set<FileData> jobFileDataSet = job.getFileDatas();
-                        if (jobFileDataSet == null) {
-                            jobFileDataSet = new HashSet<FileData>();
+                        for (FileData fileData : fileDataSet) {
+                            sampleDAO.addFileDataToSample(fileData.getId(), sample.getId());
                         }
-                        jobFileDataSet.addAll(fileDataSet);
-                        jobDAO.save(job);
 
-                        Set<FileData> sampleFileDataSet = sample.getFileDatas();
-                        if (sampleFileDataSet == null) {
-                            sampleFileDataSet = new HashSet<FileData>();
+                        for (FileData fileData : fileDataSet) {
+                            jobDAO.addFileDataToJob(fileData.getId(), job.getId());
                         }
-                        sampleFileDataSet.addAll(fileDataSet);
-                        sampleDAO.save(sample);
+
                     } catch (MaPSeqDAOException e) {
                         logger.error("MaPSeq Error", e);
                     }
