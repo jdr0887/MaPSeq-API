@@ -2,7 +2,9 @@ package edu.unc.mapseq.dao.jpa;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -117,6 +119,22 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
         TypedQuery<Job> query = getEntityManager().createQuery(crit);
         List<Job> ret = query.getResultList();
         return ret;
+    }
+
+    @Override
+    public void addFileDataToJob(Long fileDataId, Long jobId) throws MaPSeqDAOException {
+        logger.debug("ENTERING addFileDataToJob(Long, Long)");
+        Job job = findById(jobId);
+        Set<FileData> fileDataSet = job.getFileDatas();
+        if (fileDataSet == null) {
+            fileDataSet = new HashSet<FileData>();
+        }
+        FileData fileData = getEntityManager().find(FileData.class, fileDataId);
+        if (!fileDataSet.contains(fileData)) {
+            fileDataSet.add(fileData);
+            job.setFileDatas(fileDataSet);
+            save(job);
+        }
     }
 
 }

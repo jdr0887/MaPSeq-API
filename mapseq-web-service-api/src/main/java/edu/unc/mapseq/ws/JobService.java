@@ -45,6 +45,12 @@ public interface JobService {
     public List<Job> findByWorkflowRunAttemptId(
             @PathParam("workflowRunAttemptId") @WebParam(name = "workflowRunAttemptId") Long workflowRunAttemptId);
 
+    @POST
+    @Path("/addFileDataToJob/{fileDataId}/{jobId}")
+    @WebMethod
+    public void addFileDataToJob(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
+            @PathParam("jobId") @WebParam(name = "jobId") Long jobId);
+
     @GET
     @Path("/findByWorkflowIdAndCreatedDateRange/{workflowId}/{started}/{finished}")
     @WebMethod

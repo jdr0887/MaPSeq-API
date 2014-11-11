@@ -17,4 +17,6 @@ public interface JobDAO extends NamedEntityDAO<Job, Long> {
     public List<Job> findByWorkflowIdAndCreatedDateRange(Long workflowId, Date startDate, Date endDate)
             throws MaPSeqDAOException;
 
+    public abstract void addFileDataToJob(Long fileDataId, Long jobId) throws MaPSeqDAOException;
+
 }
