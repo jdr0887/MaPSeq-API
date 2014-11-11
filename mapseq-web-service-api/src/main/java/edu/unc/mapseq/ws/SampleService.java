@@ -61,8 +61,8 @@ public interface SampleService {
     @POST
     @Path("/addFileDataToSample/{fileDataId}/{sampleId}")
     @WebMethod
-    public void addFileDataToJob(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
-            @PathParam("sampleId") @WebParam(name = "sampleId") Long jobId);
+    public void addFileDataToSample(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
+            @PathParam("sampleId") @WebParam(name = "sampleId") Long sampleId);
 
     @GET
     @Path("/findSampleIdListByFlowcellId/{flowcellId}")
