@@ -1,7 +1,9 @@
 package edu.unc.mapseq.dao.jpa;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -16,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.SampleDAO;
+import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.Sample;
 import edu.unc.mapseq.dao.model.Sample_;
 import edu.unc.mapseq.dao.model.WorkflowRun;
@@ -51,6 +54,22 @@ public class SampleDAOImpl extends NamedEntityDAOImpl<Sample, Long> implements S
         query.setParameter("id", flowcellId);
         List<Sample> ret = query.getResultList();
         return ret;
+    }
+
+    @Override
+    public void addFileDataToSample(Long fileDataId, Long sampleId) throws MaPSeqDAOException {
+        logger.debug("ENTERING addFileDataToSample(Long, Long)");
+        Sample sample = findById(sampleId);
+        Set<FileData> fileDataSet = sample.getFileDatas();
+        if (fileDataSet == null) {
+            fileDataSet = new HashSet<FileData>();
+        }
+        FileData fileData = getEntityManager().find(FileData.class, fileDataId);
+        if (!fileDataSet.contains(fileData)) {
+            fileDataSet.add(fileData);
+            sample.setFileDatas(fileDataSet);
+            save(sample);
+        }
     }
 
     @Override

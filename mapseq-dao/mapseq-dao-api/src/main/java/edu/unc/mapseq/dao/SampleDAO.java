@@ -12,4 +12,6 @@ public interface SampleDAO extends NamedEntityDAO<Sample, Long> {
 
     public abstract List<Sample> findByWorkflowRunId(Long workflowRunId) throws MaPSeqDAOException;
 
+    public abstract void addFileDataToSample(Long fileDataId, Long sampleId) throws MaPSeqDAOException;
+
 }

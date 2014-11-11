@@ -58,6 +58,12 @@ public interface SampleService {
     public List<Sample> findByCreatedDateRange(@PathParam("started") @WebParam(name = "started") String started,
             @PathParam("finished") @WebParam(name = "finished") String finished);
 
+    @POST
+    @Path("/addFileDataToSample/{fileDataId}/{sampleId}")
+    @WebMethod
+    public void addFileDataToJob(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
+            @PathParam("sampleId") @WebParam(name = "sampleId") Long jobId);
+
     @GET
     @Path("/findSampleIdListByFlowcellId/{flowcellId}")
     @WebMethod
