@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 
 import javax.validation.constraints.NotNull;
@@ -80,8 +81,11 @@ public abstract class Module implements Callable<ModuleOutput> {
 
             String mapseqHome = System.getenv("MAPSEQ_HOME");
             if (StringUtils.isNotEmpty(mapseqHome)) {
-                File mapseqTmpDir = new File(mapseqHome, "tmp");
-                commandInput.setWorkDir(mapseqTmpDir);
+                File tmpDir = new File(mapseqHome, "tmp");
+                File tmpWorkflowDir = new File(tmpDir, getWorkflowName());
+                File tmpWorkflowAttemptDir = new File(tmpWorkflowDir, getWorkflowRunAttemptId().toString());
+                tmpWorkflowAttemptDir.mkdirs();
+                commandInput.setWorkDir(tmpWorkflowAttemptDir);
             }
 
             StringBuilder command = new StringBuilder();
