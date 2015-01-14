@@ -13,6 +13,9 @@ public interface WorkflowRunAttemptDAO extends BaseDAO<WorkflowRunAttempt, Long>
     public abstract List<WorkflowRunAttempt> findByCreatedDateRange(Date started, Date finished)
             throws MaPSeqDAOException;
 
+    public abstract List<WorkflowRunAttempt> findByCreatedDateRangeAndStatus(Date started, Date finished,
+            WorkflowRunAttemptStatusType status) throws MaPSeqDAOException;
+
     public abstract List<WorkflowRunAttempt> findByCreatedDateRangeAndWorkflowId(Date started, Date finished, Long id)
             throws MaPSeqDAOException;
 
