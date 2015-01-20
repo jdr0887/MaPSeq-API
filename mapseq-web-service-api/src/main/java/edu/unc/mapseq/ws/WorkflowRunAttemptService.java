@@ -46,6 +46,15 @@ public interface WorkflowRunAttemptService {
             @PathParam("workflowId") @WebParam(name = "workflowId") Long workflowId);
 
     @GET
+    @Path("/findByCreatedDateRangeAndWorkflowIdAndStatus/{started}/{finished}/{workflowId}/{status}")
+    @WebMethod
+    public List<WorkflowRunAttempt> findByCreatedDateRangeAndWorkflowIdAndStatus(
+            @PathParam("started") @WebParam(name = "started") String started,
+            @PathParam("finished") @WebParam(name = "finished") String finished,
+            @PathParam("workflowId") @WebParam(name = "workflowId") Long workflowId,
+            @PathParam("status") @WebParam(name = "status") String status);
+
+    @GET
     @Path("/findByWorkflowId/{workflowId}")
     @WebMethod
     public List<WorkflowRunAttempt> findByWorkflowId(
