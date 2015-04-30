@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.Callable;
 
 import javax.validation.constraints.NotNull;
@@ -228,6 +227,10 @@ public abstract class Module implements Callable<ModuleOutput> {
                         FileData fileData = new FileData();
                         fileData.setMimeType(arg.mimeType());
                         fileData.setName(f.getName());
+                        if (f.getParentFile() != null) {
+                            fileData.setPath(f.getParentFile().getAbsolutePath());
+                        }
+                        logger.info(fileData.toString());
                         getFileDatas().add(fileData);
                     }
                 }
