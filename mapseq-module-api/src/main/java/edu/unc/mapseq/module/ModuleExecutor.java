@@ -139,7 +139,9 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                         Set<FileData> fileDataSet = new HashSet<FileData>();
                         Workflow workflow = workflowRun.getWorkflow();
                         for (FileData fileData : module.getFileDatas()) {
-                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
+                            if (StringUtils.isEmpty(fileData.getPath())) {
+                                fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
+                            }
                             List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
                             if (foundFileDataList != null && !foundFileDataList.isEmpty()) {
                                 fileDataSet.add(foundFileDataList.get(0));
