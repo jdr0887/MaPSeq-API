@@ -67,6 +67,7 @@ public class DictionaryEntity implements Persistable {
     public DictionaryEntity() {
         super();
         this.created = new Date();
+        this.active = Boolean.TRUE;
     }
 
     public Long getId() {
@@ -75,6 +76,14 @@ public class DictionaryEntity implements Persistable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public String getName() {
