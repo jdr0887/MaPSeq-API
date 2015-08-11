@@ -18,4 +18,6 @@ public @interface Application {
 
     boolean isWorkflowRunIdOptional() default false;
 
+    long wallTime() default 1; // day
+
 }
