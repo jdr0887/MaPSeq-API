@@ -1,14 +1,7 @@
 package edu.unc.mapseq.module;
 
 import java.io.File;
-import java.text.MessageFormat;
-import java.util.Set;
 import java.util.concurrent.Executors;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import org.junit.Test;
 
@@ -19,13 +12,11 @@ import edu.unc.mapseq.dao.jpa.JobDAOImpl;
 import edu.unc.mapseq.dao.jpa.SampleDAOImpl;
 import edu.unc.mapseq.dao.jpa.WorkflowRunAttemptDAOImpl;
 import edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl;
-import edu.unc.mapseq.module.annotations.InputValidations;
-import edu.unc.mapseq.module.annotations.OutputValidations;
 
 public class ModuleTest {
 
     @Test
-    public void testModule() {
+    public void testUnzipModule() {
 
         MaPSeqDAOBean daoBean = new MaPSeqDAOBean();
         daoBean.setWorkflowRunDAO(new WorkflowRunDAOImpl());
@@ -35,51 +26,61 @@ public class ModuleTest {
         daoBean.setSampleDAO(new SampleDAOImpl());
         daoBean.setAttributeDAO(new AttributeDAOImpl());
 
-        SampleModule app = new SampleModule();
-        // app.setZip(new File("asdf.zip"));
-        app.setZip(new File("asdf.zip"));
+        UnzipModule app = new UnzipModule();
+        app.setZip(new File("/tmp", "asdf.zip"));
         app.setExtract(new File("/home/jdr0887/test"));
         app.setWorkflowName("TEST");
-        app.setDryRun(Boolean.FALSE);
-        // try {
-        // new ModuleExecutor(module).call();
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
+        app.setDryRun(Boolean.TRUE);
 
-        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
-        Validator validator = validatorFactory.getValidator();
-        ModuleOutput output = null;
         try {
-            Set<ConstraintViolation<SampleModule>> constraintViolations = validator.validate(app,
-                    InputValidations.class);
-            if (constraintViolations.size() > 0) {
-                for (ConstraintViolation<SampleModule> value : constraintViolations) {
-                    String errorMessage = MessageFormat.format("The value of {0}.{1} was: {2}.  {3}",
-                            value.getRootBeanClass(), value.getPropertyPath().toString(), value.getInvalidValue(),
-                            value.getMessage());
-                    System.err.println(errorMessage);
-                }
-            }
             ModuleExecutor executor = new ModuleExecutor();
-            executor.setDaoBean(daoBean);
             executor.setModule(app);
-            // executor.addObserver(new DryRunJobObserver());
-            executor.addObserver(new PersistantJobObserver(daoBean));
-            output = Executors.newSingleThreadExecutor().submit(executor).get();
-            constraintViolations = validator.validate(app, OutputValidations.class);
-            if (constraintViolations.size() > 0) {
-                for (ConstraintViolation<SampleModule> value : constraintViolations) {
-                    String errorMessage = MessageFormat.format("The value of {0}.{1} was: {2}.  {3}",
-                            value.getRootBeanClass(), value.getPropertyPath().toString(), value.getInvalidValue(),
-                            value.getMessage());
-                    System.err.println(errorMessage);
-                }
+            if (app.getDryRun()) {
+                executor.addObserver(new DryRunJobObserver());
+            } else {
+                executor.setDaoBean(daoBean);
+                executor.addObserver(new PersistantJobObserver(daoBean));
             }
+            ModuleOutput output = Executors.newSingleThreadExecutor().submit(executor).get();
+            // System.out.println(output.getExitCode());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(output.getExitCode());
 
     }
+
+    @Test
+    public void testEchoModule() {
+
+        MaPSeqDAOBean daoBean = new MaPSeqDAOBean();
+        daoBean.setWorkflowRunDAO(new WorkflowRunDAOImpl());
+        daoBean.setWorkflowRunAttemptDAO(new WorkflowRunAttemptDAOImpl());
+        daoBean.setJobDAO(new JobDAOImpl());
+        daoBean.setFileDataDAO(new FileDataDAOImpl());
+        daoBean.setSampleDAO(new SampleDAOImpl());
+        daoBean.setAttributeDAO(new AttributeDAOImpl());
+
+        EchoModule app = new EchoModule();
+        app.setMessage("asdfasdfasd");
+        app.setOutput(new File("/home/jdr0887/test/echomodule.txt"));
+        app.setWorkflowName("TEST");
+        app.setDryRun(Boolean.TRUE);
+
+        try {
+            ModuleExecutor executor = new ModuleExecutor();
+            executor.setModule(app);
+            if (app.getDryRun()) {
+                executor.addObserver(new DryRunJobObserver());
+            } else {
+                executor.setDaoBean(daoBean);
+                executor.addObserver(new PersistantJobObserver(daoBean));
+            }
+            ModuleOutput output = Executors.newSingleThreadExecutor().submit(executor).get();
+            // System.out.println(output.getExitCode());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
