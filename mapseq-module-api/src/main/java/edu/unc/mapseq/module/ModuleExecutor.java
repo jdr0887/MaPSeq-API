@@ -20,6 +20,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,6 +97,12 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             }
         }
 
+        List<String> inputErrors = module.validateInputs();
+        if (CollectionUtils.isNotEmpty(inputErrors)) {
+            String message = StringUtils.join(inputErrors, System.getProperty("line.separator"));
+            throw new ModuleException(message);
+        }
+
         try {
             updateJobState(JobStatusType.RUNNING);
 
@@ -167,6 +174,12 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
 
             }
 
+        }
+
+        List<String> outputErrors = module.validateOutputs();
+        if (CollectionUtils.isNotEmpty(outputErrors)) {
+            String message = StringUtils.join(outputErrors, System.getProperty("line.separator"));
+            throw new ModuleException(message);
         }
 
         if (module.getSerializeFile() != null) {
