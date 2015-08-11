@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,6 +13,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.StringUtils;
@@ -27,7 +32,9 @@ import edu.unc.mapseq.dao.model.Attribute;
 import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.module.annotations.Executable;
 import edu.unc.mapseq.module.annotations.InputArgument;
+import edu.unc.mapseq.module.annotations.InputValidations;
 import edu.unc.mapseq.module.annotations.OutputArgument;
+import edu.unc.mapseq.module.annotations.OutputValidations;
 
 public abstract class Module implements Callable<ModuleOutput> {
 
@@ -49,10 +56,14 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     private Set<Attribute> attributes;
 
+    private Validator validator;
+
     public Module() {
         super();
         this.fileDatas = new HashSet<FileData>();
         this.attributes = new HashSet<Attribute>();
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        this.validator = validatorFactory.getValidator();
     }
 
     public abstract Class<?> getModuleClass();
@@ -62,6 +73,34 @@ public abstract class Module implements Callable<ModuleOutput> {
             return getModuleClass().getAnnotation(Executable.class).value();
         }
         return "";
+    }
+
+    public List<String> validateInputs() throws ModuleException {
+        List<String> errorMessageList = new ArrayList<String>();
+        Set<ConstraintViolation<Module>> constraintViolations = validator.validate(this, InputValidations.class);
+        if (constraintViolations.size() > 0) {
+            for (ConstraintViolation<Module> value : constraintViolations) {
+                String errorMessage = MessageFormat.format("The value of {0}.{1} was: {2}.  {3}",
+                        value.getRootBeanClass(), value.getPropertyPath().toString(), value.getInvalidValue(),
+                        value.getMessage());
+                errorMessageList.add(errorMessage);
+            }
+        }
+        return errorMessageList;
+    }
+
+    public List<String> validateOutputs() throws ModuleException {
+        List<String> errorMessageList = new ArrayList<String>();
+        Set<ConstraintViolation<Module>> constraintViolations = validator.validate(this, OutputValidations.class);
+        if (constraintViolations.size() > 0) {
+            for (ConstraintViolation<Module> value : constraintViolations) {
+                String errorMessage = MessageFormat.format("The value of {0}.{1} was: {2}.  {3}",
+                        value.getRootBeanClass(), value.getPropertyPath().toString(), value.getInvalidValue(),
+                        value.getMessage());
+                errorMessageList.add(errorMessage);
+            }
+        }
+        return errorMessageList;
     }
 
     @Override
@@ -202,11 +241,6 @@ public abstract class Module implements Callable<ModuleOutput> {
             }
 
             logger.info("command.toString(): {}", command.toString());
-            System.out.println(command.toString());
-
-            if (dryRun) {
-                return new DefaultModuleOutput();
-            }
 
             commandInput.setCommand(command.toString());
             CommandOutput commandOutput;
@@ -215,6 +249,9 @@ public abstract class Module implements Callable<ModuleOutput> {
                 commandOutput = executor.execute(commandInput, new File(System.getProperty("user.home"), ".mapseqrc"));
             } catch (ExecutorException e) {
                 throw new ModuleException(e);
+            }
+            if (dryRun) {
+                return new DefaultModuleOutput();
             }
             if (commandOutput != null && commandOutput.getExitCode() == 0) {
                 for (Field field : outputArgumentFieldList) {
