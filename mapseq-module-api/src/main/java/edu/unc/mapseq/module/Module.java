@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.model.Attribute;
 import edu.unc.mapseq.dao.model.FileData;
-import edu.unc.mapseq.module.annotations.Executable;
+import edu.unc.mapseq.module.annotations.Application;
 import edu.unc.mapseq.module.annotations.InputArgument;
 import edu.unc.mapseq.module.annotations.InputValidations;
 import edu.unc.mapseq.module.annotations.OutputArgument;
@@ -69,8 +69,8 @@ public abstract class Module implements Callable<ModuleOutput> {
     public abstract Class<?> getModuleClass();
 
     public String getExecutable() {
-        if (getModuleClass().isAnnotationPresent(Executable.class)) {
-            return getModuleClass().getAnnotation(Executable.class).value();
+        if (getModuleClass().isAnnotationPresent(Application.class)) {
+            return getModuleClass().getAnnotation(Application.class).executable();
         }
         return "";
     }
@@ -108,12 +108,12 @@ public abstract class Module implements Callable<ModuleOutput> {
         logger.info("ENTERING call()");
 
         Class<?> moduleClass = getModuleClass();
-        if (moduleClass.isAnnotationPresent(Executable.class)) {
+        if (moduleClass.isAnnotationPresent(Application.class)) {
 
-            Executable executable = moduleClass.getAnnotation(Executable.class);
+            Application application = moduleClass.getAnnotation(Application.class);
 
             CommandInput commandInput = new CommandInput();
-            if (executable.exitImmediately()) {
+            if (application.exitImmediately()) {
                 commandInput.setExitImmediately(true);
             }
 
