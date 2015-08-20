@@ -20,4 +20,12 @@ public @interface Application {
 
     long wallTime() default 1; // day
 
+    String executable() default "";
+
+    String description() default "";
+
+    String version() default "";
+
+    boolean exitImmediately() default false;
+
 }
