@@ -5,7 +5,6 @@ import java.io.File;
 import javax.validation.constraints.NotNull;
 
 import edu.unc.mapseq.module.annotations.Application;
-import edu.unc.mapseq.module.annotations.Executable;
 import edu.unc.mapseq.module.annotations.InputArgument;
 import edu.unc.mapseq.module.annotations.InputValidations;
 import edu.unc.mapseq.module.annotations.OutputArgument;
@@ -16,8 +15,7 @@ import edu.unc.mapseq.module.constraints.FileIsNotEmpty;
  * 
  * @author jdr0887
  */
-@Application(name = "EchoModule")
-@Executable(value = "/bin/echo")
+@Application(name = "EchoModule", executable = "/bin/echo")
 public class EchoModule extends Module {
 
     @NotNull(message = "message is null", groups = InputValidations.class)
