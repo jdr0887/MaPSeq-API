@@ -70,21 +70,25 @@ public class NamedEntity implements Persistable {
 
     @XmlElementWrapper(name = "attributes")
     @XmlElement(name = "attribute")
-    @ManyToMany(targetEntity = Attribute.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-    @ContainerTable(name = "named_entity_attribute", joinIndex = @Index(columnNames = { "named_entity_fid" }))
-    @JoinTable(name = "named_entity_attribute", joinColumns = @JoinColumn(name = "named_entity_fid"), inverseJoinColumns = @JoinColumn(name = "attribute_fid"))
+    @ManyToMany(targetEntity = Attribute.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST,
+            CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @ContainerTable(name = "named_entity_attribute", joinIndex = @Index(columnNames = { "named_entity_fid" }) )
+    @JoinTable(name = "named_entity_attribute", joinColumns = @JoinColumn(name = "named_entity_fid") , inverseJoinColumns = @JoinColumn(name = "attribute_fid") )
     protected Set<Attribute> attributes;
 
     @XmlElementWrapper(name = "files")
     @XmlElement(name = "file")
-    @ManyToMany(targetEntity = FileData.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-    @ContainerTable(name = "named_entity_file_data", joinIndex = @Index(columnNames = { "named_entity_fid" }))
-    @JoinTable(name = "named_entity_file_data", joinColumns = @JoinColumn(name = "named_entity_fid"), inverseJoinColumns = @JoinColumn(name = "file_data_fid"))
+    @ManyToMany(targetEntity = FileData.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST,
+            CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @ContainerTable(name = "named_entity_file_data", joinIndex = @Index(columnNames = { "named_entity_fid" }) )
+    @JoinTable(name = "named_entity_file_data", joinColumns = @JoinColumn(name = "named_entity_fid") , inverseJoinColumns = @JoinColumn(name = "file_data_fid") )
     protected Set<FileData> fileDatas;
 
     public NamedEntity() {
         super();
         this.created = new Date();
+        this.attributes = new HashSet<Attribute>();
+        this.fileDatas = new HashSet<FileData>();
     }
 
     public Long getId() {
@@ -112,9 +116,6 @@ public class NamedEntity implements Persistable {
     }
 
     public Set<Attribute> getAttributes() {
-        if (this.attributes == null) {
-            this.attributes = new HashSet<Attribute>();
-        }
         return this.attributes;
     }
 
@@ -123,9 +124,6 @@ public class NamedEntity implements Persistable {
     }
 
     public Set<FileData> getFileDatas() {
-        if (this.fileDatas == null) {
-            this.fileDatas = new HashSet<FileData>();
-        }
         return this.fileDatas;
     }
 
