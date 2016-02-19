@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.JobDAO;
-import edu.unc.mapseq.dao.MaPSeqDAOBean;
+import edu.unc.mapseq.dao.MaPSeqDAOBeanService;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.Job;
 import edu.unc.mapseq.dao.model.JobStatusType;
@@ -17,9 +17,9 @@ public class PersistantJobObserver implements Observer {
 
     private final Logger logger = LoggerFactory.getLogger(PersistantJobObserver.class);
 
-    private MaPSeqDAOBean daoBean;
+    private MaPSeqDAOBeanService daoBean;
 
-    public PersistantJobObserver(MaPSeqDAOBean daoBean) {
+    public PersistantJobObserver(MaPSeqDAOBeanService daoBean) {
         super();
         this.daoBean = daoBean;
     }
