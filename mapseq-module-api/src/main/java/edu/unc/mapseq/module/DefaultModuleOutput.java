@@ -8,6 +8,10 @@ public class DefaultModuleOutput implements ModuleOutput {
 
     private StringBuilder error = new StringBuilder();
 
+    public DefaultModuleOutput() {
+        super();
+    }
+
     public int getExitCode() {
         return exitCode;
     }
