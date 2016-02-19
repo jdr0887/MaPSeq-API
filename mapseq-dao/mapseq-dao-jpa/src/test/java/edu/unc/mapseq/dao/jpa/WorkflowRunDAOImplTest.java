@@ -153,8 +153,8 @@ public class WorkflowRunDAOImplTest {
 
                             createdDate = attempt.getCreated();
                             if (createdDate != null) {
-                                formattedCreatedDate = DateFormat.getDateTimeInstance(DateFormat.SHORT,
-                                        DateFormat.SHORT).format(createdDate);
+                                formattedCreatedDate = DateFormat
+                                        .getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(createdDate);
                             }
 
                             Date startDate = attempt.getStarted();
@@ -171,9 +171,9 @@ public class WorkflowRunDAOImplTest {
                             }
 
                             formatter.format("%1$-12s %2$-54s %3$-18s %4$-18s %5$-18s %6$-12s %7$-14s %8$s%n", "--",
-                                    "--", formattedCreatedDate, formattedStartDate, formattedEndDate, attempt
-                                            .getStatus().toString(), attempt.getCondorDAGClusterId(), attempt
-                                            .getSubmitDirectory());
+                                    "--", formattedCreatedDate, formattedStartDate, formattedEndDate,
+                                    attempt.getStatus().toString(), attempt.getCondorDAGClusterId(),
+                                    attempt.getSubmitDirectory());
                             formatter.flush();
 
                         }
