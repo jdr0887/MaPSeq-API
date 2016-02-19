@@ -6,8 +6,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -138,26 +136,13 @@ public abstract class Module implements Callable<ModuleOutput> {
                 }
             }
 
-            List<Field> outputArgumentFieldList = new ArrayList<Field>();
-
-            for (Field field : fieldArray) {
-                if (field.isAnnotationPresent(OutputArgument.class)) {
-                    outputArgumentFieldList.add(field);
+            inputArgumentFieldList.sort((a, b) -> {
+                if (a.isAnnotationPresent(InputArgument.class) && b.isAnnotationPresent(InputArgument.class)) {
+                    Integer order1 = a.getAnnotation(InputArgument.class).order();
+                    Integer order2 = b.getAnnotation(InputArgument.class).order();
+                    return order1.compareTo(order2);
                 }
-            }
-
-            Collections.sort(inputArgumentFieldList, new Comparator<Field>() {
-
-                @Override
-                public int compare(Field o1, Field o2) {
-                    if (o1.isAnnotationPresent(InputArgument.class) && o2.isAnnotationPresent(InputArgument.class)) {
-                        Integer order1 = o1.getAnnotation(InputArgument.class).order();
-                        Integer order2 = o2.getAnnotation(InputArgument.class).order();
-                        return order1.compareTo(order2);
-                    }
-                    return 0;
-                }
-
+                return 0;
             });
 
             for (Field field : inputArgumentFieldList) {
@@ -177,7 +162,6 @@ public abstract class Module implements Callable<ModuleOutput> {
                             command.append(" ").append(arg.flag());
                         }
                     } else if (field.getType() == List.class) {
-
                         ParameterizedType listType = (ParameterizedType) field.getGenericType();
                         if (listType != null) {
                             Class<?> listTypeClass = (Class<?>) listType.getActualTypeArguments()[0];
@@ -196,7 +180,6 @@ public abstract class Module implements Callable<ModuleOutput> {
 
                             }
                         }
-
                     } else if (field.getType() == String.class || field.getType().isEnum()) {
                         if (StringUtils.isNotEmpty(o.toString())) {
                             command.append(" ").append(arg.flag()).append(arg.delimiter()).append(o.toString());
@@ -205,6 +188,14 @@ public abstract class Module implements Callable<ModuleOutput> {
                             || field.getType() == Float.class) {
                         command.append(" ").append(arg.flag()).append(arg.delimiter()).append(o.toString());
                     }
+                }
+            }
+
+            List<Field> outputArgumentFieldList = new ArrayList<Field>();
+
+            for (Field field : fieldArray) {
+                if (field.isAnnotationPresent(OutputArgument.class)) {
+                    outputArgumentFieldList.add(field);
                 }
             }
 
