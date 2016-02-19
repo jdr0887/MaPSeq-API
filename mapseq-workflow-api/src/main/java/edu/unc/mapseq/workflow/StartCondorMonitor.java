@@ -34,8 +34,8 @@ public class StartCondorMonitor implements Runnable {
 
         try {
             // this parses the dagman.out file...ie, more error prone & subject to log format changes per condor version
-            File dagmanOutFile = new File(jobNode.getSubmitFile().getParentFile(), jobNode.getSubmitFile().getName()
-                    .replace(".dag", ".dag.dagman.out"));
+            File dagmanOutFile = new File(jobNode.getSubmitFile().getParentFile(),
+                    jobNode.getSubmitFile().getName().replace(".dag", ".dag.dagman.out"));
             CondorLookupDAGStatusCallable lookupStatus = new CondorLookupDAGStatusCallable(dagmanOutFile);
 
             // this shells out to run condor_q
