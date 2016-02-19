@@ -3,7 +3,7 @@ package edu.unc.mapseq.workflow;
 import java.util.Map;
 
 import edu.unc.mapseq.config.MaPSeqConfigurationService;
-import edu.unc.mapseq.dao.MaPSeqDAOBean;
+import edu.unc.mapseq.dao.MaPSeqDAOBeanService;
 
 public interface WorkflowBeanService {
 
@@ -15,9 +15,9 @@ public interface WorkflowBeanService {
 
     public abstract void setMaxPoolSize(int maxPoolSize);
 
-    public abstract MaPSeqDAOBean getMaPSeqDAOBean();
+    public abstract MaPSeqDAOBeanService getMaPSeqDAOBean();
 
-    public abstract void setMaPSeqDAOBean(MaPSeqDAOBean maPSeqDAOBean);
+    public abstract void setMaPSeqDAOBean(MaPSeqDAOBeanService maPSeqDAOBean);
 
     public abstract MaPSeqConfigurationService getMaPSeqConfigurationService();
 
