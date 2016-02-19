@@ -15,7 +15,7 @@
   </bannerLeft>
   <bannerRight>
     <name>RENCI</name>
-    <href>www.renci.org</href>
+    <href>http://www.renci.org</href>
     <src>images/renci-logo.png</src>
   </bannerRight>
   <body>
@@ -41,9 +41,8 @@
       </item>
     </menu>
     <menu name="Pipelines">
-      <item name="CASAVA" href="pipelines/casava.html"/>
-      <item name="RNASeq" href="pipelines/rnaseq.html"/>    
-      <item name="NCGenes" href="pipelines/ncgenes.html"/>
+      <item name="UNC Pipelines" href="pipelines/unc.html"/>
+      <item name="RENCI Pipelines" href="pipelines/renci.html"/>
     </menu>
     <menu ref="reports"/>
   </body>
