@@ -40,7 +40,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @DataCache(enabled = false)
 @Cacheable(value = false)
 @Table(name = "workflow_run_attempt")
-@NamedQueries({ @NamedQuery(name = "WorkflowRunAttempt.findByWorkflowRunId", query = "SELECT a FROM WorkflowRunAttempt a where a.workflowRun.id = :id order by a.created") })
+@NamedQueries({
+        @NamedQuery(name = "WorkflowRunAttempt.findByWorkflowRunId", query = "SELECT a FROM WorkflowRunAttempt a where a.workflowRun.id = :id order by a.created") })
 public class WorkflowRunAttempt implements Persistable {
 
     private static final long serialVersionUID = 5301613685784983391L;
@@ -94,6 +95,7 @@ public class WorkflowRunAttempt implements Persistable {
     public WorkflowRunAttempt() {
         super();
         this.created = new Date();
+        this.jobs = new HashSet<>();
     }
 
     public Long getId() {
@@ -177,9 +179,6 @@ public class WorkflowRunAttempt implements Persistable {
     }
 
     public Set<Job> getJobs() {
-        if (jobs == null) {
-            return new HashSet<Job>();
-        }
         return jobs;
     }
 
@@ -189,9 +188,9 @@ public class WorkflowRunAttempt implements Persistable {
 
     @Override
     public String toString() {
-        return String
-                .format("WorkflowRunAttempt [id=%s, status=%s, condorDAGClusterId=%s, submitDirectory=%s, created=%s, started=%s, dequeued=%s, finished=%s, version=%s]",
-                        id, status, condorDAGClusterId, submitDirectory, created, started, dequeued, finished, version);
+        return String.format(
+                "WorkflowRunAttempt [id=%s, status=%s, condorDAGClusterId=%s, submitDirectory=%s, created=%s, started=%s, dequeued=%s, finished=%s, version=%s]",
+                id, status, condorDAGClusterId, submitDirectory, created, started, dequeued, finished, version);
     }
 
     @Override
