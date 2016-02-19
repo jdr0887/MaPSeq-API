@@ -38,7 +38,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Table(name = "job")
 @DataCache(enabled = false)
 @Cacheable(value = false)
-@NamedQueries({ @NamedQuery(name = "Job.findByWorkflowRunAttemptId", query = "SELECT a FROM Job a where a.workflowRunAttempt.id = :id order by a.created") })
+@NamedQueries({
+        @NamedQuery(name = "Job.findByWorkflowRunAttemptId", query = "SELECT a FROM Job a where a.workflowRunAttempt.id = :id order by a.created") })
 public class Job extends NamedEntity {
 
     private static final long serialVersionUID = -2076318051537463578L;
@@ -77,6 +78,7 @@ public class Job extends NamedEntity {
 
     public Job() {
         super();
+        this.transfers = new HashSet<>();
     }
 
     public WorkflowRunAttempt getWorkflowRunAttempt() {
@@ -136,9 +138,6 @@ public class Job extends NamedEntity {
     }
 
     public Set<TransferInfo> getTransfers() {
-        if (transfers == null) {
-            return new HashSet<TransferInfo>();
-        }
         return transfers;
     }
 
