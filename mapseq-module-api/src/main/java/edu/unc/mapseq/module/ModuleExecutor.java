@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.FileDataDAO;
 import edu.unc.mapseq.dao.JobDAO;
-import edu.unc.mapseq.dao.MaPSeqDAOBean;
+import edu.unc.mapseq.dao.MaPSeqDAOBeanService;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.SampleDAO;
 import edu.unc.mapseq.dao.model.Attribute;
@@ -51,7 +51,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
 
     private Module module;
 
-    private MaPSeqDAOBean daoBean;
+    private MaPSeqDAOBeanService daoBean;
 
     public ModuleExecutor() {
         super();
@@ -130,55 +130,51 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             logger.error("Error", e);
         } finally {
 
-            if (!module.getDryRun() && module.getPersistFileData()) {
+            if (!module.getDryRun() && module.getPersistFileData() && CollectionUtils.isNotEmpty(module.getFileDatas())
+                    && module.getSampleId() != null) {
+                logger.debug("module.getFileDatas().size() = {}", module.getFileDatas().size());
 
                 FileDataDAO fileDataDAO = daoBean.getFileDataDAO();
                 SampleDAO sampleDAO = daoBean.getSampleDAO();
                 JobDAO jobDAO = daoBean.getJobDAO();
 
-                if (module.getFileDatas() != null && !module.getFileDatas().isEmpty() && module.getSampleId() != null) {
-                    logger.debug("module.getFileDatas().size() = {}", module.getFileDatas().size());
+                WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
+                try {
+                    Sample sample = sampleDAO.findById(module.getSampleId());
 
-                    WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
-                    try {
-                        Sample sample = sampleDAO.findById(module.getSampleId());
-
-                        Set<FileData> fileDataSet = new HashSet<FileData>();
-                        Workflow workflow = workflowRun.getWorkflow();
-                        for (FileData fileData : module.getFileDatas()) {
-                            if (StringUtils.isEmpty(fileData.getPath())) {
-                                fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
-                            }
-                            List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
-                            if (foundFileDataList != null && !foundFileDataList.isEmpty()) {
-                                fileDataSet.add(foundFileDataList.get(0));
-                            } else {
-                                fileData.setId(fileDataDAO.save(fileData));
-                                fileDataSet.add(fileData);
-                            }
+                    Set<FileData> fileDataSet = new HashSet<FileData>();
+                    Workflow workflow = workflowRun.getWorkflow();
+                    for (FileData fileData : module.getFileDatas()) {
+                        if (StringUtils.isEmpty(fileData.getPath())) {
+                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
                         }
-
-                        for (FileData fileData : fileDataSet) {
-                            sampleDAO.addFileDataToSample(fileData.getId(), sample.getId());
+                        List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
+                        if (foundFileDataList != null && !foundFileDataList.isEmpty()) {
+                            fileDataSet.add(foundFileDataList.get(0));
+                        } else {
+                            fileData.setId(fileDataDAO.save(fileData));
+                            fileDataSet.add(fileData);
                         }
-
-                        for (FileData fileData : fileDataSet) {
-                            jobDAO.addFileDataToJob(fileData.getId(), job.getId());
-                        }
-
-                    } catch (MaPSeqDAOException e) {
-                        logger.error("MaPSeq Error", e);
                     }
 
+                    for (FileData fileData : fileDataSet) {
+                        sampleDAO.addFileDataToSample(fileData.getId(), sample.getId());
+                    }
+
+                    for (FileData fileData : fileDataSet) {
+                        jobDAO.addFileDataToJob(fileData.getId(), job.getId());
+                    }
+
+                } catch (MaPSeqDAOException e) {
+                    logger.error("MaPSeq Error", e);
                 }
 
             }
 
         }
 
-        List<String> outputErrors = module.validateOutputs();
-        if (CollectionUtils.isNotEmpty(outputErrors)) {
-            String message = StringUtils.join(outputErrors, System.getProperty("line.separator"));
+        if (CollectionUtils.isNotEmpty(module.validateOutputs())) {
+            String message = StringUtils.join(module.validateOutputs(), System.getProperty("line.separator"));
             throw new ModuleException(message);
         }
 
@@ -263,11 +259,11 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
         this.module = module;
     }
 
-    public MaPSeqDAOBean getDaoBean() {
+    public MaPSeqDAOBeanService getDaoBean() {
         return daoBean;
     }
 
-    public void setDaoBean(MaPSeqDAOBean daoBean) {
+    public void setDaoBean(MaPSeqDAOBeanService daoBean) {
         this.daoBean = daoBean;
     }
 
