@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,12 @@ import edu.unc.mapseq.dao.BaseDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.Persistable;
 
+@Transactional
 public abstract class BaseDAOImpl<T extends Persistable, ID extends Serializable> implements BaseDAO<T, ID> {
 
     private final Logger logger = LoggerFactory.getLogger(BaseDAOImpl.class);
 
-    @PersistenceUnit(name = "mapseq", unitName = "mapseq")
+    @PersistenceContext(name = "mapseq", unitName = "mapseq")
     private EntityManager entityManager;
 
     public BaseDAOImpl() {
@@ -57,12 +59,13 @@ public abstract class BaseDAOImpl<T extends Persistable, ID extends Serializable
         for (T t : entityList) {
             idList.add(t.getId());
         }
-        Query qDelete = entityManager.createQuery("delete from " + getPersistentClass().getSimpleName()
-                + " a where a.id in (?1)");
+        Query qDelete = entityManager
+                .createQuery("delete from " + getPersistentClass().getSimpleName() + " a where a.id in (?1)");
         qDelete.setParameter(1, idList);
         qDelete.executeUpdate();
     }
 
+    @Transactional(Transactional.TxType.SUPPORTS)
     @Override
     public T findById(ID id) throws MaPSeqDAOException {
         logger.debug("ENTERING findById(T)");

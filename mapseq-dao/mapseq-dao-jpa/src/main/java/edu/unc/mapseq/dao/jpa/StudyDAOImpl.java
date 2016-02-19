@@ -1,9 +1,13 @@
 package edu.unc.mapseq.dao.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +15,9 @@ import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.StudyDAO;
 import edu.unc.mapseq.dao.model.Study;
 
+@OsgiServiceProvider(classes = { StudyDAO.class })
+@Transactional(Transactional.TxType.SUPPORTS)
+@Singleton
 public class StudyDAOImpl extends DictionaryEntityDAOImpl<Study, Long> implements StudyDAO {
 
     private final Logger logger = LoggerFactory.getLogger(StudyDAOImpl.class);
@@ -27,8 +34,13 @@ public class StudyDAOImpl extends DictionaryEntityDAOImpl<Study, Long> implement
     @Override
     public List<Study> findAll() {
         logger.debug("ENTERING findAll()");
-        TypedQuery<Study> query = getEntityManager().createNamedQuery("Study.findAll", Study.class);
-        List<Study> ret = query.getResultList();
+        List<Study> ret = new ArrayList<>();
+        try {
+            TypedQuery<Study> query = getEntityManager().createNamedQuery("Study.findAll", Study.class);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ret;
     }
 

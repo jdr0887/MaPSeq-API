@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.SetJoin;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.FileData_;
 import edu.unc.mapseq.dao.model.Persistable;
 
+@Transactional(Transactional.TxType.SUPPORTS)
 public abstract class NamedEntityDAOImpl<T extends Persistable, ID extends Serializable> extends BaseDAOImpl<T, ID>
         implements NamedEntityDAO<T, ID> {
 
@@ -74,6 +76,9 @@ public abstract class NamedEntityDAOImpl<T extends Persistable, ID extends Seria
         CriteriaQuery<T> crit = critBuilder.createQuery(getPersistentClass());
         Root<T> root = crit.from(getPersistentClass());
         List<Predicate> predicates = new ArrayList<Predicate>();
+        if (!name.endsWith("%")) {
+            name += "%";
+        }
         predicates.add(critBuilder.like(root.<String> get("name"), name));
         crit.where(predicates.toArray(new Predicate[predicates.size()]));
         crit.orderBy(critBuilder.asc(root.<Date> get("created")));
