@@ -1,68 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0" xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
-  default-activation="eager">
-
-  <bean id="attributeDAOImpl" class="edu.unc.mapseq.dao.jpa.AttributeDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
+<?xml version="1.0" ?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
+  xmlns:tx="http://aries.apache.org/xmlns/transactions/v2.0.0" xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0">
+  <jpa:enable />
+  <tx:enable />
+  <bean id="attributeDAOImpl" class="edu.unc.mapseq.dao.jpa.AttributeDAOImpl" ext:field-injection="true">
   </bean>
+  <bean id="fileDataDAOImpl" class="edu.unc.mapseq.dao.jpa.FileDataDAOImpl" ext:field-injection="true">
+  </bean>
+  <bean id="sampleDAOImpl" class="edu.unc.mapseq.dao.jpa.SampleDAOImpl" ext:field-injection="true">
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
+  </bean>
+  <bean id="jobDAOImpl" class="edu.unc.mapseq.dao.jpa.JobDAOImpl" ext:field-injection="true">
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
+  </bean>
+  <bean id="flowcellDAOImpl" class="edu.unc.mapseq.dao.jpa.FlowcellDAOImpl" ext:field-injection="true">
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
+  </bean>
+  <bean id="studyDAOImpl" class="edu.unc.mapseq.dao.jpa.StudyDAOImpl" ext:field-injection="true">
+  </bean>
+  <bean id="workflowDAOImpl" class="edu.unc.mapseq.dao.jpa.WorkflowDAOImpl" ext:field-injection="true">
+  </bean>
+  <bean id="workflowRunDAOImpl" class="edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl" ext:field-injection="true">
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="attributeDAO" ref="attributeDAOImpl" />
+  </bean>
+  <bean id="workflowRunAttemptDAOImpl" class="edu.unc.mapseq.dao.jpa.WorkflowRunAttemptDAOImpl"
+    ext:field-injection="true">
+  </bean>
+
+  <bean id="mapseqDAOBeanServiceImpl" class="edu.unc.mapseq.dao.jpa.MaPSeqDAOBeanServiceImpl" ext:field-injection="true">
+    <property name="attributeDAO" ref="attributeDAOImpl" />
+    <property name="fileDataDAO" ref="fileDataDAOImpl" />
+    <property name="sampleDAO" ref="sampleDAOImpl" />
+    <property name="jobDAO" ref="jobDAOImpl" />
+    <property name="flowcellDAO" ref="flowcellDAOImpl" />
+    <property name="studyDAO" ref="studyDAOImpl" />
+    <property name="workflowDAO" ref="workflowDAOImpl" />
+    <property name="workflowRunDAO" ref="workflowRunDAOImpl" />
+    <property name="workflowRunAttemptDAO" ref="workflowRunAttemptDAOImpl" />
+  </bean>
+
   <service ref="attributeDAOImpl" interface="edu.unc.mapseq.dao.AttributeDAO" />
-
-  <bean id="fileDataDAOImpl" class="edu.unc.mapseq.dao.jpa.FileDataDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-  </bean>
   <service ref="fileDataDAOImpl" interface="edu.unc.mapseq.dao.FileDataDAO" />
-
-  <bean id="sampleDAOImpl" class="edu.unc.mapseq.dao.jpa.SampleDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-    <property name="fileDataDAO" ref="fileDataDAOImpl" />
-    <property name="attributeDAO" ref="attributeDAOImpl" />
-  </bean>
   <service ref="sampleDAOImpl" interface="edu.unc.mapseq.dao.SampleDAO" />
-
-  <bean id="jobDAOImpl" class="edu.unc.mapseq.dao.jpa.JobDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-    <property name="fileDataDAO" ref="fileDataDAOImpl" />
-    <property name="attributeDAO" ref="attributeDAOImpl" />
-  </bean>
   <service ref="jobDAOImpl" interface="edu.unc.mapseq.dao.JobDAO" />
-
-  <bean id="flowcellDAOImpl" class="edu.unc.mapseq.dao.jpa.FlowcellDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-    <property name="fileDataDAO" ref="fileDataDAOImpl" />
-    <property name="attributeDAO" ref="attributeDAOImpl" />
-  </bean>
   <service ref="flowcellDAOImpl" interface="edu.unc.mapseq.dao.FlowcellDAO" />
-
-  <bean id="studyDAOImpl" class="edu.unc.mapseq.dao.jpa.StudyDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-  </bean>
   <service ref="studyDAOImpl" interface="edu.unc.mapseq.dao.StudyDAO" />
-
-  <bean id="workflowDAOImpl" class="edu.unc.mapseq.dao.jpa.WorkflowDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-  </bean>
   <service ref="workflowDAOImpl" interface="edu.unc.mapseq.dao.WorkflowDAO" />
-
-  <bean id="workflowRunDAOImpl" class="edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-    <property name="fileDataDAO" ref="fileDataDAOImpl" />
-    <property name="attributeDAO" ref="attributeDAOImpl" />
-  </bean>
   <service ref="workflowRunDAOImpl" interface="edu.unc.mapseq.dao.WorkflowRunDAO" />
-
-  <bean id="workflowRunAttemptDAOImpl" class="edu.unc.mapseq.dao.jpa.WorkflowRunAttemptDAOImpl">
-    <tx:transaction method="*" value="Required" />
-    <jpa:context property="entityManager" unitname="mapseq" />
-  </bean>
   <service ref="workflowRunAttemptDAOImpl" interface="edu.unc.mapseq.dao.WorkflowRunAttemptDAO" />
+  <service ref="mapseqDAOBeanServiceImpl" interface="edu.unc.mapseq.dao.MaPSeqDAOBeanService" />
 
 </blueprint>
