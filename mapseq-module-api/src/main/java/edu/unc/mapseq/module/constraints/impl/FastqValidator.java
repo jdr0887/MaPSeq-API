@@ -104,8 +104,8 @@ public class FastqValidator implements ConstraintValidator<Fastq, Object> {
                             // Solid
                             for (int i = 1; i < line.length(); i++) {
                                 if (!(line.charAt(i) == '0' || line.charAt(i) == '1' || line.charAt(i) == '2'
-                                        || line.charAt(i) == '3' || line.charAt(i) == 'N' || line.charAt(i) == 'n' || line
-                                            .charAt(i) == '.')) {
+                                        || line.charAt(i) == '3' || line.charAt(i) == 'N' || line.charAt(i) == 'n'
+                                        || line.charAt(i) == '.')) {
                                     error = "Expected 0123Nn. at line " + lineCount + " but found:" + line
                                             + System.getProperty("line.separator");
                                 }
@@ -141,8 +141,7 @@ public class FastqValidator implements ConstraintValidator<Fastq, Object> {
                         // Parse it to make sure it has right character makeup
                         for (int i = 0; i < line.length(); i++) {
                             if (line.charAt(i) < 33 || line.charAt(i) > 126) {
-                                error = "Expected quality line at line "
-                                        + lineCount
+                                error = "Expected quality line at line " + lineCount
                                         + " composed of valid phred score (chars between ASCII 33 and 126), but found invalid score "
                                         + line + System.getProperty("line.separator");
                             }
