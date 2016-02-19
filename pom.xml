@@ -2,7 +2,7 @@
   <parent>
     <groupId>edu.unc.mapseq</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.1.8</version>
+    <version>0.1.9</version>
   </parent>
   <name>Massively Parallel Sequencing</name>
   <modelVersion>4.0.0</modelVersion>
@@ -30,6 +30,31 @@
   </scm>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+      	<groupId>org.apache.commons</groupId>
+      	<artifactId>commons-collections4</artifactId>
+      	<version>${commons.collections4.version}</version>
+      </dependency>      
+      <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+      </dependency>
+      <dependency>
+	<groupId>javax.transaction</groupId>
+	<artifactId>javax.transaction-api</artifactId>
+	<version>1.2</version>
+      </dependency>      
+      <dependency>
+        <groupId>org.ops4j.pax.cdi</groupId>
+        <artifactId>pax-cdi-api</artifactId>
+        <version>0.12.0</version>
+      </dependency>      
+      <dependency>
+	<groupId>org.apache.felix</groupId>
+	<artifactId>org.apache.felix.scr.annotations</artifactId>
+	<version>1.9.12</version>
+      </dependency>      
       <dependency>
       	<groupId>org.apache.geronimo.javamail</groupId>
       	<artifactId>geronimo-javamail_1.4_mail</artifactId>
@@ -78,7 +103,7 @@
       <dependency>
       	<groupId>org.postgresql</groupId>
       	<artifactId>postgresql</artifactId>
-      	<version>9.3-1102-jdbc4</version>
+      	<version>9.4-1206-jdbc41</version>
       </dependency>
       <dependency>
       	<groupId>org.hibernate</groupId>
@@ -188,8 +213,8 @@
 	    </plugin>
 	    <plugin>
 	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-checkstyle-plugin</artifactId>
-	      <version>${maven.checkstyle.plugin.version}</version>
+	      <artifactId>maven-changelog-plugin</artifactId>
+	      <version>${maven.changelog.plugin.version}</version>
 	    </plugin>
 	  </reportPlugins>
         </configuration>
