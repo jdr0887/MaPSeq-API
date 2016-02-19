@@ -36,7 +36,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Table(name = "workflow_run")
 @DataCache(enabled = false)
 @Cacheable(value = false)
-@NamedQueries({ @NamedQuery(name = "WorkflowRun.findByWorkflowId", query = "SELECT a FROM WorkflowRun a where a.workflow.id = :id order by a.created") })
+@NamedQueries({
+        @NamedQuery(name = "WorkflowRun.findByWorkflowId", query = "SELECT a FROM WorkflowRun a where a.workflow.id = :id order by a.created") })
 public class WorkflowRun extends NamedEntity {
 
     private static final long serialVersionUID = 8700198002784754453L;
@@ -53,15 +54,15 @@ public class WorkflowRun extends NamedEntity {
     @XmlElementWrapper(name = "samples")
     @XmlElement(name = "sample")
     @ManyToMany(targetEntity = Sample.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
-    @ContainerTable(name = "workflow_run_sample", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
-    @JoinTable(name = "workflow_run_sample", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "sample_fid"))
+    @ContainerTable(name = "workflow_run_sample", joinIndex = @Index(columnNames = { "workflow_run_fid" }) )
+    @JoinTable(name = "workflow_run_sample", joinColumns = @JoinColumn(name = "workflow_run_fid") , inverseJoinColumns = @JoinColumn(name = "sample_fid") )
     private Set<Sample> samples;
 
     @XmlElementWrapper(name = "flowcells")
     @XmlElement(name = "flowcell")
     @ManyToMany(targetEntity = Flowcell.class, cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
-    @ContainerTable(name = "workflow_run_flowcell", joinIndex = @Index(columnNames = { "workflow_run_fid" }))
-    @JoinTable(name = "workflow_run_flowcell", joinColumns = @JoinColumn(name = "workflow_run_fid"), inverseJoinColumns = @JoinColumn(name = "flowcell_fid"))
+    @ContainerTable(name = "workflow_run_flowcell", joinIndex = @Index(columnNames = { "workflow_run_fid" }) )
+    @JoinTable(name = "workflow_run_flowcell", joinColumns = @JoinColumn(name = "workflow_run_fid") , inverseJoinColumns = @JoinColumn(name = "flowcell_fid") )
     private Set<Flowcell> flowcells;
 
     public WorkflowRun() {
