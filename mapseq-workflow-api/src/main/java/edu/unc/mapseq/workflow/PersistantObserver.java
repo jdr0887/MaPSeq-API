@@ -7,7 +7,7 @@ import java.util.Observer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.unc.mapseq.dao.MaPSeqDAOBean;
+import edu.unc.mapseq.dao.MaPSeqDAOBeanService;
 import edu.unc.mapseq.dao.WorkflowRunAttemptDAO;
 import edu.unc.mapseq.dao.model.WorkflowRunAttempt;
 import edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType;
@@ -26,11 +26,12 @@ public class PersistantObserver implements Observer {
         if (o instanceof WorkflowExecutor && arg instanceof WorkflowRunAttemptStatusType) {
             WorkflowExecutor pipelineExecutor = (WorkflowExecutor) o;
             WorkflowRunAttemptStatusType status = (WorkflowRunAttemptStatusType) arg;
-            MaPSeqDAOBean maPSeqDAOBean = pipelineExecutor.getWorkflow().getWorkflowBeanService().getMaPSeqDAOBean();
+            MaPSeqDAOBeanService maPSeqDAOBean = pipelineExecutor.getWorkflow().getWorkflowBeanService()
+                    .getMaPSeqDAOBean();
             WorkflowRunAttemptDAO workflowRunAttemptDAO = maPSeqDAOBean.getWorkflowRunAttemptDAO();
             try {
-                WorkflowRunAttempt workflowRunAttempt = workflowRunAttemptDAO.findById(pipelineExecutor.getWorkflow()
-                        .getWorkflowRunAttempt().getId());
+                WorkflowRunAttempt workflowRunAttempt = workflowRunAttemptDAO
+                        .findById(pipelineExecutor.getWorkflow().getWorkflowRunAttempt().getId());
 
                 // could have been deleted
                 if (workflowRunAttempt == null) {
