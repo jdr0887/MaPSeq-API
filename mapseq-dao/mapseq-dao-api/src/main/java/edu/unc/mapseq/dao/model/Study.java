@@ -35,12 +35,10 @@ public class Study extends DictionaryEntity {
 
     public Study() {
         super();
+        this.samples = new HashSet<>();
     }
 
     public Set<Sample> getSamples() {
-        if (samples == null) {
-            return new HashSet<Sample>();
-        }
         return samples;
     }
 
