@@ -83,7 +83,7 @@
 
   <service id="mapseqDataSource" ref="mapseq-ds-no-jta" interface="javax.sql.DataSource">
     <service-properties>
-      <entry key="osgi.jndi.service.name" value="jdbc/mapseqNoJTA" />
+      <entry key="osgi.jndi.service.name" value="mapseqNoJTA" />
     </service-properties>
   </service>
 
@@ -93,7 +93,7 @@
 
   <service id="mapseqXADataSource" ref="mapseq-ds-jta" interface="javax.sql.DataSource">
     <service-properties>
-      <entry key="osgi.jndi.service.name" value="jdbc/mapseqJTA" />
+      <entry key="osgi.jndi.service.name" value="mapseqJTA" />
     </service-properties>
   </service>
 
