@@ -5,10 +5,10 @@ import java.util.concurrent.Executors;
 
 import org.junit.Test;
 
-import edu.unc.mapseq.dao.MaPSeqDAOBean;
 import edu.unc.mapseq.dao.jpa.AttributeDAOImpl;
 import edu.unc.mapseq.dao.jpa.FileDataDAOImpl;
 import edu.unc.mapseq.dao.jpa.JobDAOImpl;
+import edu.unc.mapseq.dao.jpa.MaPSeqDAOBeanServiceImpl;
 import edu.unc.mapseq.dao.jpa.SampleDAOImpl;
 import edu.unc.mapseq.dao.jpa.WorkflowRunAttemptDAOImpl;
 import edu.unc.mapseq.dao.jpa.WorkflowRunDAOImpl;
@@ -18,7 +18,7 @@ public class ModuleTest {
     @Test
     public void testUnzipModule() {
 
-        MaPSeqDAOBean daoBean = new MaPSeqDAOBean();
+        MaPSeqDAOBeanServiceImpl daoBean = new MaPSeqDAOBeanServiceImpl();
         daoBean.setWorkflowRunDAO(new WorkflowRunDAOImpl());
         daoBean.setWorkflowRunAttemptDAO(new WorkflowRunAttemptDAOImpl());
         daoBean.setJobDAO(new JobDAOImpl());
@@ -52,7 +52,7 @@ public class ModuleTest {
     @Test
     public void testEchoModule() {
 
-        MaPSeqDAOBean daoBean = new MaPSeqDAOBean();
+        MaPSeqDAOBeanServiceImpl daoBean = new MaPSeqDAOBeanServiceImpl();
         daoBean.setWorkflowRunDAO(new WorkflowRunDAOImpl());
         daoBean.setWorkflowRunAttemptDAO(new WorkflowRunAttemptDAOImpl());
         daoBean.setJobDAO(new JobDAOImpl());
