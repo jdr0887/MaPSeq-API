@@ -2,7 +2,7 @@
   <parent>
     <groupId>edu.unc.mapseq</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.1.9</version>
+    <version>0.1.10-SNAPSHOT</version>
   </parent>
   <name>Massively Parallel Sequencing</name>
   <modelVersion>4.0.0</modelVersion>
@@ -103,7 +103,7 @@
       <dependency>
       	<groupId>org.postgresql</groupId>
       	<artifactId>postgresql</artifactId>
-      	<version>9.4-1206-jdbc41</version>
+      	<version>${postgresql.version}</version>
       </dependency>
       <dependency>
       	<groupId>org.hibernate</groupId>
