@@ -18,7 +18,12 @@
     <dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>javax.transaction-api</artifactId>
-    </dependency>                
+    </dependency>
+    <dependency>
+      <groupId>javax.interceptor</groupId>
+      <artifactId>javax.interceptor-api</artifactId>
+      <scope>provided</scope>
+    </dependency>                    
     <dependency>
       <groupId>org.ops4j.pax.cdi</groupId>
       <artifactId>pax-cdi-api</artifactId>
