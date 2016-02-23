@@ -69,6 +69,10 @@ public class WorkflowRun extends NamedEntity {
         super();
     }
 
+    public WorkflowRun(String name) {
+        super(name);
+    }
+
     public Workflow getWorkflow() {
         return workflow;
     }

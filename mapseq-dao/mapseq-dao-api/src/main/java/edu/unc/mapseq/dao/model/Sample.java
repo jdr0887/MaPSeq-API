@@ -60,6 +60,10 @@ public class Sample extends NamedEntity {
         super();
     }
 
+    public Sample(String name) {
+        super(name);
+    }
+
     public Study getStudy() {
         return study;
     }

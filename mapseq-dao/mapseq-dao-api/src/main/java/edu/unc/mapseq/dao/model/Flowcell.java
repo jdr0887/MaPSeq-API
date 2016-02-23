@@ -47,6 +47,10 @@ public class Flowcell extends NamedEntity {
         super();
     }
 
+    public Flowcell(String name) {
+        super(name);
+    }
+
     public Set<WorkflowRun> getWorkflowRuns() {
         return workflowRuns;
     }

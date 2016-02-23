@@ -38,6 +38,11 @@ public class Study extends DictionaryEntity {
         this.samples = new HashSet<>();
     }
 
+    public Study(String name) {
+        super(name);
+        this.samples = new HashSet<>();
+    }
+
     public Set<Sample> getSamples() {
         return samples;
     }

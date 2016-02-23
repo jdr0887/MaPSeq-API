@@ -81,6 +81,11 @@ public class Job extends NamedEntity {
         this.transfers = new HashSet<>();
     }
 
+    public Job(String name) {
+        super(name);
+        this.transfers = new HashSet<>();
+    }
+
     public WorkflowRunAttempt getWorkflowRunAttempt() {
         return workflowRunAttempt;
     }

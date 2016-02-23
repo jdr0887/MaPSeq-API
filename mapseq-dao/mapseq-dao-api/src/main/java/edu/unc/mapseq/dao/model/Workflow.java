@@ -37,6 +37,11 @@ public class Workflow extends DictionaryEntity {
         this.workflowRuns = new HashSet<>();
     }
 
+    public Workflow(String name) {
+        super(name);
+        this.workflowRuns = new HashSet<>();
+    }
+
     public Set<WorkflowRun> getWorkflowRuns() {
         return workflowRuns;
     }

@@ -91,6 +91,11 @@ public class NamedEntity implements Persistable {
         this.fileDatas = new HashSet<FileData>();
     }
 
+    public NamedEntity(String name) {
+        this();
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
