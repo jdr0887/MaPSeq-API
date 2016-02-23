@@ -15,9 +15,9 @@ public interface WorkflowBeanService {
 
     public abstract void setMaxPoolSize(int maxPoolSize);
 
-    public abstract MaPSeqDAOBeanService getMaPSeqDAOBean();
+    public abstract MaPSeqDAOBeanService getMaPSeqDAOBeanService();
 
-    public abstract void setMaPSeqDAOBean(MaPSeqDAOBeanService maPSeqDAOBean);
+    public abstract void setMaPSeqDAOBeanService(MaPSeqDAOBeanService maPSeqDAOBeanService);
 
     public abstract MaPSeqConfigurationService getMaPSeqConfigurationService();
 
