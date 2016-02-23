@@ -27,7 +27,7 @@ public class PersistantObserver implements Observer {
             WorkflowExecutor pipelineExecutor = (WorkflowExecutor) o;
             WorkflowRunAttemptStatusType status = (WorkflowRunAttemptStatusType) arg;
             MaPSeqDAOBeanService maPSeqDAOBean = pipelineExecutor.getWorkflow().getWorkflowBeanService()
-                    .getMaPSeqDAOBean();
+                    .getMaPSeqDAOBeanService();
             WorkflowRunAttemptDAO workflowRunAttemptDAO = maPSeqDAOBean.getWorkflowRunAttemptDAO();
             try {
                 WorkflowRunAttempt workflowRunAttempt = workflowRunAttemptDAO
