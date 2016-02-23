@@ -70,6 +70,11 @@ public class DictionaryEntity implements Persistable {
         this.active = Boolean.TRUE;
     }
 
+    public DictionaryEntity(String name) {
+        this();
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
