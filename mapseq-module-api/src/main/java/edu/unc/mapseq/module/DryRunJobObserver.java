@@ -7,6 +7,7 @@ import java.util.Observer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.unc.mapseq.dao.model.Job;
 import edu.unc.mapseq.dao.model.JobStatusType;
 
 public class DryRunJobObserver implements Observer {
@@ -23,17 +24,18 @@ public class DryRunJobObserver implements Observer {
         if (observable instanceof ModuleExecutor && o instanceof JobStatusType) {
             ModuleExecutor executor = (ModuleExecutor) observable;
             JobStatusType status = (JobStatusType) o;
-            logger.info("status.getState() = {}", status.getState());
-            executor.getJob().setStatus(status);
+            logger.info("status: {}", status.getState());
+            Job job = executor.getJob();
+            job.setStatus(status);
 
             switch (status) {
                 case DONE:
                 case FAILED:
-                    executor.getJob().setFinished(new Date());
-                    executor.getJob().setFileDatas(executor.getModule().getFileDatas());
+                    job.setFinished(new Date());
+                    job.setFileDatas(executor.getModule().getFileDatas());
                     break;
                 case RUNNING:
-                    executor.getJob().setStarted(new Date());
+                    job.setStarted(new Date());
                     break;
             }
 
