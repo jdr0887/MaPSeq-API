@@ -103,7 +103,7 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     @Override
     public ModuleOutput call() throws Exception {
-        logger.info("ENTERING call()");
+        logger.debug("ENTERING call()");
 
         Class<?> moduleClass = getModuleClass();
         if (moduleClass.isAnnotationPresent(Application.class)) {
@@ -115,13 +115,15 @@ public abstract class Module implements Callable<ModuleOutput> {
                 commandInput.setExitImmediately(true);
             }
 
-            String mapseqHome = System.getenv("MAPSEQ_HOME");
-            if (StringUtils.isNotEmpty(mapseqHome)) {
-                File tmpDir = new File(mapseqHome, "tmp");
-                File tmpWorkflowDir = new File(tmpDir, getWorkflowName());
-                File tmpWorkflowAttemptDir = new File(tmpWorkflowDir, getWorkflowRunAttemptId().toString());
-                tmpWorkflowAttemptDir.mkdirs();
-                commandInput.setWorkDir(tmpWorkflowAttemptDir);
+            String tmpDir = System.getProperty("java.io.tmpdir");
+            File tmpWorkflowDir = new File(tmpDir, getWorkflowName());
+            if (!tmpWorkflowDir.exists()) {
+                tmpWorkflowDir.mkdirs();
+            }
+            commandInput.setWorkDir(tmpWorkflowDir);
+            if (getWorkflowRunAttemptId() != null) {
+                File tmpWorkflowRunAttemptDir = new File(tmpWorkflowDir, getWorkflowRunAttemptId().toString());
+                commandInput.setWorkDir(tmpWorkflowRunAttemptDir);
             }
 
             StringBuilder command = new StringBuilder();
@@ -231,7 +233,7 @@ public abstract class Module implements Callable<ModuleOutput> {
                 }
             }
 
-            logger.info("command.toString(): {}", command.toString());
+            logger.info(command.toString());
 
             commandInput.setCommand(command.toString());
             CommandOutput commandOutput;
