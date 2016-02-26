@@ -30,6 +30,7 @@ public class PersistantJobObserver implements Observer {
         if (observable instanceof ModuleExecutor && o instanceof JobStatusType) {
             ModuleExecutor executor = (ModuleExecutor) observable;
             JobStatusType status = (JobStatusType) o;
+            logger.info("status: {}", status.getState());
             Date date = new Date();
             Job job = executor.getJob();
             logger.debug(job.toString());
@@ -46,7 +47,7 @@ public class PersistantJobObserver implements Observer {
             try {
                 JobDAO jobDAO = daoBean.getJobDAO();
                 job.setStatus(status);
-                jobDAO.save(executor.getJob());
+                jobDAO.save(job);
             } catch (MaPSeqDAOException e) {
                 e.printStackTrace();
             }
