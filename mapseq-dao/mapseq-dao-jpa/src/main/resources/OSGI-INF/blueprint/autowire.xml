@@ -31,7 +31,7 @@
     ext:field-injection="true">
   </bean>
 
-  <bean id="mapseqDAOBeanServiceImpl" class="edu.unc.mapseq.dao.jpa.MaPSeqDAOBeanServiceImpl" ext:field-injection="true">
+  <bean id="maPSeqDAOBeanServiceImpl" class="edu.unc.mapseq.dao.jpa.MaPSeqDAOBeanServiceImpl" ext:field-injection="true">
     <property name="attributeDAO" ref="attributeDAOImpl" />
     <property name="fileDataDAO" ref="fileDataDAOImpl" />
     <property name="sampleDAO" ref="sampleDAOImpl" />
@@ -52,6 +52,6 @@
   <service ref="workflowDAOImpl" interface="edu.unc.mapseq.dao.WorkflowDAO" />
   <service ref="workflowRunDAOImpl" interface="edu.unc.mapseq.dao.WorkflowRunDAO" />
   <service ref="workflowRunAttemptDAOImpl" interface="edu.unc.mapseq.dao.WorkflowRunAttemptDAO" />
-  <service ref="mapseqDAOBeanServiceImpl" interface="edu.unc.mapseq.dao.MaPSeqDAOBeanService" />
+  <service ref="maPSeqDAOBeanServiceImpl" interface="edu.unc.mapseq.dao.MaPSeqDAOBeanService" />
 
 </blueprint>
