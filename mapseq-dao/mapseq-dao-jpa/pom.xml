@@ -44,6 +44,10 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
     </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>org.eclipse.persistence</groupId> -->
+    <!--   <artifactId>javax.persistence</artifactId> -->
+    <!-- </dependency>     -->
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-jpa_2.0_spec</artifactId>
@@ -62,8 +66,7 @@
         <configuration>
           <instructions>
             <Private-Package>edu.unc.mapseq.dao.jpa.*</Private-Package>
-            <Export-Package>!edu.unc.mapseq.dao.jpa.*</Export-Package>
-            <Import-Package>*</Import-Package>
+            <Export-Package>edu.unc.mapseq.dao.jpa.*</Export-Package>
           </instructions>
         </configuration>
       </plugin>
