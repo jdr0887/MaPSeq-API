@@ -28,7 +28,7 @@
       <property name="javax.persistence.query.timeout" value="300000" />
       <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict" />
       <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
-      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true,Sequences=false)" />
       <!-- <property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=TRACE, Tool=TRACE, SQL=TRACE" /> -->
       <!-- <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=WARN" /> -->
       <property name="openjpa.Log" value="slf4j" />
