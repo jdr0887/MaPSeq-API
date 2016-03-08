@@ -1,5 +1,6 @@
 package edu.unc.mapseq.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
@@ -67,10 +68,16 @@ public class WorkflowRun extends NamedEntity {
 
     public WorkflowRun() {
         super();
+        this.attempts = new HashSet<>();
+        this.samples = new HashSet<>();
+        this.flowcells = new HashSet<>();
     }
 
     public WorkflowRun(String name) {
         super(name);
+        this.attempts = new HashSet<>();
+        this.samples = new HashSet<>();
+        this.flowcells = new HashSet<>();
     }
 
     public Workflow getWorkflow() {

@@ -1,5 +1,6 @@
 package edu.unc.mapseq.dao.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
@@ -45,6 +46,8 @@ public class Flowcell extends NamedEntity {
 
     public Flowcell() {
         super();
+        this.samples = new HashSet<Sample>();
+        this.workflowRuns = new HashSet<WorkflowRun>();
     }
 
     public Flowcell(String name) {
