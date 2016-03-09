@@ -2,7 +2,7 @@
   <parent>
     <groupId>edu.unc.mapseq</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.1.15</version>
+    <version>0.1.17</version>
   </parent>
   <name>Massively Parallel Sequencing</name>
   <modelVersion>4.0.0</modelVersion>
@@ -35,11 +35,6 @@
       	<artifactId>javax.interceptor-api</artifactId>
       	<version>1.2</version>	
       </dependency>
-      <dependency>
-      	<groupId>org.apache.commons</groupId>
-      	<artifactId>commons-collections4</artifactId>
-      	<version>${commons.collections4.version}</version>
-      </dependency>      
       <dependency>
         <groupId>javax.inject</groupId>
         <artifactId>javax.inject</artifactId>
@@ -139,11 +134,6 @@
 	<groupId>commons-httpclient</groupId>
 	<artifactId>commons-httpclient</artifactId>
 	<version>3.1</version>
-      </dependency>
-      <dependency>
-      	<groupId>org.renci.commons</groupId>
-      	<artifactId>commons-exec</artifactId>
-      	<version>${renci.commons.version}</version>
       </dependency>
       <dependency>
       	<groupId>edu.unc.mapseq</groupId>
