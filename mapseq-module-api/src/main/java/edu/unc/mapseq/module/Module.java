@@ -123,8 +123,13 @@ public abstract class Module implements Callable<ModuleOutput> {
             commandInput.setWorkDir(tmpWorkflowDir);
             if (getWorkflowRunAttemptId() != null) {
                 File tmpWorkflowRunAttemptDir = new File(tmpWorkflowDir, getWorkflowRunAttemptId().toString());
+                if (!tmpWorkflowRunAttemptDir.exists()) {
+                    tmpWorkflowRunAttemptDir.mkdirs();
+                }
                 commandInput.setWorkDir(tmpWorkflowRunAttemptDir);
             }
+
+            logger.info("commandInput.getWorkDir().getAbsolutePath(): {}", commandInput.getWorkDir().getAbsolutePath());
 
             StringBuilder command = new StringBuilder();
             command.append(getExecutable());
@@ -236,6 +241,7 @@ public abstract class Module implements Callable<ModuleOutput> {
             logger.info(command.toString());
 
             commandInput.setCommand(command.toString());
+            
             CommandOutput commandOutput;
             Executor executor = BashExecutor.getInstance();
             try {
