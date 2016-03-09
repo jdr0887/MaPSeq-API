@@ -38,6 +38,7 @@ import edu.unc.mapseq.dao.model.Sample;
 import edu.unc.mapseq.dao.model.Workflow;
 import edu.unc.mapseq.dao.model.WorkflowRun;
 import edu.unc.mapseq.dao.model.WorkflowRunAttempt;
+import edu.unc.mapseq.module.annotations.Application;
 
 /**
  * 
@@ -63,7 +64,14 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
         ModuleOutput output = null;
 
         WorkflowRunAttempt workflowRunAttempt = null;
-        if (!module.getDryRun()) {
+
+        boolean isWorkflowRunIdOptional = false;
+        if (module.getClass().isAnnotationPresent(Application.class)) {
+            Application application = module.getClass().getAnnotation(Application.class);
+            isWorkflowRunIdOptional = application.isWorkflowRunIdOptional();
+        }
+
+        if (!module.getDryRun() || (module.getWorkflowRunAttemptId() == null && !isWorkflowRunIdOptional)) {
             try {
                 workflowRunAttempt = daoBean.getWorkflowRunAttemptDAO().findById(module.getWorkflowRunAttemptId());
                 WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
