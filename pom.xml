@@ -156,7 +156,7 @@
 	      <version>${maven.project.info.reports.plugin.version}</version>
 	      <configuration>
 		<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
-		<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
+		<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 	      </configuration>
 	      <reports>
 	      </reports>
