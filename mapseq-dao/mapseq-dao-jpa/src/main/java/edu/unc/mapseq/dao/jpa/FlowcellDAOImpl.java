@@ -114,8 +114,9 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
     @Override
     public List<Flowcell> findAll() throws MaPSeqDAOException {
         logger.debug("ENTERING findAll()");
+        List<Flowcell> ret = new ArrayList<>();
         TypedQuery<Flowcell> query = getEntityManager().createNamedQuery("Flowcell.findAll", Flowcell.class);
-        List<Flowcell> ret = query.getResultList();
+        ret.addAll(query.getResultList());
         return ret;
     }
 
