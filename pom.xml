@@ -2,7 +2,7 @@
   <parent>
     <groupId>edu.unc.mapseq</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.1.18</version>
+    <version>0.1.19</version>
   </parent>
   <name>Massively Parallel Sequencing</name>
   <modelVersion>4.0.0</modelVersion>
@@ -142,45 +142,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>${maven.site.plugin.version}</version>
-        <configuration>
-	  <reportPlugins>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-project-info-reports-plugin</artifactId>
-	      <version>${maven.project.info.reports.plugin.version}</version>
-	      <configuration>
-		<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
-		<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-	      </configuration>
-	      <reports>
-	      </reports>
-	    </plugin>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-javadoc-plugin</artifactId>
-	      <version>${maven.javadoc.plugin.version}</version>
-	    </plugin>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-surefire-report-plugin</artifactId>
-	      <version>${maven.surefire.report.plugin.version}</version>
-	    </plugin>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-changelog-plugin</artifactId>
-	      <version>${maven.changelog.plugin.version}</version>
-	    </plugin>
-	  </reportPlugins>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
   <modules>
     <module>mapseq-dao</module>
     <module>mapseq-module-api</module>
