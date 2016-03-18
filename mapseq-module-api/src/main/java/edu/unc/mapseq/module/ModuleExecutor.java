@@ -71,7 +71,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             isWorkflowRunIdOptional = application.isWorkflowRunIdOptional();
         }
 
-        if (!module.getDryRun() || (module.getWorkflowRunAttemptId() == null && !isWorkflowRunIdOptional)) {
+        if (!module.getDryRun() && module.getWorkflowRunAttemptId() != null) {
             try {
                 workflowRunAttempt = daoBean.getWorkflowRunAttemptDAO().findById(module.getWorkflowRunAttemptId());
                 WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
@@ -114,11 +114,14 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
         try {
             updateJobState(JobStatusType.RUNNING);
 
+            logger.info(module.toString());
             output = module.call();
 
             if (output == null) {
                 throw new ModuleException("ModuleOutput is null");
             }
+
+            logger.info(output.toString());
 
             if (output.getError() != null && output.getError().length() > 0) {
                 job.setStderr(output.getError().toString());
@@ -137,10 +140,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             updateJobState(JobStatusType.FAILED);
             logger.error("Error", e);
         } finally {
-
-            if (!module.getDryRun() && module.getPersistFileData() && CollectionUtils.isNotEmpty(module.getFileDatas())
-                    && module.getSampleId() != null) {
-                logger.debug("module.getFileDatas().size() = {}", module.getFileDatas().size());
+            if (!module.getDryRun() && module.getPersistFileData()) {
 
                 FileDataDAO fileDataDAO = daoBean.getFileDataDAO();
                 SampleDAO sampleDAO = daoBean.getSampleDAO();
@@ -151,26 +151,36 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                     Sample sample = sampleDAO.findById(module.getSampleId());
 
                     Set<FileData> fileDataSet = new HashSet<FileData>();
+
                     Workflow workflow = workflowRun.getWorkflow();
-                    for (FileData fileData : module.getFileDatas()) {
-                        if (StringUtils.isEmpty(fileData.getPath())) {
-                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
+
+                    if (CollectionUtils.isEmpty(module.getFileDatas())) {
+                        logger.warn("No fileDatas found");
+                    } else {
+                        logger.info("module.getFileDatas().size() = {}", module.getFileDatas().size());
+                        for (FileData fileData : module.getFileDatas()) {
+                            if (StringUtils.isEmpty(fileData.getPath())) {
+                                fileData.setPath(
+                                        String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
+                            }
+                            List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
+                            if (CollectionUtils.isNotEmpty(foundFileDataList)) {
+                                fileDataSet.add(foundFileDataList.get(0));
+                            } else {
+                                fileData.setId(fileDataDAO.save(fileData));
+                                fileDataSet.add(fileData);
+                            }
                         }
-                        List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
-                        if (foundFileDataList != null && !foundFileDataList.isEmpty()) {
-                            fileDataSet.add(foundFileDataList.get(0));
-                        } else {
-                            fileData.setId(fileDataDAO.save(fileData));
-                            fileDataSet.add(fileData);
+                    }
+
+                    if (module.getSampleId() != null) {
+                        for (FileData fileData : fileDataSet) {
+                            sampleDAO.addFileData(fileData.getId(), sample.getId());
                         }
                     }
 
                     for (FileData fileData : fileDataSet) {
-                        sampleDAO.addFileDataToSample(fileData.getId(), sample.getId());
-                    }
-
-                    for (FileData fileData : fileDataSet) {
-                        jobDAO.addFileDataToJob(fileData.getId(), job.getId());
+                        jobDAO.addFileData(fileData.getId(), job.getId());
                     }
 
                 } catch (MaPSeqDAOException e) {
