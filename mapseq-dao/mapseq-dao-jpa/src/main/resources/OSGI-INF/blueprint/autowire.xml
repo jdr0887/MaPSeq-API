@@ -8,12 +8,8 @@
   <bean id="fileDataDAOImpl" class="edu.unc.mapseq.dao.jpa.FileDataDAOImpl" ext:field-injection="true">
   </bean>
   <bean id="sampleDAOImpl" class="edu.unc.mapseq.dao.jpa.SampleDAOImpl" ext:field-injection="true">
-    <property name="fileDataDAO" ref="fileDataDAOImpl" />
-    <property name="attributeDAO" ref="attributeDAOImpl" />
   </bean>
   <bean id="jobDAOImpl" class="edu.unc.mapseq.dao.jpa.JobDAOImpl" ext:field-injection="true">
-    <property name="fileDataDAO" ref="fileDataDAOImpl" />
-    <property name="attributeDAO" ref="attributeDAOImpl" />
   </bean>
   <bean id="flowcellDAOImpl" class="edu.unc.mapseq.dao.jpa.FlowcellDAOImpl" ext:field-injection="true">
     <property name="fileDataDAO" ref="fileDataDAOImpl" />
