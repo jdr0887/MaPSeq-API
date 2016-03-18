@@ -19,7 +19,7 @@ import edu.unc.mapseq.dao.model.Persistable;
 @Transactional
 public abstract class BaseDAOImpl<T extends Persistable, ID extends Serializable> implements BaseDAO<T, ID> {
 
-    private final Logger logger = LoggerFactory.getLogger(BaseDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(BaseDAOImpl.class);
 
     @PersistenceContext(name = "mapseq", unitName = "mapseq")
     private EntityManager entityManager;
