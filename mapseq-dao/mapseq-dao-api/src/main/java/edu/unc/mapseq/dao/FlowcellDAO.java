@@ -14,4 +14,6 @@ public interface FlowcellDAO extends NamedEntityDAO<Flowcell, Long> {
 
     public abstract List<Flowcell> findByWorkflowRunId(Long workflowRunId) throws MaPSeqDAOException;
 
+    public abstract void addFileData(Long fileDataId, Long flowcellId) throws MaPSeqDAOException;
+
 }

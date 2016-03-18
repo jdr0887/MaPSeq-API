@@ -35,6 +35,12 @@ public interface FlowcellService {
     @WebMethod
     public Long save(@WebParam(name = "flowcell") Flowcell flowcell);
 
+    @POST
+    @Path("/addFileData/{fileDataId}/{flowcellId}")
+    @WebMethod
+    public void addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
+            @PathParam("flowcellId") @WebParam(name = "flowcellId") Long jobId);
+
     @GET
     @Path("/findByCreatedDateRange/{started}/{finished}")
     @WebMethod

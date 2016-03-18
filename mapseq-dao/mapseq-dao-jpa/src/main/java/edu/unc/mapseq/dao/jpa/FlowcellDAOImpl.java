@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.FlowcellDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
+import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.Flowcell;
 import edu.unc.mapseq.dao.model.Flowcell_;
 import edu.unc.mapseq.dao.model.Sample;
@@ -118,6 +119,17 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
         TypedQuery<Flowcell> query = getEntityManager().createNamedQuery("Flowcell.findAll", Flowcell.class);
         ret.addAll(query.getResultList());
         return ret;
+    }
+
+    @Override
+    public void addFileData(Long fileDataId, Long flowcellId) throws MaPSeqDAOException {
+        logger.debug("ENTERING addFileData(Long, Long)");
+        Flowcell flowcell = findById(flowcellId);
+        FileData fileData = getEntityManager().find(FileData.class, fileDataId);
+        if (!flowcell.getFileDatas().contains(fileData)) {
+            flowcell.getFileDatas().add(fileData);
+            save(flowcell);
+        }
     }
 
 }
