@@ -52,4 +52,9 @@ public class EchoModule extends Module {
         this.output = output;
     }
 
+    @Override
+    public String toString() {
+        return String.format("EchoModule [message=%s, output=%s, toString()=%s]", message, output, super.toString());
+    }
+
 }

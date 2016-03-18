@@ -65,4 +65,10 @@ public class UnzipModule extends Module {
         this.overwrite = overwrite;
     }
 
+    @Override
+    public String toString() {
+        return String.format("UnzipModule [zip=%s, extract=%s, overwrite=%s, toString()=%s]", zip, extract, overwrite,
+                super.toString());
+    }
+
 }
