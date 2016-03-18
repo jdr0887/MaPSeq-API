@@ -36,19 +36,19 @@ import edu.unc.mapseq.module.annotations.OutputValidations;
 
 public abstract class Module implements Callable<ModuleOutput> {
 
-    private final Logger logger = LoggerFactory.getLogger(Module.class);
+    private static final Logger logger = LoggerFactory.getLogger(Module.class);
 
-    private File serializeFile;
+    protected File serializeFile;
 
-    private Long workflowRunAttemptId;
+    protected Long workflowRunAttemptId;
 
-    private Long sampleId;
+    protected Long sampleId;
 
-    private String workflowName = "TEST";
+    protected String workflowName = "TEST";
 
-    private Boolean dryRun = Boolean.FALSE;
+    protected Boolean dryRun = Boolean.FALSE;
 
-    private Boolean persistFileData = Boolean.FALSE;
+    protected Boolean persistFileData = Boolean.FALSE;
 
     private Set<FileData> fileDatas;
 
@@ -241,7 +241,7 @@ public abstract class Module implements Callable<ModuleOutput> {
             logger.info(command.toString());
 
             commandInput.setCommand(command.toString());
-            
+
             CommandOutput commandOutput;
             Executor executor = BashExecutor.getInstance();
             try {
@@ -339,6 +339,13 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     public void setSampleId(Long sampleId) {
         this.sampleId = sampleId;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Module [serializeFile=%s, workflowRunAttemptId=%s, sampleId=%s, workflowName=%s, dryRun=%s, persistFileData=%s]",
+                serializeFile, workflowRunAttemptId, sampleId, workflowName, dryRun, persistFileData);
     }
 
 }
