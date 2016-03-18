@@ -25,11 +25,9 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.unc.mapseq.dao.FileDataDAO;
 import edu.unc.mapseq.dao.JobDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOBeanService;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
-import edu.unc.mapseq.dao.SampleDAO;
 import edu.unc.mapseq.dao.model.Attribute;
 import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.Job;
@@ -38,7 +36,6 @@ import edu.unc.mapseq.dao.model.Sample;
 import edu.unc.mapseq.dao.model.Workflow;
 import edu.unc.mapseq.dao.model.WorkflowRun;
 import edu.unc.mapseq.dao.model.WorkflowRunAttempt;
-import edu.unc.mapseq.module.annotations.Application;
 
 /**
  * 
@@ -64,12 +61,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
         ModuleOutput output = null;
 
         WorkflowRunAttempt workflowRunAttempt = null;
-
-        boolean isWorkflowRunIdOptional = false;
-        if (module.getClass().isAnnotationPresent(Application.class)) {
-            Application application = module.getClass().getAnnotation(Application.class);
-            isWorkflowRunIdOptional = application.isWorkflowRunIdOptional();
-        }
 
         if (!module.getDryRun() && module.getWorkflowRunAttemptId() != null) {
             try {
@@ -131,6 +122,46 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 job.setStdout(output.getOutput().toString());
             }
 
+            if (!module.getDryRun() && module.getPersistFileData()) {
+
+                WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
+                Sample sample = daoBean.getSampleDAO().findById(module.getSampleId());
+
+                Set<FileData> fileDataSet = new HashSet<FileData>();
+
+                Workflow workflow = workflowRun.getWorkflow();
+
+                if (CollectionUtils.isEmpty(module.getFileDatas())) {
+                    logger.warn("No fileDatas found");
+                } else {
+                    logger.info("module.getFileDatas().size() = {}", module.getFileDatas().size());
+                    for (FileData fileData : module.getFileDatas()) {
+                        if (StringUtils.isEmpty(fileData.getPath())) {
+                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
+                        }
+                        logger.info(fileData.toString());
+                        List<FileData> foundFileDataList = daoBean.getFileDataDAO().findByExample(fileData);
+                        if (CollectionUtils.isNotEmpty(foundFileDataList)) {
+                            fileData = foundFileDataList.get(0);
+                        } else {
+                            fileData.setId(daoBean.getFileDataDAO().save(fileData));
+                        }
+                        logger.info(fileData.toString());
+                        fileDataSet.add(fileData);
+                    }
+                }
+
+                if (module.getSampleId() != null) {
+                    for (FileData fileData : fileDataSet) {
+                        daoBean.getSampleDAO().addFileData(fileData.getId(), sample.getId());
+                    }
+                }
+
+                for (FileData fileData : fileDataSet) {
+                    daoBean.getJobDAO().addFileData(fileData.getId(), job.getId());
+                }
+
+            }
             job.setExitCode(output.getExitCode());
             updateJobState(output.getExitCode() != 0 ? JobStatusType.FAILED : JobStatusType.DONE);
 
@@ -139,56 +170,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             job.setExitCode(-1);
             updateJobState(JobStatusType.FAILED);
             logger.error("Error", e);
-        } finally {
-            if (!module.getDryRun() && module.getPersistFileData()) {
-
-                FileDataDAO fileDataDAO = daoBean.getFileDataDAO();
-                SampleDAO sampleDAO = daoBean.getSampleDAO();
-                JobDAO jobDAO = daoBean.getJobDAO();
-
-                WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
-                try {
-                    Sample sample = sampleDAO.findById(module.getSampleId());
-
-                    Set<FileData> fileDataSet = new HashSet<FileData>();
-
-                    Workflow workflow = workflowRun.getWorkflow();
-
-                    if (CollectionUtils.isEmpty(module.getFileDatas())) {
-                        logger.warn("No fileDatas found");
-                    } else {
-                        logger.info("module.getFileDatas().size() = {}", module.getFileDatas().size());
-                        for (FileData fileData : module.getFileDatas()) {
-                            if (StringUtils.isEmpty(fileData.getPath())) {
-                                fileData.setPath(
-                                        String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
-                            }
-                            List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
-                            if (CollectionUtils.isNotEmpty(foundFileDataList)) {
-                                fileDataSet.add(foundFileDataList.get(0));
-                            } else {
-                                fileData.setId(fileDataDAO.save(fileData));
-                                fileDataSet.add(fileData);
-                            }
-                        }
-                    }
-
-                    if (module.getSampleId() != null) {
-                        for (FileData fileData : fileDataSet) {
-                            sampleDAO.addFileData(fileData.getId(), sample.getId());
-                        }
-                    }
-
-                    for (FileData fileData : fileDataSet) {
-                        jobDAO.addFileData(fileData.getId(), job.getId());
-                    }
-
-                } catch (MaPSeqDAOException e) {
-                    logger.error("MaPSeq Error", e);
-                }
-
-            }
-
         }
 
         if (CollectionUtils.isNotEmpty(module.validateOutputs())) {
