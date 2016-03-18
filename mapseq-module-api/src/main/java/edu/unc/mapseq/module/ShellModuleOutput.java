@@ -26,4 +26,9 @@ public class ShellModuleOutput implements ModuleOutput {
         return output.getExitCode();
     }
 
+    @Override
+    public String toString() {
+        return String.format("ShellModuleOutput [getExitCode()=%s]", getExitCode());
+    }
+
 }

@@ -36,4 +36,9 @@ public class DefaultModuleOutput implements ModuleOutput {
         return error;
     }
 
+    @Override
+    public String toString() {
+        return String.format("DefaultModuleOutput [exitCode=%s]", exitCode);
+    }
+
 }
