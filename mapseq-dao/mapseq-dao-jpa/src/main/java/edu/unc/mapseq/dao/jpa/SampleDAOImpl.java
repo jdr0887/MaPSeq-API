@@ -1,9 +1,7 @@
 package edu.unc.mapseq.dao.jpa;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
@@ -74,17 +72,12 @@ public class SampleDAOImpl extends NamedEntityDAOImpl<Sample, Long> implements S
     }
 
     @Override
-    public void addFileDataToSample(Long fileDataId, Long sampleId) throws MaPSeqDAOException {
-        logger.debug("ENTERING addFileDataToSample(Long, Long)");
+    public void addFileData(Long fileDataId, Long sampleId) throws MaPSeqDAOException {
+        logger.debug("ENTERING addFileData(Long, Long)");
         Sample sample = findById(sampleId);
-        Set<FileData> fileDataSet = sample.getFileDatas();
-        if (fileDataSet == null) {
-            fileDataSet = new HashSet<FileData>();
-        }
         FileData fileData = getEntityManager().find(FileData.class, fileDataId);
-        if (!fileDataSet.contains(fileData)) {
-            fileDataSet.add(fileData);
-            sample.setFileDatas(fileDataSet);
+        if (!sample.getFileDatas().contains(fileData)) {
+            sample.getFileDatas().add(fileData);
             save(sample);
         }
     }

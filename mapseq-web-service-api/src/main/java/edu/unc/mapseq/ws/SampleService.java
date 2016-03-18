@@ -59,9 +59,9 @@ public interface SampleService {
             @PathParam("finished") @WebParam(name = "finished") String finished);
 
     @POST
-    @Path("/addFileDataToSample/{fileDataId}/{sampleId}")
+    @Path("/addFileData/{fileDataId}/{sampleId}")
     @WebMethod
-    public void addFileDataToSample(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
+    public void addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
             @PathParam("sampleId") @WebParam(name = "sampleId") Long sampleId);
 
     @GET

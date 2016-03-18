@@ -46,9 +46,9 @@ public interface JobService {
             @PathParam("workflowRunAttemptId") @WebParam(name = "workflowRunAttemptId") Long workflowRunAttemptId);
 
     @POST
-    @Path("/addFileDataToJob/{fileDataId}/{jobId}")
+    @Path("/addFileData/{fileDataId}/{jobId}")
     @WebMethod
-    public void addFileDataToJob(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
+    public void addFileData(@PathParam("fileDataId") @WebParam(name = "fileDataId") Long fileDataId,
             @PathParam("jobId") @WebParam(name = "jobId") Long jobId);
 
     @GET
