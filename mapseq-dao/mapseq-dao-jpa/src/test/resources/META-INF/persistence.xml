@@ -21,12 +21,12 @@
 
     <properties>
       <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
-      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/mapseq_renci" />
+      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/mapseq" />
       <property name="openjpa.ConnectionUserName" value="mapseq" />
       <property name="openjpa.ConnectionPassword" value="mapseq" />
       <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
       <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict" />
-      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true,Sequences=false)" />
       <property name="openjpa.Multithreaded" value="true" />
       <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true" />
       <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
