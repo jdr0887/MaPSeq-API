@@ -149,7 +149,6 @@ public class JobDAOImplTest {
 
             JobDAOImpl jobDAO = new JobDAOImpl();
             jobDAO.setEntityManager(em);
-            jobDAO.setAttributeDAO(attributeDAO);
 
             em.getTransaction().begin();
             Long id = jobDAO.save(job);
