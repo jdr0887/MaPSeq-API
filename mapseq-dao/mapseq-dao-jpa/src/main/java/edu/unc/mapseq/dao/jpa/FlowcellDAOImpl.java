@@ -122,6 +122,7 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
     }
 
     @Override
+    @Transactional(Transactional.TxType.REQUIRED)        
     public void addFileData(Long fileDataId, Long flowcellId) throws MaPSeqDAOException {
         logger.debug("ENTERING addFileData(Long, Long)");
         Flowcell flowcell = findById(flowcellId);

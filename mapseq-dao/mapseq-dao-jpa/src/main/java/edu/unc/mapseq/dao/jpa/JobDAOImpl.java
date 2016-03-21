@@ -142,6 +142,7 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
     }
 
     @Override
+    @Transactional(Transactional.TxType.REQUIRED)        
     public void addFileData(Long fileDataId, Long jobId) throws MaPSeqDAOException {
         logger.debug("ENTERING addFileData(Long, Long)");
         Job job = findById(jobId);
