@@ -72,6 +72,7 @@ public class SampleDAOImpl extends NamedEntityDAOImpl<Sample, Long> implements S
     }
 
     @Override
+    @Transactional(Transactional.TxType.REQUIRED)    
     public void addFileData(Long fileDataId, Long sampleId) throws MaPSeqDAOException {
         logger.debug("ENTERING addFileData(Long, Long)");
         Sample sample = findById(sampleId);
