@@ -28,11 +28,7 @@ import edu.unc.mapseq.dao.model.Persistable;
 public abstract class NamedEntityDAOImpl<T extends Persistable, ID extends Serializable> extends BaseDAOImpl<T, ID>
         implements NamedEntityDAO<T, ID> {
 
-    private final Logger logger = LoggerFactory.getLogger(NamedEntityDAOImpl.class);
-
-    private FileDataDAO fileDataDAO;
-
-    private AttributeDAO attributeDAO;
+    private static final Logger logger = LoggerFactory.getLogger(NamedEntityDAOImpl.class);
 
     public NamedEntityDAOImpl() {
         super();
@@ -100,22 +96,6 @@ public abstract class NamedEntityDAOImpl<T extends Persistable, ID extends Seria
             e.printStackTrace();
         }
         return ret;
-    }
-
-    public FileDataDAO getFileDataDAO() {
-        return fileDataDAO;
-    }
-
-    public void setFileDataDAO(FileDataDAO fileDataDAO) {
-        this.fileDataDAO = fileDataDAO;
-    }
-
-    public AttributeDAO getAttributeDAO() {
-        return attributeDAO;
-    }
-
-    public void setAttributeDAO(AttributeDAO attributeDAO) {
-        this.attributeDAO = attributeDAO;
     }
 
 }
