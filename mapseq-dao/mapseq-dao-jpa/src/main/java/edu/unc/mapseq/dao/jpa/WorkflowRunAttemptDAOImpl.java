@@ -32,7 +32,7 @@ import edu.unc.mapseq.dao.model.Workflow_;
 @Singleton
 public class WorkflowRunAttemptDAOImpl extends BaseDAOImpl<WorkflowRunAttempt, Long> implements WorkflowRunAttemptDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(WorkflowRunAttemptDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(WorkflowRunAttemptDAOImpl.class);
 
     public WorkflowRunAttemptDAOImpl() {
         super();

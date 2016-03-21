@@ -23,7 +23,7 @@ import edu.unc.mapseq.dao.model.Persistable;
 public abstract class DictionaryEntityDAOImpl<T extends Persistable, ID extends Serializable> extends BaseDAOImpl<T, ID>
         implements DictionaryEntityDAO<T, ID> {
 
-    private final Logger logger = LoggerFactory.getLogger(DictionaryEntityDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(DictionaryEntityDAOImpl.class);
 
     public DictionaryEntityDAOImpl() {
         super();

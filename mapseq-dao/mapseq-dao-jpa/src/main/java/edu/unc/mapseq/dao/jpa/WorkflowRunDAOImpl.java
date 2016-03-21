@@ -37,7 +37,7 @@ import edu.unc.mapseq.dao.model.Workflow_;
 @Singleton
 public class WorkflowRunDAOImpl extends NamedEntityDAOImpl<WorkflowRun, Long> implements WorkflowRunDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(WorkflowRunDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(WorkflowRunDAOImpl.class);
 
     public WorkflowRunDAOImpl() {
         super();

@@ -35,7 +35,7 @@ import edu.unc.mapseq.dao.model.WorkflowRun_;
 @Singleton
 public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implements FlowcellDAO {
 
-    private final Logger logger = LoggerFactory.getLogger(FlowcellDAOImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(FlowcellDAOImpl.class);
 
     public FlowcellDAOImpl() {
         super();
