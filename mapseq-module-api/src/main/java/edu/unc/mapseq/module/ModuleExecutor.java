@@ -96,10 +96,12 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             }
         }
 
-        List<String> inputErrors = module.validateInputs();
-        if (CollectionUtils.isNotEmpty(inputErrors)) {
-            String message = StringUtils.join(inputErrors, System.getProperty("line.separator"));
-            throw new ModuleException(message);
+        if (module.getValidate()) {
+            List<String> inputErrors = module.validateInputs();
+            if (CollectionUtils.isNotEmpty(inputErrors)) {
+                String message = StringUtils.join(inputErrors, System.getProperty("line.separator"));
+                throw new ModuleException(message);
+            }
         }
 
         try {
@@ -134,7 +136,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 if (CollectionUtils.isEmpty(module.getFileDatas())) {
                     logger.warn("No fileDatas found");
                 } else {
-                    logger.info("module.getFileDatas().size() = {}", module.getFileDatas().size());
+                    logger.debug("module.getFileDatas().size() = {}", module.getFileDatas().size());
                     for (FileData fileData : module.getFileDatas()) {
                         if (StringUtils.isEmpty(fileData.getPath())) {
                             fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
@@ -172,17 +174,20 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             logger.error("Error", e);
         }
 
-        if (CollectionUtils.isNotEmpty(module.validateOutputs())) {
-            String message = StringUtils.join(module.validateOutputs(), System.getProperty("line.separator"));
-            throw new ModuleException(message);
+        if (module.getValidate()) {
+            List<String> outputErrors = module.validateOutputs();
+            if (CollectionUtils.isNotEmpty(outputErrors)) {
+                String message = StringUtils.join(outputErrors, System.getProperty("line.separator"));
+                throw new ModuleException(message);
+            }
         }
 
-        if (module.getSerializeFile() != null) {
+        if (module.getSerialize() != null) {
             try {
                 JAXBContext context = JAXBContext.newInstance(Job.class);
                 Marshaller m = context.createMarshaller();
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-                File moduleClassXMLFile = module.getSerializeFile();
+                File moduleClassXMLFile = module.getSerialize();
                 FileWriter fw = new FileWriter(moduleClassXMLFile);
                 m.marshal(getJob(), fw);
             } catch (JAXBException | IOException e) {
