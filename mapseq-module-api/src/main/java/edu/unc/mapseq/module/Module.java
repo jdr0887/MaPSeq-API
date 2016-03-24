@@ -38,17 +38,19 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     private static final Logger logger = LoggerFactory.getLogger(Module.class);
 
-    protected File serializeFile;
+    protected File serialize;
 
     protected Long workflowRunAttemptId;
 
     protected Long sampleId;
 
-    protected String workflowName = "TEST";
+    protected String workflowName;
 
-    protected Boolean dryRun = Boolean.FALSE;
+    protected Boolean dryRun;
 
-    protected Boolean persistFileData = Boolean.FALSE;
+    protected Boolean validate;
+
+    protected Boolean persistFileData;
 
     private Set<FileData> fileDatas;
 
@@ -58,6 +60,10 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     public Module() {
         super();
+        this.workflowName = "TEST";
+        this.dryRun = Boolean.FALSE;
+        this.validate = Boolean.TRUE;
+        this.persistFileData = Boolean.FALSE;
         this.fileDatas = new HashSet<FileData>();
         this.attributes = new HashSet<Attribute>();
         ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
@@ -305,12 +311,12 @@ public abstract class Module implements Callable<ModuleOutput> {
         this.workflowName = workflowName;
     }
 
-    public File getSerializeFile() {
-        return serializeFile;
+    public File getSerialize() {
+        return serialize;
     }
 
-    public void setSerializeFile(File serializeFile) {
-        this.serializeFile = serializeFile;
+    public void setSerialize(File serialize) {
+        this.serialize = serialize;
     }
 
     public Long getWorkflowRunAttemptId() {
@@ -341,11 +347,19 @@ public abstract class Module implements Callable<ModuleOutput> {
         this.sampleId = sampleId;
     }
 
+    public Boolean getValidate() {
+        return validate;
+    }
+
+    public void setValidate(Boolean validate) {
+        this.validate = validate;
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "Module [serializeFile=%s, workflowRunAttemptId=%s, sampleId=%s, workflowName=%s, dryRun=%s, persistFileData=%s]",
-                serializeFile, workflowRunAttemptId, sampleId, workflowName, dryRun, persistFileData);
+                "Module [serialize=%s, workflowRunAttemptId=%s, sampleId=%s, workflowName=%s, dryRun=%s, validate=%s, persistFileData=%s]",
+                serialize, workflowRunAttemptId, sampleId, workflowName, dryRun, validate, persistFileData);
     }
 
 }
