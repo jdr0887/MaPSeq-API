@@ -36,6 +36,8 @@ import org.apache.openjpa.persistence.jdbc.Index;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -70,6 +72,7 @@ public class NamedEntity implements Persistable {
 
     @XmlElementWrapper(name = "attributes")
     @XmlElement(name = "attribute")
+    @JsonProperty("attribute")
     @ManyToMany(targetEntity = Attribute.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST,
             CascadeType.MERGE }, fetch = FetchType.EAGER)
     @ContainerTable(name = "named_entity_attribute", joinIndex = @Index(columnNames = { "named_entity_fid" }) )
@@ -78,6 +81,7 @@ public class NamedEntity implements Persistable {
 
     @XmlElementWrapper(name = "files")
     @XmlElement(name = "file")
+    @JsonProperty("file")
     @ManyToMany(targetEntity = FileData.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST,
             CascadeType.MERGE }, fetch = FetchType.EAGER)
     @ContainerTable(name = "named_entity_file_data", joinIndex = @Index(columnNames = { "named_entity_fid" }) )
