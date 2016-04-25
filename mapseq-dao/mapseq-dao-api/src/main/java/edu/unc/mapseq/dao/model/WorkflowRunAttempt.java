@@ -49,7 +49,7 @@ public class WorkflowRunAttempt implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "workflow_run_attempt_id_seq")
-    @SequenceGenerator(name = "workflow_run_attempt_id_seq", sequenceName = "workflow_run_attempt_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "workflow_run_attempt_id_seq", schema = "mapseq", sequenceName = "workflow_run_attempt_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
