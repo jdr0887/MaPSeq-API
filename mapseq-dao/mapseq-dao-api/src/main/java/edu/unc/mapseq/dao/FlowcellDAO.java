@@ -10,6 +10,8 @@ public interface FlowcellDAO extends NamedEntityDAO<Flowcell, Long> {
 
     public abstract List<Flowcell> findByStudyName(String name) throws MaPSeqDAOException;
 
+    public abstract List<Flowcell> findByStudyId(Long studyId) throws MaPSeqDAOException;
+
     public abstract List<Flowcell> findAll() throws MaPSeqDAOException;
 
     public abstract List<Flowcell> findByWorkflowRunId(Long workflowRunId) throws MaPSeqDAOException;
