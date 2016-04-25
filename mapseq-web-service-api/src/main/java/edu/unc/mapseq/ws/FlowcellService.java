@@ -58,6 +58,11 @@ public interface FlowcellService {
     public List<Flowcell> findByStudyName(@PathParam("name") @WebParam(name = "name") String name);
 
     @GET
+    @Path("/findByStudyId/{studyId}")
+    @WebMethod
+    public List<Flowcell> findByStudyId(@PathParam("studyId") @WebParam(name = "studyId") Long studyId);
+
+    @GET
     @Path("/findByName/{flowcellName}")
     @WebMethod
     public List<Flowcell> findByName(@PathParam("flowcellName") @WebParam(name = "flowcellName") String flowcellName);
