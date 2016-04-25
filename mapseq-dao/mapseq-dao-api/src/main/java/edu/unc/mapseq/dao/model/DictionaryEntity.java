@@ -46,7 +46,7 @@ public class DictionaryEntity implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dictionary_entity_id_seq")
-    @SequenceGenerator(name = "dictionary_entity_id_seq", sequenceName = "dictionary_entity_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "dictionary_entity_id_seq", schema = "mapseq", sequenceName = "dictionary_entity_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id", nullable = false)
     protected Long id;
 
