@@ -36,7 +36,7 @@ public class TransferInfo {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transfer_info_id_seq")
-    @SequenceGenerator(name = "transfer_info_id_seq", sequenceName = "transfer_info_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "transfer_info_id_seq", schema = "mapseq", sequenceName = "transfer_info_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
