@@ -41,7 +41,7 @@ public class FileData implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_data_id_seq")
-    @SequenceGenerator(name = "file_data_id_seq", sequenceName = "file_data_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "file_data_id_seq", schema = "mapseq", sequenceName = "file_data_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
