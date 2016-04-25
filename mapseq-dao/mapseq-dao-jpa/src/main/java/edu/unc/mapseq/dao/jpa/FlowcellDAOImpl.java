@@ -70,6 +70,28 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
     }
 
     @Override
+    public List<Flowcell> findByStudyId(Long studyId) throws MaPSeqDAOException {
+        logger.debug("ENTERING findByStudyId(Long)");
+        List<Flowcell> ret = new ArrayList<>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Flowcell> crit = critBuilder.createQuery(Flowcell.class);
+            Root<Flowcell> root = crit.from(Flowcell.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            Join<Flowcell, Sample> flowcellSampleJoin = root.join(Flowcell_.samples);
+            Join<Sample, Study> sampleStudyJoin = flowcellSampleJoin.join(Sample_.study);
+            predicates.add(critBuilder.equal(sampleStudyJoin.get(Study_.id), studyId));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.orderBy(critBuilder.desc(root.get(Flowcell_.created)));
+            TypedQuery<Flowcell> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
     public List<Flowcell> findByExample(Flowcell flowcell) throws MaPSeqDAOException {
         logger.debug("ENTERING findByExample(Flowcell)");
         List<Flowcell> ret = new ArrayList<>();
@@ -122,7 +144,7 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
     }
 
     @Override
-    @Transactional(Transactional.TxType.REQUIRED)        
+    @Transactional(Transactional.TxType.REQUIRED)
     public void addFileData(Long fileDataId, Long flowcellId) throws MaPSeqDAOException {
         logger.debug("ENTERING addFileData(Long, Long)");
         Flowcell flowcell = findById(flowcellId);
