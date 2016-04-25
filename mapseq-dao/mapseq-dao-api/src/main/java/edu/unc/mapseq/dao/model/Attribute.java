@@ -36,7 +36,7 @@ public class Attribute implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attribute_id_seq")
-    @SequenceGenerator(name = "attribute_id_seq", sequenceName = "attribute_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "attribute_id_seq", schema = "mapseq", sequenceName = "attribute_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id")
     private Long id;
 
