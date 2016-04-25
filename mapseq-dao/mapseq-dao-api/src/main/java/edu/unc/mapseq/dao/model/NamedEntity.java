@@ -37,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 
 @JsonInclude(Include.NON_EMPTY)
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -56,7 +55,7 @@ public class NamedEntity implements Persistable {
     @XmlAttribute(name = "id")
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "named_entity_id_seq")
-    @SequenceGenerator(name = "named_entity_id_seq", sequenceName = "named_entity_id_seq", allocationSize = 1, initialValue = 1)
+    @SequenceGenerator(name = "named_entity_id_seq", schema = "mapseq", sequenceName = "named_entity_id_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "id", nullable = false)
     protected Long id;
 
