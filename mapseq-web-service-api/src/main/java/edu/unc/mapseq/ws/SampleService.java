@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.Sample;
 
 @WebService(targetNamespace = "http://ws.mapseq.unc.edu", serviceName = "SampleService", portName = "SamplePort")
@@ -51,6 +52,14 @@ public interface SampleService {
     @WebMethod
     public List<Sample> findByNameAndFlowcellId(@PathParam("name") @WebParam(name = "name") String name,
             @PathParam("flowcellId") @WebParam(name = "flowcellId") Long flowcellId);
+
+    @GET
+    @Path("/findByFlowcellNameAndSampleNameAndLaneIndex/{flowcellName}/{sampleName}/{laneIndex}")
+    @WebMethod
+    public List<Sample> findByFlowcellNameAndSampleNameAndLaneIndex(
+            @PathParam("flowcellName") @WebParam(name = "flowcellName") String flowcellName,
+            @PathParam("sampleName") @WebParam(name = "sampleName") String sampleName,
+            @PathParam("laneIndex") @WebParam(name = "laneIndex") Integer laneIndex);
 
     @GET
     @Path("/findByCreatedDateRange/{started}/{finished}")
