@@ -107,6 +107,7 @@ public abstract class Module implements Callable<ModuleOutput> {
         return errorMessageList;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public ModuleOutput call() throws Exception {
         logger.debug("ENTERING call()");
@@ -173,6 +174,9 @@ public abstract class Module implements Callable<ModuleOutput> {
                         Boolean b = (Boolean) o;
                         if (b) {
                             command.append(" ").append(arg.flag());
+                            if (!" ".equals(arg.delimiter())) {
+                                command.append(arg.delimiter()).append(o.toString());
+                            }
                         }
                     } else if (field.getType() == List.class) {
                         ParameterizedType listType = (ParameterizedType) field.getGenericType();
@@ -245,6 +249,7 @@ public abstract class Module implements Callable<ModuleOutput> {
             }
 
             logger.info(command.toString());
+            System.out.println(command.toString());
 
             commandInput.setCommand(command.toString());
 
