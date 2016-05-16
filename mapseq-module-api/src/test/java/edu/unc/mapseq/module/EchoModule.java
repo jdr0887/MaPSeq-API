@@ -19,8 +19,11 @@ import edu.unc.mapseq.module.constraints.FileIsNotEmpty;
 public class EchoModule extends Module {
 
     @NotNull(message = "message is null", groups = InputValidations.class)
-    @InputArgument
+    @InputArgument(flag = "message", delimiter = "=")
     private String message;
+
+    @InputArgument(flag = "booltest")
+    private Boolean boolTest = Boolean.TRUE;
 
     @NotNull(message = "output is null", groups = InputValidations.class)
     @FileIsNotEmpty(message = "output is empty", groups = OutputValidations.class)
@@ -52,9 +55,28 @@ public class EchoModule extends Module {
         this.output = output;
     }
 
-    @Override
-    public String toString() {
-        return String.format("EchoModule [message=%s, output=%s, toString()=%s]", message, output, super.toString());
+    public Boolean getBoolTest() {
+        return boolTest;
     }
 
+    public void setBoolTest(Boolean boolTest) {
+        this.boolTest = boolTest;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("EchoModule [message=%s, boolTest=%s, output=%s]", message, boolTest, output);
+    }
+
+    public static void main(String[] args) {
+        EchoModule module = new EchoModule();
+        module.setWorkflowName("TEST");
+        module.setMessage("asdfadsf");
+        module.setOutput(new File("/tmp", "asdfasdf.txt"));
+        try {
+            module.call();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
