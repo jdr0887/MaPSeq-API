@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.SampleDAO;
 import edu.unc.mapseq.dao.model.FileData;
+import edu.unc.mapseq.dao.model.Flowcell;
+import edu.unc.mapseq.dao.model.Flowcell_;
 import edu.unc.mapseq.dao.model.Sample;
 import edu.unc.mapseq.dao.model.Sample_;
 import edu.unc.mapseq.dao.model.WorkflowRun;
@@ -72,7 +74,35 @@ public class SampleDAOImpl extends NamedEntityDAOImpl<Sample, Long> implements S
     }
 
     @Override
-    @Transactional(Transactional.TxType.REQUIRED)    
+    public List<Sample> findByFlowcellNameAndSampleNameAndLaneIndex(String flowcellName, String sampleName,
+            Integer laneIndex) throws MaPSeqDAOException {
+        logger.debug("ENTERING findByFlowcellNameAndSampleNameAndLaneIndex(String, String, Integer)");
+        List<Sample> ret = new ArrayList<>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Sample> crit = critBuilder.createQuery(Sample.class);
+            Root<Sample> root = crit.from(Sample.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            if (!sampleName.endsWith("%")) {
+                sampleName += "%";
+            }
+            predicates.add(critBuilder.like(root.get(Sample_.name), sampleName));
+            predicates.add(critBuilder.equal(root.get(Sample_.laneIndex), laneIndex));
+            Join<Sample, Flowcell> sampleFlowcellJoin = root.join(Sample_.flowcell);
+            predicates.add(critBuilder.equal(sampleFlowcellJoin.get(Flowcell_.name), flowcellName));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.distinct(true);
+            crit.orderBy(critBuilder.desc(root.get(Sample_.created)));
+            TypedQuery<Sample> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    @Transactional(Transactional.TxType.REQUIRED)
     public void addFileData(Long fileDataId, Long sampleId) throws MaPSeqDAOException {
         logger.debug("ENTERING addFileData(Long, Long)");
         Sample sample = findById(sampleId);
