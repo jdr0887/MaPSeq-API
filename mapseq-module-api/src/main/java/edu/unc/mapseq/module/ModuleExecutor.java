@@ -174,14 +174,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             logger.error("Error", e);
         }
 
-        if (module.getValidate()) {
-            List<String> outputErrors = module.validateOutputs();
-            if (CollectionUtils.isNotEmpty(outputErrors)) {
-                String message = StringUtils.join(outputErrors, System.getProperty("line.separator"));
-                throw new ModuleException(message);
-            }
-        }
-
         if (module.getSerialize() != null) {
             try {
                 JAXBContext context = JAXBContext.newInstance(Job.class);
@@ -192,6 +184,14 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 m.marshal(getJob(), fw);
             } catch (JAXBException | IOException e) {
                 logger.error("MaPSeq Error", e);
+            }
+        }
+
+        if (module.getValidate()) {
+            List<String> outputErrors = module.validateOutputs();
+            if (CollectionUtils.isNotEmpty(outputErrors)) {
+                String message = StringUtils.join(outputErrors, System.getProperty("line.separator"));
+                throw new ModuleException(message);
             }
         }
 
