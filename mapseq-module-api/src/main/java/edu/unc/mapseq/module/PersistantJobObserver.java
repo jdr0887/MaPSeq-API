@@ -15,7 +15,7 @@ import edu.unc.mapseq.dao.model.JobStatusType;
 
 public class PersistantJobObserver implements Observer {
 
-    private final Logger logger = LoggerFactory.getLogger(PersistantJobObserver.class);
+    private static final Logger logger = LoggerFactory.getLogger(PersistantJobObserver.class);
 
     private MaPSeqDAOBeanService daoBean;
 
