@@ -249,7 +249,7 @@ public abstract class Module implements Callable<ModuleOutput> {
             }
 
             logger.info(command.toString());
-            System.out.println(command.toString());
+            //System.out.println(command.toString());
 
             commandInput.setCommand(command.toString());
 
