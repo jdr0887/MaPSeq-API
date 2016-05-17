@@ -175,7 +175,12 @@ public abstract class Module implements Callable<ModuleOutput> {
                         if (b) {
                             command.append(" ").append(arg.flag());
                             if (!" ".equals(arg.delimiter())) {
-                                command.append(arg.delimiter()).append(o.toString());
+                                command.append(arg.delimiter());
+                                if (arg.wrapValueInSingleQuotes()) {
+                                    command.append(String.format("'%s'", o.toString()));
+                                } else {
+                                    command.append(o.toString());
+                                }
                             }
                         }
                     } else if (field.getType() == List.class) {
@@ -199,7 +204,12 @@ public abstract class Module implements Callable<ModuleOutput> {
                         }
                     } else if (field.getType() == String.class || field.getType().isEnum()) {
                         if (StringUtils.isNotEmpty(o.toString())) {
-                            command.append(" ").append(arg.flag()).append(arg.delimiter()).append(o.toString());
+                            command.append(" ").append(arg.flag()).append(arg.delimiter());
+                            if (arg.wrapValueInSingleQuotes()) {
+                                command.append(String.format("'%s'", o.toString()));
+                            } else {
+                                command.append(o.toString());
+                            }
                         }
                     } else if (field.getType() == Integer.class || field.getType() == Double.class
                             || field.getType() == Float.class) {
@@ -249,7 +259,7 @@ public abstract class Module implements Callable<ModuleOutput> {
             }
 
             logger.info(command.toString());
-            //System.out.println(command.toString());
+            // System.out.println(command.toString());
 
             commandInput.setCommand(command.toString());
 

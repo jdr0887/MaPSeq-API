@@ -22,7 +22,7 @@ public class EchoModule extends Module {
     @InputArgument(flag = "message", delimiter = "=")
     private String message;
 
-    @InputArgument(flag = "booltest")
+    @InputArgument(flag = "booltest", delimiter = "=", wrapValueInSingleQuotes = true)
     private Boolean boolTest = Boolean.TRUE;
 
     @NotNull(message = "output is null", groups = InputValidations.class)
