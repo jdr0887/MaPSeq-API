@@ -47,7 +47,7 @@ public class Scratch {
             for (CSVRecord record : records) {
                 String version = record.get(0);
                 String dx = record.get(1);
-                String sampleName = record.get(2);
+                String subjectName = record.get(2);
                 String flowcellBarcodeLane = record.get(3);
 
                 String flowcellName = flowcellBarcodeLane.substring(0, flowcellBarcodeLane.length() - 5);
@@ -58,12 +58,22 @@ public class Scratch {
                         flowcellBarcodeLane.substring(flowcellBarcodeLane.length() - 3, flowcellBarcodeLane.length()));
                 System.out.println(laneIndex);
 
-                Sample sample = null;
-                List<Sample> samples = sampleDAO.findByFlowcellNameAndSampleNameAndLaneIndex(flowcellName, sampleName,
+                // String barcode = flowcellBarcodeLane.replace(flowcellName, "")
+                // .replace(String.format("L00%d", laneIndex), "").replace("_", "");
+                // System.out.println(barcode);
+
+                // String sampleName = String.format("L%03d_%s", laneIndex, barcode);
+                // System.out.println(sampleName);
+                // List<Sample> samples = sampleDAO.findByFlowcellNameAndSampleNameAndLaneIndex(flowcellName,
+                // sampleName, laneIndex);
+
+                List<Sample> samples = sampleDAO.findByFlowcellNameAndSampleNameAndLaneIndex(flowcellName, subjectName,
                         laneIndex);
+
                 if (CollectionUtils.isNotEmpty(samples)) {
-                    sample = samples.get(0);
-                    bw.write(String.format("ncgenes-dx:register-to-irods %s %s %s", sample.getId().toString(), version, dx));
+                    Sample sample = samples.get(0);
+                    bw.write(String.format("ncgenes-dx:register-to-irods %s %s %s", sample.getId().toString(), version,
+                            dx));
                     bw.newLine();
                     bw.flush();
                 }
@@ -99,12 +109,23 @@ public class Scratch {
                         flowcellBarcodeLane.substring(flowcellBarcodeLane.length() - 3, flowcellBarcodeLane.length()));
                 System.out.println(laneIndex);
 
-                Sample sample = null;
+                // String barcode = flowcellBarcodeLane.replace(flowcellName, "")
+                // .replace(String.format("L00%d", laneIndex), "").replace("_", "");
+                // System.out.println(barcode);
+                //
+                // String sampleName = String.format("L%03d_%s", laneIndex, barcode);
+                // System.out.println(sampleName);
+                // List<Sample> samples = sampleDAO.findByFlowcellNameAndSampleNameAndLaneIndex(flowcellName,
+                // sampleName,
+                // laneIndex);
+
                 List<Sample> samples = sampleDAO.findByFlowcellNameAndSampleNameAndLaneIndex(flowcellName, sampleName,
                         laneIndex);
+
                 if (CollectionUtils.isNotEmpty(samples)) {
-                    sample = samples.get(0);
-                    bw.write(String.format("ncgenes-incidental-variantcalling:register-to-irods %s %s %s", sample.getId().toString(), version, incidental));
+                    Sample sample = samples.get(0);
+                    bw.write(String.format("ncgenes-incidental-variantcalling:register-to-irods %s %s %s",
+                            sample.getId().toString(), version, incidental));
                     bw.newLine();
                     bw.flush();
                 }
