@@ -6,11 +6,13 @@ import java.util.Set;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -54,12 +56,23 @@ public class Sample extends NamedEntity {
     @ManyToMany(mappedBy = "samples")
     private Set<WorkflowRun> workflowRuns;
 
+    @OneToMany(mappedBy = "sample", fetch = FetchType.LAZY)
+    private Set<SampleWorkflowRunDependency> workflowRunDependencies;
+
     @Column(name = "output_directory")
     private String outputDirectory;
 
     public Sample() {
         super();
         this.workflowRuns = new HashSet<>();
+    }
+
+    public Set<SampleWorkflowRunDependency> getWorkflowRunDependencies() {
+        return workflowRunDependencies;
+    }
+
+    public void setWorkflowRunDependencies(Set<SampleWorkflowRunDependency> workflowRunDependencies) {
+        this.workflowRunDependencies = workflowRunDependencies;
     }
 
     public Sample(String name) {
