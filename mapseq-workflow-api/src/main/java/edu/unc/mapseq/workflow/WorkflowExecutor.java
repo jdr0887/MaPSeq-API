@@ -14,7 +14,7 @@ import edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType;
 
 public class WorkflowExecutor extends Observable implements Runnable {
 
-    private final Logger logger = LoggerFactory.getLogger(WorkflowExecutor.class);
+    private static final Logger logger = LoggerFactory.getLogger(WorkflowExecutor.class);
 
     private Workflow workflow;
 
@@ -35,13 +35,13 @@ public class WorkflowExecutor extends Observable implements Runnable {
     @Override
     public void run() {
 
-        setWorkflowStatus(WorkflowRunAttemptStatusType.RUNNING);
+        setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.RUNNING));
 
         try {
             workflow.init();
         } catch (WorkflowException e) {
-            setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
             logger.error("Problem with init: ", e);
+            setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.FAILED, e.getMessage()));
         } catch (Exception e) {
             logger.warn("Problem with init: ", e);
         }
@@ -49,8 +49,8 @@ public class WorkflowExecutor extends Observable implements Runnable {
         try {
             workflow.validate();
         } catch (WorkflowException e) {
-            setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
             logger.error("Problem with validate: ", e);
+            setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.FAILED, e.getMessage()));
         } catch (Exception e) {
             logger.warn("Problem with validate: ", e);
         }
@@ -58,8 +58,8 @@ public class WorkflowExecutor extends Observable implements Runnable {
         try {
             workflow.preRun();
         } catch (WorkflowException e) {
-            setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
             logger.error("Problem with preRun: ", e);
+            setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.FAILED, e.getMessage()));
         } catch (Exception e) {
             logger.warn("Problem with preRun: ", e);
         }
@@ -73,8 +73,8 @@ public class WorkflowExecutor extends Observable implements Runnable {
             scheduler.scheduleAtFixedRate(stopCondorMonitor, 5, 1, TimeUnit.MINUTES);
             scheduler.awaitTermination(5, TimeUnit.DAYS);
         } catch (WorkflowException | InterruptedException e) {
-            setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
             logger.error("Problem with run: ", e);
+            setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.FAILED, e.getMessage()));
         } catch (Exception e) {
             logger.warn("Problem with run: ", e);
         }
@@ -82,8 +82,8 @@ public class WorkflowExecutor extends Observable implements Runnable {
         try {
             workflow.postRun();
         } catch (WorkflowException e) {
-            setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
             logger.error("Problem with postRun: ", e);
+            setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.FAILED, e.getMessage()));
         } catch (Exception e) {
             logger.warn("Problem with postRun: ", e);
         }
@@ -91,17 +91,17 @@ public class WorkflowExecutor extends Observable implements Runnable {
         try {
             workflow.cleanUp();
         } catch (WorkflowException e) {
-            setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
             logger.error("Problem with cleanUp: ", e);
+            setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.FAILED, e.getMessage()));
         } catch (Exception e) {
             logger.warn("Problem with cleanUp: ", e);
         }
 
     }
 
-    public void setWorkflowStatus(WorkflowRunAttemptStatusType workflowStatus) {
+    public void setWorkflowStatus(WorkflowRunStatusInfo workflowStatusInfo) {
         setChanged();
-        notifyObservers(workflowStatus);
+        notifyObservers(workflowStatusInfo);
     }
 
     public ScheduledExecutorService getScheduler() {
