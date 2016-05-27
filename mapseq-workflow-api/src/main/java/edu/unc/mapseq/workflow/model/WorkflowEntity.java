@@ -10,10 +10,20 @@ public class WorkflowEntity {
 
     private String name;
 
+    private Long upstreamWorkflowRunId;
+
     private List<WorkflowAttribute> attributes;
 
     public WorkflowEntity() {
         super();
+    }
+
+    public Long getUpstreamWorkflowRunId() {
+        return upstreamWorkflowRunId;
+    }
+
+    public void setUpstreamWorkflowRunId(Long upstreamWorkflowRunId) {
+        this.upstreamWorkflowRunId = upstreamWorkflowRunId;
     }
 
     public String getEntityType() {
