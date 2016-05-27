@@ -77,10 +77,11 @@ public class PersistantObserver implements Observer {
                             break;
                     }
 
-                    workflowRunAttemptDAO.save(workflowRunAttempt);
                     if (StringUtils.isNotEmpty(statusInfo.getMessage())) {
                         workflowRunAttempt.setMessage(statusInfo.getMessage());
                     }
+
+                    workflowRunAttemptDAO.save(workflowRunAttempt);
                     logger.debug(workflowRunAttempt.toString());
                 }
             } catch (Exception e) {
