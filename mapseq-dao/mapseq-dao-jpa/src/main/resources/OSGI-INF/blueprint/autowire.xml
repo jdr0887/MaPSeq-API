@@ -9,6 +9,9 @@
   </bean>
   <bean id="sampleDAOImpl" class="edu.unc.mapseq.dao.jpa.SampleDAOImpl" ext:field-injection="true">
   </bean>
+  <bean id="sampleWorkflowRunDependencyDAOImpl" class="edu.unc.mapseq.dao.jpa.SampleWorkflowRunDependencyDAOImpl"
+    ext:field-injection="true">
+  </bean>
   <bean id="jobDAOImpl" class="edu.unc.mapseq.dao.jpa.JobDAOImpl" ext:field-injection="true">
   </bean>
   <bean id="flowcellDAOImpl" class="edu.unc.mapseq.dao.jpa.FlowcellDAOImpl" ext:field-injection="true">
@@ -27,6 +30,7 @@
     <property name="attributeDAO" ref="attributeDAOImpl" />
     <property name="fileDataDAO" ref="fileDataDAOImpl" />
     <property name="sampleDAO" ref="sampleDAOImpl" />
+    <property name="sampleWorkflowRunDependencyDAO" ref="sampleWorkflowRunDependencyDAOImpl" />
     <property name="jobDAO" ref="jobDAOImpl" />
     <property name="flowcellDAO" ref="flowcellDAOImpl" />
     <property name="studyDAO" ref="studyDAOImpl" />
@@ -38,6 +42,7 @@
   <service ref="attributeDAOImpl" interface="edu.unc.mapseq.dao.AttributeDAO" />
   <service ref="fileDataDAOImpl" interface="edu.unc.mapseq.dao.FileDataDAO" />
   <service ref="sampleDAOImpl" interface="edu.unc.mapseq.dao.SampleDAO" />
+  <service ref="sampleWorkflowRunDependencyDAOImpl" interface="edu.unc.mapseq.dao.SampleWorkflowRunDependencyDAO" />
   <service ref="jobDAOImpl" interface="edu.unc.mapseq.dao.JobDAO" />
   <service ref="flowcellDAOImpl" interface="edu.unc.mapseq.dao.FlowcellDAO" />
   <service ref="studyDAOImpl" interface="edu.unc.mapseq.dao.StudyDAO" />
