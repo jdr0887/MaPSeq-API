@@ -56,23 +56,26 @@ public class StartCondorMonitor implements Runnable {
         try {
             switch (statusType.getCode()) {
                 case 1:
-                    pipelineExecutor.setWorkflowStatus(WorkflowRunAttemptStatusType.PENDING);
+                    pipelineExecutor.setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.PENDING));
                     jobFinished = false;
                     break;
                 case 2:
-                    pipelineExecutor.setWorkflowStatus(WorkflowRunAttemptStatusType.RUNNING);
+                    pipelineExecutor.setWorkflowStatus(new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.RUNNING));
                     jobFinished = false;
                     break;
                 case 3:
-                    pipelineExecutor.setWorkflowStatus(WorkflowRunAttemptStatusType.FAILED);
+                    pipelineExecutor.setWorkflowStatus(
+                            new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.FAILED, "Removed from HTCondor"));
                     jobFinished = true;
                     break;
                 case 4:
-                    pipelineExecutor.setWorkflowStatus(WorkflowRunAttemptStatusType.DONE);
+                    pipelineExecutor.setWorkflowStatus(
+                            new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.DONE, "Completed in HTCondor"));
                     jobFinished = true;
                     break;
                 case 5:
-                    pipelineExecutor.setWorkflowStatus(WorkflowRunAttemptStatusType.HELD);
+                    pipelineExecutor.setWorkflowStatus(
+                            new WorkflowRunStatusInfo(WorkflowRunAttemptStatusType.HELD, "Held in HTCondor"));
                     jobFinished = true;
                     break;
                 default:
