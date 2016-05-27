@@ -89,6 +89,9 @@ public class WorkflowRunAttempt implements Persistable {
     @Column(name = "version")
     private String version;
 
+    @Column(name = "message")
+    private String message;
+
     @OneToMany(mappedBy = "workflowRunAttempt", fetch = FetchType.LAZY)
     private Set<Job> jobs;
 
@@ -104,6 +107,14 @@ public class WorkflowRunAttempt implements Persistable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public WorkflowRun getWorkflowRun() {
@@ -189,8 +200,9 @@ public class WorkflowRunAttempt implements Persistable {
     @Override
     public String toString() {
         return String.format(
-                "WorkflowRunAttempt [id=%s, status=%s, condorDAGClusterId=%s, submitDirectory=%s, created=%s, started=%s, dequeued=%s, finished=%s, version=%s]",
-                id, status, condorDAGClusterId, submitDirectory, created, started, dequeued, finished, version);
+                "WorkflowRunAttempt [id=%s, status=%s, condorDAGClusterId=%s, submitDirectory=%s, created=%s, started=%s, dequeued=%s, finished=%s, version=%s, message=%s]",
+                id, status, condorDAGClusterId, submitDirectory, created, started, dequeued, finished, version,
+                message);
     }
 
     @Override
@@ -202,6 +214,7 @@ public class WorkflowRunAttempt implements Persistable {
         result = prime * result + ((dequeued == null) ? 0 : dequeued.hashCode());
         result = prime * result + ((finished == null) ? 0 : finished.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((message == null) ? 0 : message.hashCode());
         result = prime * result + ((started == null) ? 0 : started.hashCode());
         result = prime * result + ((status == null) ? 0 : status.hashCode());
         result = prime * result + ((submitDirectory == null) ? 0 : submitDirectory.hashCode());
@@ -242,6 +255,11 @@ public class WorkflowRunAttempt implements Persistable {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
+            return false;
+        if (message == null) {
+            if (other.message != null)
+                return false;
+        } else if (!message.equals(other.message))
             return false;
         if (started == null) {
             if (other.started != null)
