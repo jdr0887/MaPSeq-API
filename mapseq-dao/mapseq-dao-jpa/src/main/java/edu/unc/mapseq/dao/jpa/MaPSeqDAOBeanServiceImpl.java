@@ -6,6 +6,7 @@ import edu.unc.mapseq.dao.FlowcellDAO;
 import edu.unc.mapseq.dao.JobDAO;
 import edu.unc.mapseq.dao.MaPSeqDAOBeanService;
 import edu.unc.mapseq.dao.SampleDAO;
+import edu.unc.mapseq.dao.SampleWorkflowRunDependencyDAO;
 import edu.unc.mapseq.dao.StudyDAO;
 import edu.unc.mapseq.dao.WorkflowDAO;
 import edu.unc.mapseq.dao.WorkflowRunAttemptDAO;
@@ -18,6 +19,8 @@ public class MaPSeqDAOBeanServiceImpl implements MaPSeqDAOBeanService {
     private FileDataDAO fileDataDAO;
 
     private SampleDAO sampleDAO;
+
+    private SampleWorkflowRunDependencyDAO sampleWorkflowRunDependencyDAO;
 
     private JobDAO jobDAO;
 
@@ -33,6 +36,14 @@ public class MaPSeqDAOBeanServiceImpl implements MaPSeqDAOBeanService {
 
     public MaPSeqDAOBeanServiceImpl() {
         super();
+    }
+
+    public SampleWorkflowRunDependencyDAO getSampleWorkflowRunDependencyDAO() {
+        return sampleWorkflowRunDependencyDAO;
+    }
+
+    public void setSampleWorkflowRunDependencyDAO(SampleWorkflowRunDependencyDAO sampleWorkflowRunDependencyDAO) {
+        this.sampleWorkflowRunDependencyDAO = sampleWorkflowRunDependencyDAO;
     }
 
     public AttributeDAO getAttributeDAO() {

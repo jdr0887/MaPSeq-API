@@ -14,6 +14,10 @@ public interface MaPSeqDAOBeanService {
 
     public void setSampleDAO(SampleDAO sampleDAO);
 
+    public SampleWorkflowRunDependencyDAO getSampleWorkflowRunDependencyDAO();
+
+    public void setSampleWorkflowRunDependencyDAO(SampleWorkflowRunDependencyDAO sampleWorkflowRunDependencyDAO);
+
     public JobDAO getJobDAO();
 
     public void setJobDAO(JobDAO jobDAO);
