@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +15,7 @@ import edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType;
 
 public class PersistantObserver implements Observer {
 
-    private final Logger logger = LoggerFactory.getLogger(PersistantObserver.class);
+    private static final Logger logger = LoggerFactory.getLogger(PersistantObserver.class);
 
     public PersistantObserver() {
         super();
@@ -23,9 +24,10 @@ public class PersistantObserver implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         logger.debug("ENTERING update(Observable, Object)");
-        if (o instanceof WorkflowExecutor && arg instanceof WorkflowRunAttemptStatusType) {
+        if (o instanceof WorkflowExecutor && arg instanceof WorkflowRunStatusInfo) {
             WorkflowExecutor pipelineExecutor = (WorkflowExecutor) o;
-            WorkflowRunAttemptStatusType status = (WorkflowRunAttemptStatusType) arg;
+            WorkflowRunStatusInfo statusInfo = (WorkflowRunStatusInfo) arg;
+            WorkflowRunAttemptStatusType status = statusInfo.getStatus();
             MaPSeqDAOBeanService maPSeqDAOBean = pipelineExecutor.getWorkflow().getWorkflowBeanService()
                     .getMaPSeqDAOBeanService();
             WorkflowRunAttemptDAO workflowRunAttemptDAO = maPSeqDAOBean.getWorkflowRunAttemptDAO();
@@ -76,6 +78,9 @@ public class PersistantObserver implements Observer {
                     }
 
                     workflowRunAttemptDAO.save(workflowRunAttempt);
+                    if (StringUtils.isNotEmpty(statusInfo.getMessage())) {
+                        workflowRunAttempt.setMessage(statusInfo.getMessage());
+                    }
                     logger.debug(workflowRunAttempt.toString());
                 }
             } catch (Exception e) {
