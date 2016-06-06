@@ -9,4 +9,6 @@ public interface SampleWorkflowRunDependencyDAO extends BaseDAO<SampleWorkflowRu
     public List<SampleWorkflowRunDependency> findBySampleIdAndChildWorkflowRunId(Long sampleId, Long workflowRunId)
             throws MaPSeqDAOException;
 
+    public List<SampleWorkflowRunDependency> findBySampleId(Long sampleId) throws MaPSeqDAOException;
+
 }

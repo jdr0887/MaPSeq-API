@@ -70,4 +70,27 @@ public class SampleWorkflowRunDependencyDAOImpl extends BaseDAOImpl<SampleWorkfl
         return ret;
     }
 
+    @Override
+    public List<SampleWorkflowRunDependency> findBySampleId(Long sampleId) throws MaPSeqDAOException {
+        logger.debug("ENTERING findBySampleId(Long)");
+        List<SampleWorkflowRunDependency> ret = new ArrayList<>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<SampleWorkflowRunDependency> crit = critBuilder
+                    .createQuery(SampleWorkflowRunDependency.class);
+            Root<SampleWorkflowRunDependency> root = crit.from(SampleWorkflowRunDependency.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            Join<SampleWorkflowRunDependency, Sample> sampleWorkflowRunDependencySampleJoin = root
+                    .join(SampleWorkflowRunDependency_.sample);
+            predicates.add(critBuilder.equal(sampleWorkflowRunDependencySampleJoin.get(Sample_.id), sampleId));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.distinct(true);
+            TypedQuery<SampleWorkflowRunDependency> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
 }
