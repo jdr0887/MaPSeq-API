@@ -44,4 +44,10 @@ public interface SampleWorkflowRunDependencyService {
             @PathParam("sampleId") @WebParam(name = "sampleId") Long sampleId,
             @PathParam("workflowRunId") @WebParam(name = "workflowRunId") Long workflowRunId) throws MaPSeqDAOException;
 
+    @GET
+    @Path("/findBySampleId/{sampleId}")
+    @WebMethod
+    public List<SampleWorkflowRunDependency> findBySampleId(
+            @PathParam("sampleId") @WebParam(name = "sampleId") Long sampleId) throws MaPSeqDAOException;
+
 }

@@ -16,7 +16,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.Sample;
 
 @WebService(targetNamespace = "http://ws.mapseq.unc.edu", serviceName = "SampleService", portName = "SamplePort")
