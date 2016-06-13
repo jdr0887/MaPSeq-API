@@ -79,6 +79,11 @@ public interface SampleService {
             @PathParam("flowcellId") @WebParam(name = "flowcellId") Long flowcellId);
 
     @GET
+    @Path("/findStudyId/{studyId}")
+    @WebMethod
+    public List<Long> findStudyId(@PathParam("studyId") @WebParam(name = "studyId") Long studyId);
+
+    @GET
     @Path("/findByName/{name}")
     @WebMethod
     public List<Sample> findByName(@PathParam("name") @WebParam(name = "name") String name);

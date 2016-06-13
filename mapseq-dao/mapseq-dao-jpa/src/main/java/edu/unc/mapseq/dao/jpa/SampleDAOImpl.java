@@ -24,6 +24,8 @@ import edu.unc.mapseq.dao.model.Flowcell;
 import edu.unc.mapseq.dao.model.Flowcell_;
 import edu.unc.mapseq.dao.model.Sample;
 import edu.unc.mapseq.dao.model.Sample_;
+import edu.unc.mapseq.dao.model.Study;
+import edu.unc.mapseq.dao.model.Study_;
 import edu.unc.mapseq.dao.model.WorkflowRun;
 import edu.unc.mapseq.dao.model.WorkflowRun_;
 
@@ -115,7 +117,7 @@ public class SampleDAOImpl extends NamedEntityDAOImpl<Sample, Long> implements S
 
     @Override
     public List<Sample> findByWorkflowRunId(Long workflowRunId) throws MaPSeqDAOException {
-        logger.debug("ENTERING findByWorkflowRunId(String)");
+        logger.debug("ENTERING findByWorkflowRunId(Long)");
         List<Sample> ret = new ArrayList<>();
         try {
             CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
@@ -124,6 +126,28 @@ public class SampleDAOImpl extends NamedEntityDAOImpl<Sample, Long> implements S
             List<Predicate> predicates = new ArrayList<Predicate>();
             Join<Sample, WorkflowRun> sampleWorkflowRunJoin = root.join(Sample_.workflowRuns, JoinType.LEFT);
             predicates.add(critBuilder.equal(sampleWorkflowRunJoin.get(WorkflowRun_.id), workflowRunId));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.distinct(true);
+            crit.orderBy(critBuilder.desc(root.get(Sample_.created)));
+            TypedQuery<Sample> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public List<Sample> findByStudyId(Long studyId) throws MaPSeqDAOException {
+        logger.debug("ENTERING findByStudyId(Long)");
+        List<Sample> ret = new ArrayList<>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Sample> crit = critBuilder.createQuery(Sample.class);
+            Root<Sample> root = crit.from(Sample.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            Join<Sample, Study> sampleStudyJoin = root.join(Sample_.study);
+            predicates.add(critBuilder.equal(sampleStudyJoin.get(Study_.id), studyId));
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
             crit.distinct(true);
             crit.orderBy(critBuilder.desc(root.get(Sample_.created)));
