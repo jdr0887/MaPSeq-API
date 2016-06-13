@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
@@ -15,9 +17,12 @@ import javax.xml.bind.PropertyException;
 
 import org.junit.Test;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class TestSerialization {
 
@@ -86,6 +91,63 @@ public class TestSerialization {
         // e1.printStackTrace();
         // }
 
+    }
+
+    class ASDF {
+
+        private List<Workflow> workflows;
+
+        public ASDF(List<Workflow> workflows) {
+            super();
+            this.workflows = workflows;
+        }
+
+        @JsonValue
+        public List<Workflow> getWorkflows() {
+            return workflows;
+        }
+
+        public void setWorkflows(List<Workflow> workflows) {
+            this.workflows = workflows;
+        }
+
+    }
+
+    @Test
+    public void testWorkflowXMLSerialization() {
+        Workflow workflow = new Workflow("asdfdsa");
+        try {
+            JAXBContext context = JAXBContext.newInstance(Workflow.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            FileWriter fw = new FileWriter(new File("/tmp/workflow.xml"));
+            m.marshal(workflow, fw);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (PropertyException e1) {
+            e1.printStackTrace();
+        } catch (JAXBException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testWorkflowJSONSerialization() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            ObjectWriter ow = mapper.writer();
+            ow.writeValue(new File("/tmp/workflow.json"),
+                    new ASDF(Arrays.asList(new Workflow("qwer"), new Workflow("asdf"), new Workflow("zxcv"))));
+            // FileWriter writer = new FileWriter(new File("/tmp/workflow.json"));
+            // mapper.writeValue(writer,
+            // new ASDF(Arrays.asList(new Workflow("qwer"), new Workflow("asdf"), new Workflow("zxcv"))));
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
