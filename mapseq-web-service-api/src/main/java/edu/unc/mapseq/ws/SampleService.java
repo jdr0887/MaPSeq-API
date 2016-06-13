@@ -81,7 +81,7 @@ public interface SampleService {
     @GET
     @Path("/findByStudyId/{studyId}")
     @WebMethod
-    public List<Long> findByStudyId(@PathParam("studyId") @WebParam(name = "studyId") Long studyId);
+    public List<Sample> findByStudyId(@PathParam("studyId") @WebParam(name = "studyId") Long studyId);
 
     @GET
     @Path("/findByName/{name}")
