@@ -13,11 +13,14 @@
     <class>edu.unc.mapseq.dao.model.Flowcell</class>
     <class>edu.unc.mapseq.dao.model.NamedEntity</class>
     <class>edu.unc.mapseq.dao.model.Sample</class>
+    <class>edu.unc.mapseq.dao.model.SampleWorkflowRunDependency</class>
     <class>edu.unc.mapseq.dao.model.Study</class>
     <class>edu.unc.mapseq.dao.model.TransferInfo</class>
     <class>edu.unc.mapseq.dao.model.Workflow</class>
     <class>edu.unc.mapseq.dao.model.WorkflowRun</class>
     <class>edu.unc.mapseq.dao.model.WorkflowRunAttempt</class>
+
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
     <properties>
       <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
@@ -32,8 +35,8 @@
       <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
       <property name="openjpa.jdbc.DBDictionary" value="postgres(SearchStringEscape=\, SupportsXMLColumn=false)" />
       <property name="openjpa.DataCache" value="false" />
-      <property name="openjpa.RemoteCommitProvider" value="sjvm" />
       <property name="openjpa.QueryCache" value="false" />
+      <property name="openjpa.RemoteCommitProvider" value="sjvm" />
     </properties>
 
   </persistence-unit>
