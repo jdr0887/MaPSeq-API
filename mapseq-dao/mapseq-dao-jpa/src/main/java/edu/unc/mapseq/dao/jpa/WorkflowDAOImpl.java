@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
@@ -14,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.WorkflowDAO;
 import edu.unc.mapseq.dao.model.Workflow;
+import edu.unc.mapseq.dao.model.Workflow_;
 
 @OsgiServiceProvider(classes = { WorkflowDAO.class })
 @Transactional(Transactional.TxType.SUPPORTS)
@@ -36,7 +40,13 @@ public class WorkflowDAOImpl extends DictionaryEntityDAOImpl<Workflow, Long> imp
         logger.debug("ENTERING findAll()");
         List<Workflow> ret = new ArrayList<>();
         try {
-            TypedQuery<Workflow> query = getEntityManager().createNamedQuery("Workflow.findAll", Workflow.class);
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Workflow> crit = critBuilder.createQuery(Workflow.class);
+            Root<Workflow> root = crit.from(Workflow.class);
+            crit.where(critBuilder.equal(root.get(Workflow_.active), Boolean.TRUE));
+            crit.orderBy(critBuilder.asc(root.get(Workflow_.created)));
+            crit.distinct(true);
+            TypedQuery<Workflow> query = getEntityManager().createQuery(crit);
             ret.addAll(query.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
