@@ -2,6 +2,8 @@ package edu.unc.mapseq.dao.jpa;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +13,10 @@ import javax.persistence.Persistence;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.Workflow;
@@ -45,10 +51,48 @@ public class WorkflowDAOImplTest {
         assertTrue(workflowList != null && !workflowList.isEmpty());
     }
 
+    class ASDF {
+        private List<Workflow> workflows;
+
+        public ASDF(List<Workflow> workflows) {
+            super();
+            this.workflows = workflows;
+        }
+
+        @JsonValue
+        public List<Workflow> getWorkflows() {
+            return workflows;
+        }
+
+        public void setWorkflows(List<Workflow> workflows) {
+            this.workflows = workflows;
+        }
+
+    }
+
+    @Test
+    public void testJSONSerialization() {
+        try {
+            WorkflowDAOImpl workflowDAO = new WorkflowDAOImpl();
+            workflowDAO.setEntityManager(em);
+            List<Workflow> workflowList = workflowDAO.findAll();
+            em.close();
+            emf.close();
+            ObjectMapper mapper = new ObjectMapper();
+            ObjectWriter ow = mapper.writer();
+            ow.writeValue(new File("/tmp/workflow.json"), new ASDF(workflowList));
+        } catch (MaPSeqDAOException | IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @AfterClass
     public static void tearDown() {
-        em.close();
-        emf.close();
+        if (em.isOpen()) {
+            em.close();
+            emf.close();
+        }
     }
 
 }
