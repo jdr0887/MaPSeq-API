@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.unc.mapseq.dao.FileDataDAO;
+import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.FileData;
 import edu.unc.mapseq.dao.model.FileData_;
 
@@ -37,8 +38,25 @@ public class FileDataDAOImpl extends BaseDAOImpl<FileData, Long> implements File
     }
 
     @Override
+    public List<FileData> findAll() throws MaPSeqDAOException {
+        logger.debug("ENTERING findAll");
+        List<FileData> ret = new ArrayList<>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<FileData> crit = critBuilder.createQuery(getPersistentClass());
+            crit.from(getPersistentClass());
+            crit.distinct(true);
+            TypedQuery<FileData> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
     public List<FileData> findByExample(FileData fileData) {
-        logger.debug("ENTERING findByExample");
+        logger.debug("ENTERING findByExample(FileData)");
         List<FileData> ret = new ArrayList<>();
         try {
             CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
