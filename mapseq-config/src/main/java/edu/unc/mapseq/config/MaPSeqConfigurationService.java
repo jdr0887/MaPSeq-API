@@ -4,8 +4,6 @@ public interface MaPSeqConfigurationService {
 
     public static final String VERSION = "version";
 
-    public static final String RUN_MODE = "run-mode";
-
     public static final String WEB_SERVICE_HOST = "MAPSEQ_WEB_SERVICE_HOST";
 
     public static final String WEB_SERVICE_PORT = "MAPSEQ_WEB_SERVICE_PORT";
@@ -13,8 +11,6 @@ public interface MaPSeqConfigurationService {
     public static final String WEB_SERVICE_TIMEOUT = "MAPSEQ_WEB_SERVICE_TIMEOUT";
 
     public String getVersion(String def);
-
-    public RunModeType getRunMode();
 
     public String getWebServiceHost(String def);
 

@@ -3,8 +3,6 @@ package edu.unc.mapseq.config;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.commons.lang.StringUtils;
-
 public class MaPSeqConfigurationServiceImpl implements MaPSeqConfigurationService {
 
     private Properties properties;
@@ -53,15 +51,6 @@ public class MaPSeqConfigurationServiceImpl implements MaPSeqConfigurationServic
     @Override
     public void setWebServicePort(Integer value) {
         getProperties().setProperty(MaPSeqConfigurationService.WEB_SERVICE_PORT, value.toString());
-    }
-
-    @Override
-    public RunModeType getRunMode() {
-        String version = getVersion(null);
-        if (StringUtils.isEmpty(version) || (StringUtils.isNotEmpty(version) && version.contains("SNAPSHOT"))) {
-            return RunModeType.DEV;
-        }
-        return RunModeType.PROD;
     }
 
     @Override

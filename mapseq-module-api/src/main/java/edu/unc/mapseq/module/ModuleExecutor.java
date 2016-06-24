@@ -129,8 +129,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
                 Sample sample = daoBean.getSampleDAO().findById(module.getSampleId());
 
-                Set<FileData> fileDataSet = new HashSet<FileData>();
-
                 Workflow workflow = workflowRun.getWorkflow();
 
                 if (CollectionUtils.isEmpty(module.getFileDatas())) {
@@ -149,18 +147,11 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                             fileData.setId(daoBean.getFileDataDAO().save(fileData));
                         }
                         logger.info(fileData.toString());
-                        fileDataSet.add(fileData);
+                        daoBean.getJobDAO().addFileData(fileData.getId(), job.getId());
+                        if (module.getSampleId() != null) {
+                            daoBean.getSampleDAO().addFileData(fileData.getId(), sample.getId());
+                        }
                     }
-                }
-
-                if (module.getSampleId() != null) {
-                    for (FileData fileData : fileDataSet) {
-                        daoBean.getSampleDAO().addFileData(fileData.getId(), sample.getId());
-                    }
-                }
-
-                for (FileData fileData : fileDataSet) {
-                    daoBean.getJobDAO().addFileData(fileData.getId(), job.getId());
                 }
 
             }
