@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.DataCache;
@@ -49,6 +50,7 @@ public class Sample extends NamedEntity {
     @JoinColumn(name = "study_fid")
     private Study study;
 
+    @XmlTransient
     @ManyToOne
     @JoinColumn(name = "flowcell_fid")
     private Flowcell flowcell;

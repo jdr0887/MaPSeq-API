@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.DataCache;
@@ -43,6 +44,7 @@ public class WorkflowRun extends NamedEntity {
 
     private static final long serialVersionUID = 8700198002784754453L;
 
+    @XmlTransient
     @ManyToOne(optional = false)
     @JoinColumn(name = "workflow_fid")
     private Workflow workflow;
