@@ -24,7 +24,7 @@
 
     <properties>
       <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
-      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/mapseq_renci" />
+      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/mapseq" />
       <property name="openjpa.ConnectionUserName" value="mapseq" />
       <property name="openjpa.ConnectionPassword" value="mapseq" />
       <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)" />
