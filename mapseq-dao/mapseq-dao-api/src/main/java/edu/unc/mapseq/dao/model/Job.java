@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,17 +13,18 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
+import org.apache.openjpa.persistence.FetchAttribute;
+import org.apache.openjpa.persistence.FetchGroup;
+import org.apache.openjpa.persistence.FetchGroups;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -36,14 +36,14 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlRootElement(name = "job")
 @Entity
 @Table(name = "job")
-@DataCache(enabled = false)
-@Cacheable(value = false)
-@NamedQueries({
-        @NamedQuery(name = "Job.findByWorkflowRunAttemptId", query = "SELECT a FROM Job a where a.workflowRunAttempt.id = :id order by a.created") })
+@FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "workflowRunAttempt") }),
+        @FetchGroup(name = "includeAll", fetchGroups = { "includeManyToOnes" }, attributes = {
+                @FetchAttribute(name = "transfers") }) })
 public class Job extends NamedEntity {
 
     private static final long serialVersionUID = -2076318051537463578L;
 
+    @XmlTransient
     @ManyToOne
     @JoinColumn(name = "workflow_run_attempt_fid")
     private WorkflowRunAttempt workflowRunAttempt;
@@ -73,7 +73,7 @@ public class Job extends NamedEntity {
     @Column(name = "finished")
     private Date finished;
 
-    @OneToMany(mappedBy = "job", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(mappedBy = "job", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Set<TransferInfo> transfers;
 
     public Job() {

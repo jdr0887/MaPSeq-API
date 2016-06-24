@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Singleton;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,6 +14,8 @@ import javax.persistence.criteria.Root;
 import javax.persistence.criteria.SetJoin;
 import javax.transaction.Transactional;
 
+import org.apache.openjpa.persistence.OpenJPAPersistence;
+import org.apache.openjpa.persistence.OpenJPAQuery;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,9 +54,20 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
         logger.debug("ENTERING findByWorkflowRunAttemptId(Long)");
         List<Job> ret = new ArrayList<>();
         try {
-            TypedQuery<Job> query = getEntityManager().createNamedQuery("Job.findByWorkflowRunAttemptId", Job.class);
-            query.setParameter("id", id);
-            ret.addAll(query.getResultList());
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Job> crit = critBuilder.createQuery(getPersistentClass());
+            Root<Job> root = crit.from(getPersistentClass());
+            Join<Job, WorkflowRunAttempt> jobWorkflowRunAttemptJoin = root.join(Job_.workflowRunAttempt);
+            predicates.add(critBuilder.equal(jobWorkflowRunAttemptJoin.get(WorkflowRunAttempt_.id), id));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.distinct(true);
+            crit.orderBy(critBuilder.desc(root.get(Job_.created)));
+            TypedQuery<Job> query = getEntityManager().createQuery(crit);
+            OpenJPAQuery<Job> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
+            ret.addAll(openjpaQuery.getResultList());
+            // ret.addAll(query.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,7 +89,10 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
             crit.distinct(true);
             crit.orderBy(critBuilder.desc(root.get(Job_.created)));
             TypedQuery<Job> query = getEntityManager().createQuery(crit);
-            ret.addAll(query.getResultList());
+            OpenJPAQuery<Job> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
+            ret.addAll(openjpaQuery.getResultList());
+            // ret.addAll(query.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,8 +121,11 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
             crit.distinct(true);
             crit.orderBy(critBuilder.desc(root.get(Job_.created)));
-            Query query = getEntityManager().createQuery(crit);
-            ret.addAll(query.getResultList());
+            TypedQuery<Job> query = getEntityManager().createQuery(crit);
+            OpenJPAQuery<Job> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
+            ret.addAll(openjpaQuery.getResultList());
+            // ret.addAll(query.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -134,7 +152,10 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
             crit.orderBy(critBuilder.desc(root.get(Job_.created)));
             TypedQuery<Job> query = getEntityManager().createQuery(crit);
-            ret.addAll(query.getResultList());
+            OpenJPAQuery<Job> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
+            ret.addAll(openjpaQuery.getResultList());
+            // ret.addAll(query.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -142,7 +163,7 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
     }
 
     @Override
-    @Transactional(Transactional.TxType.REQUIRED)        
+    @Transactional(Transactional.TxType.REQUIRED)
     public void addFileData(Long fileDataId, Long jobId) throws MaPSeqDAOException {
         logger.debug("ENTERING addFileData(Long, Long)");
         Job job = findById(jobId);
