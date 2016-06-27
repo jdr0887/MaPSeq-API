@@ -20,6 +20,8 @@ public enum MimeType {
 
     APPLICATION_PDF("application/pdf"),
 
+    APPLICATION_ZIP("application/zip"),
+
     BEDGRAPH("bedGraph"),
 
     BIGWIG("bigWig"),
