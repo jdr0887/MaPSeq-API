@@ -36,8 +36,6 @@ public interface Workflow extends Callable<CondorJob> {
 
     public abstract WorkflowRunAttempt getWorkflowRunAttempt();
 
-    public abstract String getVersion();
-
     public abstract SystemType getSystem();
 
     public abstract String getName();
