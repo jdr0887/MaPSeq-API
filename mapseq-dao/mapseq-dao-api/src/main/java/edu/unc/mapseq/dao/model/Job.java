@@ -19,7 +19,6 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.openjpa.persistence.FetchAttribute;
@@ -43,7 +42,6 @@ public class Job extends NamedEntity {
 
     private static final long serialVersionUID = -2076318051537463578L;
 
-    @XmlTransient
     @ManyToOne
     @JoinColumn(name = "workflow_run_attempt_fid")
     private WorkflowRunAttempt workflowRunAttempt;
