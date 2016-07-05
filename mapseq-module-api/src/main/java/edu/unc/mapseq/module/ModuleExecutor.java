@@ -147,7 +147,8 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                             fileData.setId(daoBean.getFileDataDAO().save(fileData));
                         }
                         logger.info(fileData.toString());
-                        daoBean.getJobDAO().addFileData(fileData.getId(), job.getId());
+                        //daoBean.getJobDAO().addFileData(fileData.getId(), job.getId());
+                        job.getFileDatas().add(fileData);
                         if (module.getSampleId() != null) {
                             daoBean.getSampleDAO().addFileData(fileData.getId(), sample.getId());
                         }
