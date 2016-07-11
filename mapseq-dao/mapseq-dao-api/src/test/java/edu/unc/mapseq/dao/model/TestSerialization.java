@@ -22,7 +22,6 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class TestSerialization {
 
@@ -115,7 +114,7 @@ public class TestSerialization {
 
     @Test
     public void testWorkflowXMLSerialization() {
-        Workflow workflow = new Workflow("asdfdsa");
+        Workflow workflow = new Workflow("asdfdsa", WorkflowSystemType.PRODUCTION);
         try {
             JAXBContext context = JAXBContext.newInstance(Workflow.class);
             Marshaller m = context.createMarshaller();
@@ -137,7 +136,9 @@ public class TestSerialization {
             ObjectMapper mapper = new ObjectMapper();
             ObjectWriter ow = mapper.writer();
             ow.writeValue(new File("/tmp/workflow.json"),
-                    new ASDF(Arrays.asList(new Workflow("qwer"), new Workflow("asdf"), new Workflow("zxcv"))));
+                    new ASDF(Arrays.asList(new Workflow("qwer", WorkflowSystemType.PRODUCTION),
+                            new Workflow("asdf", WorkflowSystemType.PRODUCTION),
+                            new Workflow("zxcv", WorkflowSystemType.PRODUCTION))));
             // FileWriter writer = new FileWriter(new File("/tmp/workflow.json"));
             // mapper.writeValue(writer,
             // new ASDF(Arrays.asList(new Workflow("qwer"), new Workflow("asdf"), new Workflow("zxcv"))));
