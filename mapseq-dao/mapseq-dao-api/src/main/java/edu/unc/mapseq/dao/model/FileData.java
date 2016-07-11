@@ -123,7 +123,7 @@ public class FileData implements Persistable {
 
     @Override
     public String toString() {
-        return String.format("FileData [id=%s, name=%s, path=%s, mimeType=%s, created=%s]", id, name, path, mimeType,
+        return String.format("FileData [id=%s, path=%s, name=%s, mimeType=%s, created=%s]", id, path, name, mimeType,
                 created);
     }
 
