@@ -59,9 +59,6 @@ public class Sample extends NamedEntity {
     @OneToMany(mappedBy = "sample", fetch = FetchType.LAZY)
     private Set<SampleWorkflowRunDependency> workflowRunDependencies;
 
-    @Column(name = "output_directory")
-    private String outputDirectory;
-
     public Sample() {
         super();
         this.workflowRuns = new HashSet<>();
@@ -99,14 +96,6 @@ public class Sample extends NamedEntity {
         return barcode;
     }
 
-    public String getOutputDirectory() {
-        return outputDirectory;
-    }
-
-    public void setOutputDirectory(String outputDirectory) {
-        this.outputDirectory = outputDirectory;
-    }
-
     public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
@@ -129,8 +118,8 @@ public class Sample extends NamedEntity {
 
     @Override
     public String toString() {
-        return String.format("Sample [id=%s, name=%s, created=%s, barcode=%s, laneIndex=%s, outputDirectory=%s]", id,
-                name, created, barcode, laneIndex, outputDirectory);
+        return String.format("Sample [id=%s, name=%s, created=%s, barcode=%s, laneIndex=%s]", id, name, created,
+                barcode, laneIndex);
     }
 
     @Override
@@ -139,7 +128,6 @@ public class Sample extends NamedEntity {
         int result = super.hashCode();
         result = prime * result + ((barcode == null) ? 0 : barcode.hashCode());
         result = prime * result + ((laneIndex == null) ? 0 : laneIndex.hashCode());
-        result = prime * result + ((outputDirectory == null) ? 0 : outputDirectory.hashCode());
         return result;
     }
 
@@ -161,11 +149,6 @@ public class Sample extends NamedEntity {
             if (other.laneIndex != null)
                 return false;
         } else if (!laneIndex.equals(other.laneIndex))
-            return false;
-        if (outputDirectory == null) {
-            if (other.outputDirectory != null)
-                return false;
-        } else if (!outputDirectory.equals(other.outputDirectory))
             return false;
         return true;
     }
