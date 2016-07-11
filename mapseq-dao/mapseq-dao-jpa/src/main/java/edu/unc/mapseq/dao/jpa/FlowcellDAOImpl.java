@@ -11,7 +11,6 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.persistence.criteria.SetJoin;
 import javax.transaction.Transactional;
 
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
@@ -55,7 +54,7 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
             CriteriaQuery<Flowcell> crit = critBuilder.createQuery(Flowcell.class);
             Root<Flowcell> root = crit.from(Flowcell.class);
             List<Predicate> predicates = new ArrayList<Predicate>();
-            SetJoin<Flowcell, Sample> flowcellSampleJoin = root.join(Flowcell_.samples);
+            Join<Flowcell, Sample> flowcellSampleJoin = root.join(Flowcell_.samples);
             Join<Sample, Study> sampleStudyJoin = flowcellSampleJoin.join(Sample_.study);
             predicates.add(critBuilder.equal(sampleStudyJoin.get(Study_.name), name));
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
@@ -82,6 +81,7 @@ public class FlowcellDAOImpl extends NamedEntityDAOImpl<Flowcell, Long> implemen
             Join<Sample, Study> sampleStudyJoin = flowcellSampleJoin.join(Sample_.study);
             predicates.add(critBuilder.equal(sampleStudyJoin.get(Study_.id), studyId));
             crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.distinct(true);
             crit.orderBy(critBuilder.desc(root.get(Flowcell_.created)));
             TypedQuery<Flowcell> query = getEntityManager().createQuery(crit);
             ret.addAll(query.getResultList());
