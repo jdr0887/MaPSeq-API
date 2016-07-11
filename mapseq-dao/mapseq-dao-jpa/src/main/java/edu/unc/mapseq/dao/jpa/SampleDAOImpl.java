@@ -104,6 +104,28 @@ public class SampleDAOImpl extends NamedEntityDAOImpl<Sample, Long> implements S
     }
 
     @Override
+    public List<Sample> findByLaneIndexAndBarcode(Integer laneIndex, String barcode) throws MaPSeqDAOException {
+        logger.debug("ENTERING findByLaneIndexAndBarcode(Integer, String)");
+        List<Sample> ret = new ArrayList<>();
+        try {
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Sample> crit = critBuilder.createQuery(Sample.class);
+            Root<Sample> root = crit.from(Sample.class);
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            predicates.add(critBuilder.like(root.get(Sample_.barcode), barcode));
+            predicates.add(critBuilder.equal(root.get(Sample_.laneIndex), laneIndex));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.distinct(true);
+            crit.orderBy(critBuilder.desc(root.get(Sample_.created)));
+            TypedQuery<Sample> query = getEntityManager().createQuery(crit);
+            ret.addAll(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
     @Transactional(Transactional.TxType.REQUIRED)
     public void addFileData(Long fileDataId, Long sampleId) throws MaPSeqDAOException {
         logger.debug("ENTERING addFileData(Long, Long)");

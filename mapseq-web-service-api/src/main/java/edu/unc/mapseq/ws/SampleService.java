@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.Sample;
 
 @WebService(targetNamespace = "http://ws.mapseq.unc.edu", serviceName = "SampleService", portName = "SamplePort")
@@ -87,5 +88,12 @@ public interface SampleService {
     @Path("/findByName/{name}")
     @WebMethod
     public List<Sample> findByName(@PathParam("name") @WebParam(name = "name") String name);
+
+    @GET
+    @Path("/findByLaneIndexAndBarcode/{laneIndex}/{barcode}")
+    @WebMethod
+    public List<Sample> findByLaneIndexAndBarcode(
+            @PathParam("laneIndex") @WebParam(name = "laneIndex") Integer laneIndex,
+            @PathParam("barcode") @WebParam(name = "barcode") String barcode) throws MaPSeqDAOException;
 
 }
