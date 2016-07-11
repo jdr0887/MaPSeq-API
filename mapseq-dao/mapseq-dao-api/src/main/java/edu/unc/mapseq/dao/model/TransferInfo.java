@@ -51,7 +51,7 @@ public class TransferInfo {
     private Double transferRate;
 
     @Enumerated(EnumType.STRING)
-    @JoinColumn(name = "transfer_direction")
+    @Column(name = "transfer_direction")
     private TransferDirectionType transferDirection;
 
     @XmlTransient
