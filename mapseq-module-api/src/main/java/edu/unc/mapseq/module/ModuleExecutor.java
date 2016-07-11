@@ -124,7 +124,7 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 job.setStdout(output.getOutput().toString());
             }
 
-            if (!module.getDryRun() && module.getPersistFileData()) {
+            if (!module.getDryRun() && module.getSampleId() != null && module.getPersistFileData()) {
 
                 WorkflowRun workflowRun = workflowRunAttempt.getWorkflowRun();
                 Sample sample = daoBean.getSampleDAO().findById(module.getSampleId());
@@ -137,7 +137,15 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                     logger.debug("module.getFileDatas().size() = {}", module.getFileDatas().size());
                     for (FileData fileData : module.getFileDatas()) {
                         if (StringUtils.isEmpty(fileData.getPath())) {
-                            fileData.setPath(String.format("%s/%s", sample.getOutputDirectory(), workflow.getName()));
+                            String outputDirectory = System.getenv("MAPSEQ_OUTPUT_DIRECTORY");
+                            File systemDirectory = new File(outputDirectory, workflow.getSystem().getValue());
+                            File studyDirectory = new File(systemDirectory, sample.getStudy().getName());
+                            File analysisDirectory = new File(studyDirectory, "analysis");
+                            File flowcellDirectory = new File(analysisDirectory, sample.getFlowcell().getName());
+                            File sampleOutputDir = new File(flowcellDirectory,
+                                    String.format("L%03d_%s", sample.getLaneIndex(), sample.getBarcode()));
+                            File workflowDirectory = new File(sampleOutputDir, workflow.getName());
+                            fileData.setPath(workflowDirectory.getAbsolutePath());
                         }
                         logger.info(fileData.toString());
                         List<FileData> foundFileDataList = daoBean.getFileDataDAO().findByExample(fileData);
@@ -147,12 +155,15 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                             fileData.setId(daoBean.getFileDataDAO().save(fileData));
                         }
                         logger.info(fileData.toString());
-                        //daoBean.getJobDAO().addFileData(fileData.getId(), job.getId());
-                        job.getFileDatas().add(fileData);
+                        daoBean.getJobDAO().addFileData(fileData.getId(), job.getId());
                         if (module.getSampleId() != null) {
                             daoBean.getSampleDAO().addFileData(fileData.getId(), sample.getId());
                         }
                     }
+
+                    //job has likely had fileData updates...go get fresh version
+                    job = daoBean.getJobDAO().findById(job.getId());
+                    
                 }
 
             }
