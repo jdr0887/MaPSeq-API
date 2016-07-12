@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -99,13 +100,39 @@ public class FlowcellDAOImplTest {
     @Test
     public void testFindByStudyName() {
 
-        FlowcellDAOImpl sequencerRunDAO = new FlowcellDAOImpl();
-        sequencerRunDAO.setEntityManager(em);
+        FlowcellDAOImpl flowcellDAO = new FlowcellDAOImpl();
+        flowcellDAO.setEntityManager(em);
         try {
-            List<Flowcell> ret = sequencerRunDAO.findByStudyName("NC_GENES");
+            List<Flowcell> ret = flowcellDAO.findByStudyName("NC_GENES");
             assertTrue(ret != null && ret.size() > 0);
             for (Flowcell sr : ret) {
                 System.out.println(sr.getId());
+            }
+        } catch (MaPSeqDAOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void fixPaths() {
+
+        FlowcellDAOImpl flowcellDAO = new FlowcellDAOImpl();
+        flowcellDAO.setEntityManager(em);
+        try {
+            List<Flowcell> ret = flowcellDAO.findAll();
+            if (CollectionUtils.isNotEmpty(ret)) {
+                for (Flowcell flowcell : ret) {
+                    if (flowcell.getBaseDirectory().startsWith("/projects/sequence_analysis/medgenwork/")) {
+                        String baseDirectory = flowcell.getBaseDirectory().replace(
+                                "/projects/sequence_analysis/medgenwork/",
+                                "/projects/sequence_analysis/medgenwork/prod/");
+                        flowcell.setBaseDirectory(baseDirectory);
+                        em.getTransaction().begin();
+                        flowcellDAO.save(flowcell);
+                        em.getTransaction().commit();
+                    }
+                }
             }
         } catch (MaPSeqDAOException e) {
             e.printStackTrace();
