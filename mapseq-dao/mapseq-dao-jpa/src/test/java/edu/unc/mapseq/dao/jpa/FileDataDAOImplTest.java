@@ -120,83 +120,83 @@ public class FileDataDAOImplTest {
         Map<Long, String> fileDataPathMap = new HashMap<>();
 
         fileDataPathMap.put(121137L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_ACAGTG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_ACAGTG/NCGenesBaseline");
         fileDataPathMap.put(121139L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_TGACCA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_TGACCA/NCGenesBaseline");
         fileDataPathMap.put(121155L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_CGATGT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_CGATGT/NCGenesBaseline");
         fileDataPathMap.put(122623L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_GCCAAT/NCGenesBaseline");
         fileDataPathMap.put(122493L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_GCCAAT/NCGenesBaseline");
         fileDataPathMap.put(122494L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_TGACCA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_TGACCA/NCGenesBaseline");
         fileDataPathMap.put(122513L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_CGATGT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_CGATGT/NCGenesBaseline");
         fileDataPathMap.put(122616L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_ACAGTG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L007_ACAGTG/NCGenesBaseline");
         fileDataPathMap.put(129736L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_GCCAAT/NCGenesBaseline");
         fileDataPathMap.put(129746L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_CAGATC/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_CAGATC/NCGenesBaseline");
         fileDataPathMap.put(129769L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_GCCAAT/NCGenesBaseline");
         fileDataPathMap.put(129733L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_TGACCA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_TGACCA/NCGenesBaseline");
         fileDataPathMap.put(129735L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_TGACCA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_TGACCA/NCGenesBaseline");
         fileDataPathMap.put(129738L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ACTTGA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ACTTGA/NCGenesBaseline");
         fileDataPathMap.put(129739L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ACAGTG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ACAGTG/NCGenesBaseline");
         fileDataPathMap.put(129756L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ACAGTG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ACAGTG/NCGenesBaseline");
         fileDataPathMap.put(443044L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_GCCAAT/NCGenesBaseline");
         fileDataPathMap.put(443105L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_GCCAAT/NCGenesBaseline");
         fileDataPathMap.put(443106L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TTAGGC/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TTAGGC/NCGenesBaseline");
         fileDataPathMap.put(443130L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_CGATGT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_CGATGT/NCGenesBaseline");
         fileDataPathMap.put(443135L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ATCACG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ATCACG/NCGenesBaseline");
         fileDataPathMap.put(443137L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_TTAGGC/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_TTAGGC/NCGenesBaseline");
         fileDataPathMap.put(443136L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_ACAGTG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_ACAGTG/NCGenesBaseline");
         fileDataPathMap.put(443132L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_TGACCA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_TGACCA/NCGenesBaseline");
         fileDataPathMap.put(443133L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_CGATGT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_CGATGT/NCGenesBaseline");
         fileDataPathMap.put(443011L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_ACAGTG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/121008_UNC14-SN744_0273_AD1526ACXX/L006_ACAGTG/NCGenesBaseline");
         fileDataPathMap.put(443129L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ATCACG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120817_UNC16-SN851_0178_AD13KNACXX/L002_ATCACG/NCGenesBaseline");
         fileDataPathMap.put(443103L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_ATCACG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_ATCACG/NCGenesBaseline");
         fileDataPathMap.put(443019L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TGACCA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TGACCA/NCGenesBaseline");
         fileDataPathMap.put(443107L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TTAGGC/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TTAGGC/NCGenesBaseline");
         fileDataPathMap.put(443020L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TGACCA/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_TGACCA/NCGenesBaseline");
         fileDataPathMap.put(443104L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_ACAGTG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_ACAGTG/NCGenesBaseline");
         fileDataPathMap.put(443108L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_ATCACG/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_ATCACG/NCGenesBaseline");
         fileDataPathMap.put(443109L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_CGATGT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_CGATGT/NCGenesBaseline");
         fileDataPathMap.put(443112L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_CGATGT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120712_UNC13-SN749_0183_AD13LKACXX/L001_CGATGT/NCGenesBaseline");
         fileDataPathMap.put(443123L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_CGATGT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_CGATGT/NCGenesBaseline");
         fileDataPathMap.put(443134L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L003_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L003_GCCAAT/NCGenesBaseline");
         fileDataPathMap.put(107757L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L003_CAGATC/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L003_CAGATC/NCGenesBaseline");
         fileDataPathMap.put(443131L,
-                "/projects/sequence_analysis/medgenwork/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_GCCAAT/NCGenesBaseline");
+                "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/120517_UNC15-SN850_0212_AD0VD1ACXX/L004_GCCAAT/NCGenesBaseline");
 
         List<FileData> fileDataList = fileDataDAO.findAll();
         if (CollectionUtils.isNotEmpty(fileDataList)) {
@@ -204,6 +204,8 @@ public class FileDataDAOImplTest {
             for (FileData fileData : fileDataList) {
 
                 if (fileData.getId().equals(222146L)) {
+                    fileData.setPath(
+                            "/projects/sequence_analysis/medgenwork/prod/NC_GENES/analysis/130522_UNC11-SN627_0299_AD25TUACXX/L001_ATCACG/NCGenesBaseline");
                     fileData.setName(
                             "130522_UNC11-SN627_0299_AD25TUACXX_ATCACG_L001.fixed-rg.deduped.realign.fixmate.recal.coverage.v16.gene.sample_summary");
                     em.getTransaction().begin();
@@ -361,6 +363,42 @@ public class FileDataDAOImplTest {
 
                     }
 
+                }
+
+                if (fileData.getPath().startsWith("/projects/sequence_analysis/medgenwork/GS")) {
+                    String path = fileData.getPath().replace("/projects/sequence_analysis/medgenwork/GS",
+                            "/projects/sequence_analysis/medgenwork/prod/GS");
+                    fileData.setPath(path);
+                    em.getTransaction().begin();
+                    fileDataDAO.save(fileData);
+                    em.getTransaction().commit();
+                    continue;
+                }
+
+                if (fileData.getPath().startsWith("/projects/sequence_analysis/medgenwork/NCNEXUS")) {
+                    String path = fileData.getPath().replace("/projects/sequence_analysis/medgenwork/NCNEXUS",
+                            "/projects/sequence_analysis/medgenwork/prod/NCNEXUS");
+                    fileData.setPath(path);
+                    em.getTransaction().begin();
+                    fileDataDAO.save(fileData);
+                    em.getTransaction().commit();
+                    continue;
+                }
+
+                if (fileData.getPath().startsWith("/projects/sequence_analysis/medgenwork/NC_GENES")) {
+                    String path = fileData.getPath().replace("/projects/sequence_analysis/medgenwork/NC_GENES",
+                            "/projects/sequence_analysis/medgenwork/prod/NC_GENES");
+
+                    if (fileData.getPath().endsWith("NCGenesVCFCompare")) {
+                        path = fileData.getPath().replace("/projects/sequence_analysis/medgenwork/NC_GENES",
+                                "/projects/sequence_analysis/medgenwork/exp/NC_GENES");
+                    }
+
+                    fileData.setPath(path);
+                    em.getTransaction().begin();
+                    fileDataDAO.save(fileData);
+                    em.getTransaction().commit();
+                    continue;
                 }
 
             }
