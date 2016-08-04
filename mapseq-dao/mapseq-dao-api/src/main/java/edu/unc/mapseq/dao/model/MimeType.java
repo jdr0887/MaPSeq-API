@@ -104,6 +104,8 @@ public enum MimeType {
 
     TEXT_VCF("text/vcf"),
 
+    TEXT_FASTA("text/fasta"),
+
     TEXT_RECALIBRATION("text/recalibration"),
 
     TEXT_QC_STAT("text/qc_stat"),
