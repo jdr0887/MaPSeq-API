@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import edu.unc.mapseq.dao.MaPSeqDAOException;
 import edu.unc.mapseq.dao.model.WorkflowRun;
@@ -91,5 +92,9 @@ public interface WorkflowRunService {
     @WebMethod
     public List<WorkflowRun> findByStudyId(@PathParam("studyId") @WebParam(name = "studyId") Long studyId)
             throws MaPSeqDAOException;
+
+    @POST
+    @Path("/reset")
+    public Response reset(Long workflowRunId) throws MaPSeqDAOException;
 
 }
