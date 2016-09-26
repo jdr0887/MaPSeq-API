@@ -3,13 +3,13 @@
   <parent>
     <groupId>edu.unc</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.6.34-SNAPSHOT</version>
+    <version>0.6.34</version>
   </parent>
   <name>MaPSeq :: Datasource</name>
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.unc.mapseq</groupId>
   <artifactId>mapseq-datasource</artifactId>
-  <version>0.6.34-SNAPSHOT</version>
+  <version>0.6.34</version>
   <packaging>bundle</packaging>
   <dependencies>
     <dependency>
