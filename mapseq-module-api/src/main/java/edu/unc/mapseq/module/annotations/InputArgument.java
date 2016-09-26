@@ -26,5 +26,5 @@ public @interface InputArgument {
     int order() default 0;
 
     boolean wrapValueInSingleQuotes() default false;
-    
+
 }
