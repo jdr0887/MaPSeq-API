@@ -9,6 +9,8 @@ public interface JobDAO extends NamedEntityDAO<Job, Long> {
 
     public abstract List<Job> findByWorkflowRunAttemptId(Long id) throws MaPSeqDAOException;
 
+    public abstract List<Job> findByWorkflowRunAttemptIdAndName(Long id, String name) throws MaPSeqDAOException;
+
     public abstract List<Job> findByFileDataId(Long fileDataId, String clazzName) throws MaPSeqDAOException;
 
     public abstract List<Job> findByFileDataIdAndWorkflowId(Long fileDataId, String clazzName, Long workflowId)
