@@ -38,7 +38,7 @@ public class PersistantJobObserver implements Observer {
             switch (status) {
                 case DONE:
                 case FAILED:
-                    executor.getJob().setFinished(date);
+                    job.setFinished(date);
                     break;
                 case RUNNING:
                     break;
