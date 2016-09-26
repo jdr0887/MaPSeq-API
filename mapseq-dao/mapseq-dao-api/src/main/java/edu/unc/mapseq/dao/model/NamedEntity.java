@@ -74,8 +74,8 @@ public class NamedEntity implements Persistable {
     @JsonProperty("attribute")
     @ManyToMany(targetEntity = Attribute.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST,
             CascadeType.MERGE }, fetch = FetchType.EAGER)
-    @ContainerTable(name = "named_entity_attribute", joinIndex = @Index(columnNames = { "named_entity_fid" }) )
-    @JoinTable(name = "named_entity_attribute", joinColumns = @JoinColumn(name = "named_entity_fid") , inverseJoinColumns = @JoinColumn(name = "attribute_fid") )
+    @ContainerTable(name = "named_entity_attribute", joinIndex = @Index(columnNames = { "named_entity_fid" }))
+    @JoinTable(name = "named_entity_attribute", joinColumns = @JoinColumn(name = "named_entity_fid"), inverseJoinColumns = @JoinColumn(name = "attribute_fid"))
     protected Set<Attribute> attributes;
 
     @XmlElementWrapper(name = "files")
@@ -83,8 +83,8 @@ public class NamedEntity implements Persistable {
     @JsonProperty("file")
     @ManyToMany(targetEntity = FileData.class, cascade = { CascadeType.REMOVE, CascadeType.PERSIST,
             CascadeType.MERGE }, fetch = FetchType.EAGER)
-    @ContainerTable(name = "named_entity_file_data", joinIndex = @Index(columnNames = { "named_entity_fid" }) )
-    @JoinTable(name = "named_entity_file_data", joinColumns = @JoinColumn(name = "named_entity_fid") , inverseJoinColumns = @JoinColumn(name = "file_data_fid") )
+    @ContainerTable(name = "named_entity_file_data", joinIndex = @Index(columnNames = { "named_entity_fid" }))
+    @JoinTable(name = "named_entity_file_data", joinColumns = @JoinColumn(name = "named_entity_fid"), inverseJoinColumns = @JoinColumn(name = "file_data_fid"))
     protected Set<FileData> fileDatas;
 
     public NamedEntity() {
