@@ -161,9 +161,9 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                         }
                     }
 
-                    //job has likely had fileData updates...go get fresh version
+                    // job has likely had fileData updates...go get fresh version
                     job = daoBean.getJobDAO().findById(job.getId());
-                    
+
                 }
 
             }
