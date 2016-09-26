@@ -75,6 +75,31 @@ public class JobDAOImpl extends NamedEntityDAOImpl<Job, Long> implements JobDAO 
     }
 
     @Override
+    public List<Job> findByWorkflowRunAttemptIdAndName(Long id, String name) throws MaPSeqDAOException {
+        logger.debug("ENTERING findByWorkflowRunAttemptIdAndClassName(Long, String)");
+        List<Job> ret = new ArrayList<>();
+        try {
+            List<Predicate> predicates = new ArrayList<Predicate>();
+            CriteriaBuilder critBuilder = getEntityManager().getCriteriaBuilder();
+            CriteriaQuery<Job> crit = critBuilder.createQuery(getPersistentClass());
+            Root<Job> root = crit.from(getPersistentClass());
+            Join<Job, WorkflowRunAttempt> jobWorkflowRunAttemptJoin = root.join(Job_.workflowRunAttempt);
+            predicates.add(critBuilder.equal(jobWorkflowRunAttemptJoin.get(WorkflowRunAttempt_.id), id));
+            predicates.add(critBuilder.equal(root.get(Job_.name), name));
+            crit.where(predicates.toArray(new Predicate[predicates.size()]));
+            crit.distinct(true);
+            crit.orderBy(critBuilder.desc(root.get(Job_.created)));
+            TypedQuery<Job> query = getEntityManager().createQuery(crit);
+            OpenJPAQuery<Job> openjpaQuery = OpenJPAPersistence.cast(query);
+            openjpaQuery.getFetchPlan().addFetchGroup("includeManyToOnes");
+            ret.addAll(openjpaQuery.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
     public List<Job> findByFileDataId(Long fileDataId, String clazzName) {
         logger.debug("ENTERING findByFileDataId(Long, String)");
         List<Job> ret = new ArrayList<>();
