@@ -91,7 +91,7 @@ public class SampleTest {
         sample.getAttributes().add(attribute);
 
         FileData fileData = new FileData("qwerasdzxcv", "qwerasdzxcv", MimeType.FASTQ);
-        
+
         List<FileData> foundFileDataList = fileDataDAO.findByExample(fileData);
         if (CollectionUtils.isNotEmpty(foundFileDataList)) {
             fileData = foundFileDataList.get(0);
