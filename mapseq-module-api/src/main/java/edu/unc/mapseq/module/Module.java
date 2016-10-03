@@ -58,8 +58,11 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     private Validator validator;
 
+    private CommandInput commandInput;
+
     public Module() {
         super();
+        this.commandInput = new CommandInput();
         this.workflowName = "TEST";
         this.dryRun = Boolean.FALSE;
         this.validate = Boolean.TRUE;
@@ -117,9 +120,8 @@ public abstract class Module implements Callable<ModuleOutput> {
 
             Application application = moduleClass.getAnnotation(Application.class);
 
-            CommandInput commandInput = new CommandInput();
             if (application.exitImmediately()) {
-                commandInput.setExitImmediately(true);
+                this.commandInput.setExitImmediately(true);
             }
 
             String tmpDir = System.getProperty("java.io.tmpdir");
@@ -127,16 +129,17 @@ public abstract class Module implements Callable<ModuleOutput> {
             if (!tmpWorkflowDir.exists()) {
                 tmpWorkflowDir.mkdirs();
             }
-            commandInput.setWorkDir(tmpWorkflowDir);
+            this.commandInput.setWorkDir(tmpWorkflowDir);
             if (getWorkflowRunAttemptId() != null) {
                 File tmpWorkflowRunAttemptDir = new File(tmpWorkflowDir, getWorkflowRunAttemptId().toString());
                 if (!tmpWorkflowRunAttemptDir.exists()) {
                     tmpWorkflowRunAttemptDir.mkdirs();
                 }
-                commandInput.setWorkDir(tmpWorkflowRunAttemptDir);
+                this.commandInput.setWorkDir(tmpWorkflowRunAttemptDir);
             }
 
-            logger.info("commandInput.getWorkDir().getAbsolutePath(): {}", commandInput.getWorkDir().getAbsolutePath());
+            logger.info("commandInput.getWorkDir().getAbsolutePath(): {}",
+                    this.commandInput.getWorkDir().getAbsolutePath());
 
             StringBuilder command = new StringBuilder();
             command.append(getExecutable());
@@ -259,14 +262,14 @@ public abstract class Module implements Callable<ModuleOutput> {
             }
 
             logger.info(command.toString());
-            // System.out.println(command.toString());
 
-            commandInput.setCommand(command.toString());
+            this.commandInput.setCommand(command.toString());
 
             CommandOutput commandOutput;
             Executor executor = BashExecutor.getInstance();
             try {
-                commandOutput = executor.execute(commandInput, new File(System.getProperty("user.home"), ".mapseqrc"));
+                commandOutput = executor.execute(this.commandInput,
+                        new File(System.getProperty("user.home"), ".mapseqrc"));
             } catch (ExecutorException e) {
                 throw new ModuleException(e);
             }
@@ -368,6 +371,22 @@ public abstract class Module implements Callable<ModuleOutput> {
 
     public void setValidate(Boolean validate) {
         this.validate = validate;
+    }
+
+    public Validator getValidator() {
+        return validator;
+    }
+
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
+
+    public CommandInput getCommandInput() {
+        return commandInput;
+    }
+
+    public void setCommandInput(CommandInput commandInput) {
+        this.commandInput = commandInput;
     }
 
     @Override
