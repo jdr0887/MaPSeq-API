@@ -81,9 +81,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
         }
 
         Set<Attribute> jobAttributeSet = job.getAttributes();
-        if (jobAttributeSet == null) {
-            jobAttributeSet = new HashSet<Attribute>();
-        }
         jobAttributeSet.addAll(createJobAttributes());
         job.setAttributes(jobAttributeSet);
 
@@ -109,12 +106,15 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
 
             logger.info(module.toString());
             output = module.call();
-
+            
             if (output == null) {
                 throw new ModuleException("ModuleOutput is null");
             }
-
+            
             logger.info(output.toString());
+
+            //after module.call(), commandline has the actual command available
+            job.setCommandLine(module.getCommandInput().getCommand());
 
             if (output.getError() != null && output.getError().length() > 0) {
                 job.setStderr(output.getError().toString());
