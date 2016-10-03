@@ -50,6 +50,10 @@ public class Job extends NamedEntity {
     @Enumerated(EnumType.STRING)
     private JobStatusType status;
 
+    @Lob
+    @Column(name = "command_line")
+    private String commandLine;
+
     @Transient
     @Lob
     @Column(name = "stdout")
@@ -90,6 +94,14 @@ public class Job extends NamedEntity {
 
     public void setWorkflowRunAttempt(WorkflowRunAttempt workflowRunAttempt) {
         this.workflowRunAttempt = workflowRunAttempt;
+    }
+
+    public String getCommandLine() {
+        return commandLine;
+    }
+
+    public void setCommandLine(String commandLine) {
+        this.commandLine = commandLine;
     }
 
     public JobStatusType getStatus() {
