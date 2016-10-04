@@ -162,18 +162,22 @@ public class Job extends NamedEntity {
 
     @Override
     public String toString() {
-        return String.format("Job [status=%s, exitCode=%s, started=%s, finished=%s, id=%s, name=%s, created=%s]",
-                status, exitCode, started, finished, id, name, created);
+        return String.format(
+                "Job [status=%s, commandLine=%s, stdout=%s, stderr=%s, exitCode=%s, started=%s, finished=%s]", status,
+                commandLine, stdout, stderr, exitCode, started, finished);
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
+        result = prime * result + ((commandLine == null) ? 0 : commandLine.hashCode());
         result = prime * result + ((exitCode == null) ? 0 : exitCode.hashCode());
         result = prime * result + ((finished == null) ? 0 : finished.hashCode());
         result = prime * result + ((started == null) ? 0 : started.hashCode());
         result = prime * result + ((status == null) ? 0 : status.hashCode());
+        result = prime * result + ((stderr == null) ? 0 : stderr.hashCode());
+        result = prime * result + ((stdout == null) ? 0 : stdout.hashCode());
         return result;
     }
 
@@ -186,6 +190,11 @@ public class Job extends NamedEntity {
         if (getClass() != obj.getClass())
             return false;
         Job other = (Job) obj;
+        if (commandLine == null) {
+            if (other.commandLine != null)
+                return false;
+        } else if (!commandLine.equals(other.commandLine))
+            return false;
         if (exitCode == null) {
             if (other.exitCode != null)
                 return false;
@@ -202,6 +211,16 @@ public class Job extends NamedEntity {
         } else if (!started.equals(other.started))
             return false;
         if (status != other.status)
+            return false;
+        if (stderr == null) {
+            if (other.stderr != null)
+                return false;
+        } else if (!stderr.equals(other.stderr))
+            return false;
+        if (stdout == null) {
+            if (other.stdout != null)
+                return false;
+        } else if (!stdout.equals(other.stdout))
             return false;
         return true;
     }
