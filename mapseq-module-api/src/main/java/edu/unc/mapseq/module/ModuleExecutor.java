@@ -113,9 +113,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             
             logger.info(output.toString());
 
-            //after module.call(), commandline has the actual command available
-            job.setCommandLine(module.getCommandInput().getCommand());
-
             if (output.getError() != null && output.getError().length() > 0) {
                 job.setStderr(output.getError().toString());
             }
