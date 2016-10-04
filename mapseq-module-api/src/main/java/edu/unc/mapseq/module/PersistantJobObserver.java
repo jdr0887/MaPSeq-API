@@ -33,11 +33,11 @@ public class PersistantJobObserver implements Observer {
             logger.info("status: {}", status.getState());
             Date date = new Date();
             Job job = executor.getJob();
-            logger.debug(job.toString());
 
             switch (status) {
                 case DONE:
                 case FAILED:
+                    job.setCommandLine(executor.getModule().getCommandInput().getCommand());
                     job.setFinished(date);
                     break;
                 case RUNNING:
@@ -48,6 +48,7 @@ public class PersistantJobObserver implements Observer {
                 JobDAO jobDAO = daoBean.getJobDAO();
                 job.setStatus(status);
                 jobDAO.save(job);
+                logger.info(job.toString());
             } catch (MaPSeqDAOException e) {
                 e.printStackTrace();
             }

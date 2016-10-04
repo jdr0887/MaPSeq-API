@@ -31,6 +31,7 @@ public class DryRunJobObserver implements Observer {
             switch (status) {
                 case DONE:
                 case FAILED:
+                    job.setCommandLine(executor.getModule().getCommandInput().getCommand());
                     job.setFinished(new Date());
                     job.setFileDatas(executor.getModule().getFileDatas());
                     break;
