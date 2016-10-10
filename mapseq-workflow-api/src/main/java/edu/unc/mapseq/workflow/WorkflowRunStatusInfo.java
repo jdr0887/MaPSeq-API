@@ -1,10 +1,13 @@
 package edu.unc.mapseq.workflow;
 
+import edu.unc.mapseq.dao.model.WorkflowRunAttemptPhaseType;
 import edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType;
 
 public class WorkflowRunStatusInfo {
 
     private WorkflowRunAttemptStatusType status;
+
+    private WorkflowRunAttemptPhaseType phase;
 
     private String message;
 
@@ -12,14 +15,17 @@ public class WorkflowRunStatusInfo {
         super();
     }
 
-    public WorkflowRunStatusInfo(WorkflowRunAttemptStatusType status) {
+    public WorkflowRunStatusInfo(WorkflowRunAttemptStatusType status, WorkflowRunAttemptPhaseType phase) {
         super();
         this.status = status;
+        this.phase = phase;
     }
 
-    public WorkflowRunStatusInfo(WorkflowRunAttemptStatusType status, String message) {
+    public WorkflowRunStatusInfo(WorkflowRunAttemptStatusType status, WorkflowRunAttemptPhaseType phase,
+            String message) {
         super();
         this.status = status;
+        this.phase = phase;
         this.message = message;
     }
 
@@ -29,6 +35,14 @@ public class WorkflowRunStatusInfo {
 
     public void setStatus(WorkflowRunAttemptStatusType status) {
         this.status = status;
+    }
+
+    public WorkflowRunAttemptPhaseType getPhase() {
+        return phase;
+    }
+
+    public void setPhase(WorkflowRunAttemptPhaseType phase) {
+        this.phase = phase;
     }
 
     public String getMessage() {
@@ -41,7 +55,7 @@ public class WorkflowRunStatusInfo {
 
     @Override
     public String toString() {
-        return String.format("WorkflowRunStatusInfo [status=%s, message=%s]", status, message);
+        return String.format("WorkflowRunStatusInfo [status=%s, phase=%s, message=%s]", status, phase, message);
     }
 
 }
