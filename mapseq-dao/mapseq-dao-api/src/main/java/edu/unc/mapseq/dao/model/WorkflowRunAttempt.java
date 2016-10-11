@@ -62,11 +62,6 @@ public class WorkflowRunAttempt implements Persistable {
     @Column(name = "status")
     private WorkflowRunAttemptStatusType status;
 
-    @XmlAttribute(name = "phase")
-    @Enumerated(EnumType.STRING)
-    @Column(name = "phase")
-    private WorkflowRunAttemptPhaseType phase;
-
     @Column(name = "condor_dag_cluster_id")
     private Integer condorDAGClusterId;
 
@@ -162,14 +157,6 @@ public class WorkflowRunAttempt implements Persistable {
         this.created = created;
     }
 
-    public WorkflowRunAttemptPhaseType getPhase() {
-        return phase;
-    }
-
-    public void setPhase(WorkflowRunAttemptPhaseType phase) {
-        this.phase = phase;
-    }
-
     public Date getStarted() {
         return started;
     }
@@ -213,8 +200,8 @@ public class WorkflowRunAttempt implements Persistable {
     @Override
     public String toString() {
         return String.format(
-                "WorkflowRunAttempt [id=%s, status=%s, phase=%s, condorDAGClusterId=%s, submitDirectory=%s, created=%s, started=%s, dequeued=%s, finished=%s, version=%s, message=%s]",
-                id, status, phase, condorDAGClusterId, submitDirectory, created, started, dequeued, finished, version,
+                "WorkflowRunAttempt [id=%s, status=%s, condorDAGClusterId=%s, submitDirectory=%s, created=%s, started=%s, dequeued=%s, finished=%s, version=%s, message=%s]",
+                id, status, condorDAGClusterId, submitDirectory, created, started, dequeued, finished, version,
                 message);
     }
 
@@ -228,7 +215,6 @@ public class WorkflowRunAttempt implements Persistable {
         result = prime * result + ((finished == null) ? 0 : finished.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((message == null) ? 0 : message.hashCode());
-        result = prime * result + ((phase == null) ? 0 : phase.hashCode());
         result = prime * result + ((started == null) ? 0 : started.hashCode());
         result = prime * result + ((status == null) ? 0 : status.hashCode());
         result = prime * result + ((submitDirectory == null) ? 0 : submitDirectory.hashCode());
@@ -274,8 +260,6 @@ public class WorkflowRunAttempt implements Persistable {
             if (other.message != null)
                 return false;
         } else if (!message.equals(other.message))
-            return false;
-        if (phase != other.phase)
             return false;
         if (started == null) {
             if (other.started != null)
