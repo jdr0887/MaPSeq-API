@@ -5,7 +5,6 @@ import static edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType.FAILED;
 import static edu.unc.mapseq.dao.model.WorkflowRunAttemptStatusType.RUNNING;
 
 import java.util.Observable;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +19,7 @@ public class WorkflowExecutor extends Observable implements Runnable {
 
     private Workflow workflow;
 
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+    private final WorkflowScheduledTPE scheduler = new WorkflowScheduledTPE();
 
     public WorkflowExecutor(Workflow workflow, boolean dryRun) {
         super();
@@ -40,29 +39,26 @@ public class WorkflowExecutor extends Observable implements Runnable {
         setWorkflowStatus(new WorkflowRunStatusInfo(RUNNING));
         try {
             workflow.init();
-        } catch (WorkflowException e) {
+        } catch (Exception e) {
             logger.error("Problem with init: ", e);
             setWorkflowStatus(new WorkflowRunStatusInfo(FAILED, e.getMessage()));
-        } catch (Exception e) {
-            logger.warn("Problem with init: ", e);
+            return;
         }
 
         try {
             workflow.validate();
-        } catch (WorkflowException e) {
+        } catch (Exception e) {
             logger.error("Problem with validate: ", e);
             setWorkflowStatus(new WorkflowRunStatusInfo(FAILED, e.getMessage()));
-        } catch (Exception e) {
-            logger.warn("Problem with validate: ", e);
+            return;
         }
 
         try {
             workflow.preRun();
-        } catch (WorkflowException e) {
+        } catch (Exception e) {
             logger.error("Problem with preRun: ", e);
             setWorkflowStatus(new WorkflowRunStatusInfo(FAILED, e.getMessage()));
-        } catch (Exception e) {
-            logger.warn("Problem with preRun: ", e);
+            return;
         }
 
         try {
@@ -72,30 +68,28 @@ public class WorkflowExecutor extends Observable implements Runnable {
                     TimeUnit.MINUTES);
             Runnable stopCondorMonitor = new StopCondorMonitor(scheduler, startCondorMonitor, startCondorMonitorFuture);
             scheduler.scheduleAtFixedRate(stopCondorMonitor, 5, 1, TimeUnit.MINUTES);
-            scheduler.awaitTermination(5, TimeUnit.DAYS);
-        } catch (WorkflowException | InterruptedException e) {
+            scheduler.shutdown();
+            scheduler.awaitTermination(3, TimeUnit.DAYS);
+        } catch (Exception e) {
             logger.error("Problem with run: ", e);
             setWorkflowStatus(new WorkflowRunStatusInfo(FAILED, e.getMessage()));
-        } catch (Exception e) {
-            logger.warn("Problem with run: ", e);
+            return;
         }
 
         try {
             workflow.postRun();
-        } catch (WorkflowException e) {
+        } catch (Exception e) {
             logger.error("Problem with postRun: ", e);
             setWorkflowStatus(new WorkflowRunStatusInfo(FAILED, e.getMessage()));
-        } catch (Exception e) {
-            logger.warn("Problem with postRun: ", e);
+            return;
         }
 
         try {
             workflow.cleanUp();
-        } catch (WorkflowException e) {
+        } catch (Exception e) {
             logger.error("Problem with cleanUp: ", e);
             setWorkflowStatus(new WorkflowRunStatusInfo(FAILED, e.getMessage()));
-        } catch (Exception e) {
-            logger.warn("Problem with cleanUp: ", e);
+            return;
         }
         setWorkflowStatus(new WorkflowRunStatusInfo(DONE));
 
