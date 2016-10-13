@@ -25,6 +25,7 @@
     <class>edu.unc.mapseq.dao.model.WorkflowRunAttempt</class>
 
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 
     <properties>
       <property name="javax.persistence.query.timeout" value="300000" />
@@ -37,7 +38,7 @@
       <property name="openjpa.Multithreaded" value="true" />
       <property name="openjpa.jdbc.DBDictionary" value="postgres(SearchStringEscape=\, SupportsXMLColumn=false)" />
       <property name="openjpa.RemoteCommitProvider" value="sjvm" />
-      <property name="openjpa.DataCache" value="false" />
+      <property name="openjpa.DataCache" value="true(CacheSize=5000, SoftReferenceSize=0)" />
       <property name="openjpa.QueryCache" value="false" />
     </properties>
 
