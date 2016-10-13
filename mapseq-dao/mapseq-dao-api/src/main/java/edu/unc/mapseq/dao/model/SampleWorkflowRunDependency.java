@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "SampleWorkflowRunDependency", propOrder = {})
 @XmlRootElement(name = "sampleWorkflowRunDependency")
 @Entity
-@Table(name = "sample_workflow_run_dependency")
+@Table(schema = "mapseq", name = "sample_workflow_run_dependency")
 @DataCache(enabled = false)
 @Cacheable(value = false)
 public class SampleWorkflowRunDependency implements Persistable {

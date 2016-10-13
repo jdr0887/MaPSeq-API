@@ -1,6 +1,5 @@
 package edu.unc.mapseq.dao.model;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,9 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "Attribute", propOrder = {})
 @XmlRootElement(name = "attribute")
 @Entity
-@DataCache(enabled = false)
-@Cacheable(value = false)
-@Table(name = "attribute")
+@Table(schema = "mapseq", name = "attribute")
 public class Attribute implements Persistable {
 
     private static final long serialVersionUID = -7704544637945786744L;

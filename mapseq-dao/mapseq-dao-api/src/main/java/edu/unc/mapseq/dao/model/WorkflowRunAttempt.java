@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -26,8 +25,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -37,9 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "WorkflowRunAttempt", propOrder = {})
 @XmlRootElement(name = "workflowRunAttempt")
 @Entity
-@DataCache(enabled = false)
-@Cacheable(value = false)
-@Table(name = "workflow_run_attempt")
+@Table(schema = "mapseq", name = "workflow_run_attempt")
 @NamedQueries({
         @NamedQuery(name = "WorkflowRunAttempt.findByWorkflowRunId", query = "SELECT a FROM WorkflowRunAttempt a where a.workflowRun.id = :id order by a.created") })
 public class WorkflowRunAttempt implements Persistable {

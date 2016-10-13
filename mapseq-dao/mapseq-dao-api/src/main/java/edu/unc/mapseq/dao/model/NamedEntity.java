@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -29,7 +28,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.jdbc.ContainerTable;
 import org.apache.openjpa.persistence.jdbc.Index;
 
@@ -43,9 +41,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlType(name = "NamedEntity", propOrder = {})
 @XmlRootElement(name = "namedEntity")
 @Entity
-@Table(name = "named_entity")
-@DataCache(enabled = false)
-@Cacheable(value = false)
+@Table(schema = "mapseq", name = "named_entity")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class NamedEntity implements Persistable {

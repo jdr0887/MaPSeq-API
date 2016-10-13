@@ -3,7 +3,6 @@ package edu.unc.mapseq.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +21,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.jdbc.ContainerTable;
 import org.apache.openjpa.persistence.jdbc.Index;
 
@@ -34,9 +32,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "WorkflowRun", propOrder = {})
 @XmlRootElement(name = "workflowRun")
 @Entity
-@Table(name = "workflow_run")
-@DataCache(enabled = false)
-@Cacheable(value = false)
+@Table(schema = "mapseq", name = "workflow_run")
 @NamedQueries({
         @NamedQuery(name = "WorkflowRun.findByWorkflowId", query = "SELECT a FROM WorkflowRun a where a.workflow.id = :id order by a.created") })
 public class WorkflowRun extends NamedEntity {

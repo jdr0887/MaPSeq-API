@@ -3,6 +3,7 @@ package edu.unc.mapseq.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
@@ -22,10 +23,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "Study", propOrder = {})
 @XmlRootElement(name = "study")
 @Entity
-@Table(name = "study")
+@Table(schema = "mapseq", name = "study")
 @NamedQueries({
         @NamedQuery(name = "Study.findAll", query = "SELECT a FROM Study a where a.active = TRUE order by a.name"),
         @NamedQuery(name = "Study.findSampleId", query = "SELECT a FROM Study a where a.active = TRUE and a.samples.id = :id order by a.name") })
+@Cacheable
 public class Study extends DictionaryEntity {
 
     private static final long serialVersionUID = -8860506395856309697L;

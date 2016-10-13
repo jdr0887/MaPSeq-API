@@ -2,7 +2,6 @@ package edu.unc.mapseq.dao.model;
 
 import java.util.Date;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -22,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,9 +32,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "DictionaryEntity", propOrder = {})
 @XmlRootElement(name = "dictionaryEntity")
 @Entity
-@Table(name = "dictionary_entity", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
-@DataCache(enabled = false)
-@Cacheable(value = false)
+@Table(schema = "mapseq", name = "dictionary_entity", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "name" }) })
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class DictionaryEntity implements Persistable {

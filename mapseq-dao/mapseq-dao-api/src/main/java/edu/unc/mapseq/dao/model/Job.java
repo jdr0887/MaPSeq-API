@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "Job", propOrder = {})
 @XmlRootElement(name = "job")
 @Entity
-@Table(name = "job")
+@Table(schema = "mapseq", name = "job")
 @FetchGroups({ @FetchGroup(name = "includeManyToOnes", attributes = { @FetchAttribute(name = "workflowRunAttempt") }),
         @FetchGroup(name = "includeAll", fetchGroups = { "includeManyToOnes" }, attributes = {
                 @FetchAttribute(name = "transfers") }) })

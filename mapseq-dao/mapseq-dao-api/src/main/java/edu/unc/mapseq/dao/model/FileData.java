@@ -3,7 +3,6 @@ package edu.unc.mapseq.dao.model;
 import java.io.File;
 import java.util.Date;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,7 +18,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
 import org.apache.openjpa.persistence.jdbc.Index;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,9 +29,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "FileData", propOrder = {})
 @XmlRootElement(name = "file")
 @Entity
-@DataCache(enabled = false)
-@Cacheable(value = false)
-@Table(name = "file_data")
+@Table(schema = "mapseq", name = "file_data")
 public class FileData implements Persistable {
 
     private static final long serialVersionUID = -6855317876595139041L;

@@ -3,6 +3,7 @@ package edu.unc.mapseq.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -25,9 +26,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "Workflow", propOrder = {})
 @XmlRootElement(name = "workflow")
 @Entity
-@Table(name = "workflow")
+@Table(schema = "mapseq", name = "workflow")
 @NamedQueries({
         @NamedQuery(name = "Workflow.findAll", query = "SELECT a FROM Workflow a where a.active = TRUE order by a.name") })
+@Cacheable
 public class Workflow extends DictionaryEntity {
 
     private static final long serialVersionUID = -6745909962563675950L;

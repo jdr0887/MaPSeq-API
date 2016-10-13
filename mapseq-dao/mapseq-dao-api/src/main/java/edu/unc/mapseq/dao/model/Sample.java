@@ -3,7 +3,6 @@ package edu.unc.mapseq.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,8 +18,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -29,9 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "Sample", propOrder = {})
 @XmlRootElement(name = "sample")
 @Entity
-@DataCache(enabled = false)
-@Cacheable(value = false)
-@Table(name = "sample")
+@Table(schema = "mapseq",name = "sample")
 @NamedQueries({
         @NamedQuery(name = "Sample.findByFlowcellId", query = "SELECT a FROM Sample a where a.flowcell.id = :id order by a.created"),
         @NamedQuery(name = "Sample.findByNameAndFlowcellId", query = "SELECT a FROM Sample a where a.name = :name and a.flowcell.id = :id order by a.created") })

@@ -1,6 +1,5 @@
 package edu.unc.mapseq.dao.model;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,8 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.openjpa.persistence.DataCache;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -29,9 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlType(name = "TransferInfo", propOrder = {})
 @XmlRootElement(name = "transferInfo")
 @Entity
-@Table(name = "transfer_info")
-@DataCache(enabled = false)
-@Cacheable(value = false)
+@Table(schema = "mapseq", name = "transfer_info")
 public class TransferInfo {
 
     @XmlAttribute(name = "id")
