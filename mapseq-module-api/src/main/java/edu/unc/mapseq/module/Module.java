@@ -138,9 +138,6 @@ public abstract class Module implements Callable<ModuleOutput> {
                 this.commandInput.setWorkDir(tmpWorkflowRunAttemptDir);
             }
 
-            logger.info("commandInput.getWorkDir().getAbsolutePath(): {}",
-                    this.commandInput.getWorkDir().getAbsolutePath());
-
             StringBuilder command = new StringBuilder();
             command.append(getExecutable());
 
@@ -260,8 +257,6 @@ public abstract class Module implements Callable<ModuleOutput> {
                     }
                 }
             }
-
-            logger.info(command.toString());
 
             this.commandInput.setCommand(command.toString());
 
