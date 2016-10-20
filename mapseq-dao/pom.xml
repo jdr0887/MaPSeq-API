@@ -13,5 +13,7 @@
   <modules>
     <module>mapseq-dao-api</module>
     <module>mapseq-dao-jpa</module>
+    <module>mapseq-dao-rest</module>
+    <module>mapseq-dao-soap</module>
   </modules>
 </project>
