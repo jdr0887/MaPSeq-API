@@ -2,7 +2,7 @@
   <parent>
     <groupId>edu.unc.mapseq</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.1.31</version>
+    <version>0.1.32</version>
   </parent>
   <name>Massively Parallel Sequencing</name>
   <modelVersion>4.0.0</modelVersion>
@@ -90,6 +90,11 @@
       	<artifactId>mapseq-dao-api</artifactId>
       	<version>0.6.43-SNAPSHOT</version>
       </dependency>
+      <dependency>
+      	<groupId>edu.unc.mapseq</groupId>
+      	<artifactId>mapseq-web-service-api</artifactId>
+      	<version>0.6.43-SNAPSHOT</version>
+      </dependency>      
       <dependency>
       	<groupId>org.apache.geronimo.specs</groupId>
       	<artifactId>geronimo-jms_1.1_spec</artifactId>
