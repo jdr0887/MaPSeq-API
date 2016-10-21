@@ -59,21 +59,6 @@
           </instructions>
         </configuration>
       </plugin>      
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-javadoc-plugin</artifactId>
-	<version>${maven.javadoc.plugin.version}</version>
-	<configuration>
-	  <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-	  <docletArtifact>
-	    <groupId>org.umlgraph</groupId>
-	    <artifactId>doclet</artifactId>
-	    <version>5.1</version>
-	  </docletArtifact>
-	  <additionalparam>-horizontal -all -inferrel -inferdep -hide java.* -inferrel -collpackages java.util.*</additionalparam>
-	  <show>public</show>
-	</configuration>
-      </plugin>
     </plugins>
   </build>
 </project>
