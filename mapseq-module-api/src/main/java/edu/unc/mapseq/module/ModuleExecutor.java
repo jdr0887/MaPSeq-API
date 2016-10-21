@@ -93,24 +93,24 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             }
         }
 
-        if (module.getValidate()) {
-            List<String> inputErrors = module.validateInputs();
-            if (CollectionUtils.isNotEmpty(inputErrors)) {
-                String message = StringUtils.join(inputErrors, System.getProperty("line.separator"));
-                throw new ModuleException(message);
-            }
-        }
-
         try {
+            if (module.getValidate()) {
+                List<String> inputErrors = module.validateInputs();
+                if (CollectionUtils.isNotEmpty(inputErrors)) {
+                    String message = StringUtils.join(inputErrors, System.getProperty("line.separator"));
+                    throw new ModuleException(message);
+                }
+            }
+
             updateJobState(JobStatusType.RUNNING);
 
             logger.info(module.toString());
             output = module.call();
-            
+
             if (output == null) {
                 throw new ModuleException("ModuleOutput is null");
             }
-            
+
             logger.info(output.toString());
 
             if (output.getError() != null && output.getError().length() > 0) {
@@ -167,6 +167,14 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             job.setExitCode(output.getExitCode());
             updateJobState(output.getExitCode() != 0 ? JobStatusType.FAILED : JobStatusType.DONE);
 
+            if (module.getValidate()) {
+                List<String> outputErrors = module.validateOutputs();
+                if (CollectionUtils.isNotEmpty(outputErrors)) {
+                    String message = StringUtils.join(outputErrors, System.getProperty("line.separator"));
+                    throw new ModuleException(message);
+                }
+            }
+
         } catch (Exception e) {
             job.setStderr(e.getMessage());
             job.setExitCode(-1);
@@ -184,14 +192,6 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
                 m.marshal(getJob(), fw);
             } catch (JAXBException | IOException e) {
                 logger.error("MaPSeq Error", e);
-            }
-        }
-
-        if (module.getValidate()) {
-            List<String> outputErrors = module.validateOutputs();
-            if (CollectionUtils.isNotEmpty(outputErrors)) {
-                String message = StringUtils.join(outputErrors, System.getProperty("line.separator"));
-                throw new ModuleException(message);
             }
         }
 
