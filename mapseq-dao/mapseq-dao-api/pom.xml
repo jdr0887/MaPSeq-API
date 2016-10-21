@@ -105,7 +105,6 @@
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-compiler-plugin</artifactId>
-	<version>${maven.compiler.plugin.version}</version>
 	<configuration>
 	  <source>1.7</source>
 	  <target>1.7</target>
@@ -148,21 +147,6 @@
 	    </goals>
 	  </execution>
 	</executions>
-      </plugin>
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-javadoc-plugin</artifactId>
-	<version>${maven.javadoc.plugin.version}</version>
-	<configuration>
-	  <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-	  <docletArtifact>
-	    <groupId>org.umlgraph</groupId>
-	    <artifactId>doclet</artifactId>
-	    <version>5.1</version>
-	  </docletArtifact>
-	  <additionalparam>-all -hide MaPSeqDAOBean -hide MaPSeqDAOException -inferrel -inferdep -hide java.* -inferrel -collpackages java.util.*</additionalparam>
-	  <show>public</show>
-	</configuration>
       </plugin>
     </plugins>
   </build>
