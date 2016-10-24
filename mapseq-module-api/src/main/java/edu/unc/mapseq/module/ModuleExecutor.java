@@ -176,22 +176,22 @@ public class ModuleExecutor extends Observable implements Callable<ModuleOutput>
             }
 
         } catch (Exception e) {
+            logger.error("Error", e);
             job.setStderr(e.getMessage());
             job.setExitCode(-1);
             updateJobState(JobStatusType.FAILED);
-            logger.error("Error", e);
-        }
-
-        if (module.getSerialize() != null) {
-            try {
-                JAXBContext context = JAXBContext.newInstance(Job.class);
-                Marshaller m = context.createMarshaller();
-                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-                File moduleClassXMLFile = module.getSerialize();
-                FileWriter fw = new FileWriter(moduleClassXMLFile);
-                m.marshal(getJob(), fw);
-            } catch (JAXBException | IOException e) {
-                logger.error("MaPSeq Error", e);
+        } finally {
+            if (module.getSerialize() != null) {
+                try {
+                    JAXBContext context = JAXBContext.newInstance(Job.class);
+                    Marshaller m = context.createMarshaller();
+                    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                    File moduleClassXMLFile = module.getSerialize();
+                    FileWriter fw = new FileWriter(moduleClassXMLFile);
+                    m.marshal(getJob(), fw);
+                } catch (JAXBException | IOException e) {
+                    logger.error("MaPSeq Error", e);
+                }
             }
         }
 
