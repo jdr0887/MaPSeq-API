@@ -2,7 +2,7 @@
   <parent>
     <groupId>edu.unc.mapseq</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.1.35</version>
+    <version>0.1.36</version>
   </parent>
   <name>Massively Parallel Sequencing</name>
   <modelVersion>4.0.0</modelVersion>
@@ -71,11 +71,6 @@
 	<version>${jackson.version}</version>
       </dependency>
       <dependency>
-      	<groupId>org.apache.geronimo.components</groupId>
-      	<artifactId>geronimo-transaction</artifactId>
-      	<version>3.1.1</version>
-      </dependency>
-      <dependency>
       	<groupId>org.hibernate</groupId>
       	<artifactId>hibernate-validator</artifactId>
       	<version>4.2.0.Final</version>
@@ -115,6 +110,11 @@
       	<artifactId>org.apache.aries.transaction.blueprint</artifactId>
       	<version>1.0.0</version>
       </dependency>
+      <dependency>
+      	<groupId>org.apache.geronimo.components</groupId>
+      	<artifactId>geronimo-transaction</artifactId>
+      	<version>3.1.1</version>
+      </dependency>      
       <dependency>
       	<groupId>edu.unc.mapseq</groupId>
       	<artifactId>mapseq-config</artifactId>
