@@ -197,7 +197,12 @@ public abstract class Module implements Callable<ModuleOutput> {
                                 List<?> list = (List<?>) o;
                                 for (int i = 0; i < list.size(); ++i) {
                                     String val = list.get(i).toString();
-                                    command.append(" ").append(arg.flag()).append(arg.delimiter()).append(val);
+                                    command.append(" ").append(arg.flag()).append(arg.delimiter());
+                                    if (arg.wrapValueInSingleQuotes()) {
+                                        command.append(String.format("'%s'", val));
+                                    } else {
+                                        command.append(val);
+                                    }
                                 }
 
                             }
