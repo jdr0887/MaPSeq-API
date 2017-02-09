@@ -1,4 +1,6 @@
 edu.unc.mapseq.dao.jpa
 edu.unc.mapseq.dao.model
+edu.unc.mapseq.dao.rest
+edu.unc.mapseq.dao.ws
 edu.unc.mapseq.module
 edu.unc.mapseq.pipeline

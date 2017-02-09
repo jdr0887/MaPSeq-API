@@ -2,6 +2,8 @@ edu.unc.mapseq.config
 edu.unc.mapseq.dao
 edu.unc.mapseq.dao.jpa
 edu.unc.mapseq.dao.model
+edu.unc.mapseq.dao.rest
+edu.unc.mapseq.dao.soap
 edu.unc.mapseq.module
 edu.unc.mapseq.module.annotations
 edu.unc.mapseq.module.constraints
