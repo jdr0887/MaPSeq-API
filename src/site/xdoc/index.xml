@@ -12,18 +12,91 @@
       computational resources, MaPSeq enables researchers to perform
       and manage elaborate analysis workflow on a specified set of
       data while keeping the data centralized and secure.</p>
-    </section>
-    <section name="Assumptions &amp; Goals">
-      <subsection name="Data Security">
-	<p>The nature of the data being processed by MaPSeq is highly
-	sensitive.  As such, all data is transfered using secure
-	protocols.</p>
+    </section>    
+    <section name="Overview">
+      <p><img src="images/MaPSeqArchitecture.png"/></p>
+      <subsection name="Web Services">
+	<p>MaPSeq service interfaces are available as both RESTful and
+	SOAP services using <a href="http://cxf.apache.org">Apache
+	CXF</a>.  The MaPSeq services are used by MaPSeq Modules to
+	persist provenance of job metadata (where job ran, start time,
+	end time, exit code, etc.).  The web services can also be used
+	to upload/download files (ie, SampleSheets for CASAVA) or
+	integrated into external clients.</p>
+	<p>Please refer to the <a
+	href="images/edu.unc.mapseq.ws.png">Web Service API</a> for
+	further details.</p>
       </subsection>
-      <subsection name="Site Agnostic Jobs">
-	<p>The MaPSeq Pipeline developer can specify where a job can
-	run or not.  Site-agnostic jobs require data transfer
-	instructions &amp; paths to files to be relative.
-	Site-specific jobs require the use of absolute paths.</p>
+      <subsection name="Pipelines">
+	<p>MaPSeq is built upon the OSGi framework (a plugin
+	framework), and as such, a Pipeline is a defined as a plugin.
+	More specifically, a MaPSeq Pipeline is a collection of
+	bundles that include, at a minimum, the following:</p>
+	<table border="1" class="bodyTable">
+	  <tr class="a">
+	    <td align="left">a messaging destination/listener</td>
+	    <td align="left">A JMS destination is used as an
+	    accessor to trigger WorkflowRun instances.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">a workflow</td>
+	    <td align="left">The programmatic structure of a
+	    collection of executables to be run serially.</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">an executor</td>
+	    <td align="left">The executor dequeues WorkflowRun instances at
+	    a specified frequency and quantity. (ie, 10 WorkflowRun
+	    instances every 5 minutes)</td>
+	  </tr>
+	  <tr class="a">
+	    <td align="left">and a features file</td>
+	    <td align="left">The features file is used at deployment
+	    time.  It describes all the bundles associated with this
+	    pipeline (messaging, workflow, and executor).</td>
+	  </tr>
+	</table>
+      </subsection>
+      <subsection name="Meta-scheduling">
+	<p>HTCondor is used for MaPSeq's meta-scheduling.  DAGMan jobs
+	are submitted to a locally configured HTCondor queue once a
+	WorkflowRun instance is dequeued.  No jobs will be executed on
+	any compute nodes directly configured to the HTCondor central
+	manager where MaPSeq is installed.  Instead, HTCondor Glideins
+	are used to dynamically provision remote compute resources.
+	This allows for the growing or shrinking of compute resources
+	as the demand grows or shrinks.</p>
+      </subsection>
+      <subsection name="Grid Access Triage Engine (GATE)">
+	<p><a href="https://github.com/jdr0887/GATE/">GATE</a> is also
+	built using Apache Karaf (an OSGi based container).  Where
+	Pipelines are plugins for MaPSeq, GATE plugins exist for each
+	compute resource.  Here is a short list of actively used
+	plugins:</p>
+	<ul>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-UNC-Kure">UNC Kure</a></li>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-UNC-Topsail">UNC Topsail</a></li>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-RENCI-Hatteras">RENCI Hatteras</a></li>
+	  <li><a href="https://github.com/jdr0887/GATE-Plugin-RENCI-BlueRidge">RENCI BlueRidge</a></li>
+	</ul>
+	<p>The GATE engine traverses the available plugins and submits
+	HTCondor Glideins to the appropriate cluster's submit host
+	over SSH.  GATE will submit Glideins based on number of
+	different factors, the most important of which include:</p>
+	<ul>
+	  <li>number of remote running Glidein jobs</li>
+	  <li>number of remote idle/pending Glidein jobs</li>
+	  <li>number of local running jobs</li>
+	  <li>number of local idle/pending jobs</li>
+	  <li>number of local held jobs</li>
+	</ul>
+	<p>These Glideins are configured to register themselves back
+	to the HTCondor central manager where MaPSeq is deployed.
+	Once a compute resource is successfully registered, a
+	matchmaking routine can pair a job to a compute element.
+	Matchmaking is performed by HTCondor's negotiator deamon and
+	is based on resolving set of ClassAd (attribues) at both the
+	Job &amp; Machine level.</p>
       </subsection>
     </section>
     <section name="Technologies Used">
@@ -39,6 +112,6 @@
 	  <li><a href="http://www.postgresql.org/">PostgreSQL</a></li>
 	</ul>
       </p>
-    </section>
+    </section>    
   </body>
 </document>

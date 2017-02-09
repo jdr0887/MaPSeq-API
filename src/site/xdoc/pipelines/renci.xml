@@ -3,28 +3,36 @@
     <section name="RENCI Pipelines">
       <subsection name="NCGenes">
 	<ul>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCGenes">NCGenes</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCGenes-CASAVA">NCGenes CASAVA</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCGenes-DepthOfCoverage">NCGenes Depth Of Coverage</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCGenes-DX">NCGenes DX</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCGenes-Incidental-VariantCalling">NCGenes Incidental VariantCalling</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCGenes-Baseline">NCGenes Baseline</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCGenes-CASAVA">NCGenes CASAVA</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCGenes-DepthOfCoverage">NCGenes Depth Of Coverage</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCGenes-DX">NCGenes DX</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCGenes-Incidental-VariantCalling">NCGenes Incidental VariantCalling</a></li>
 	</ul>
       </subsection>
       <subsection name="NCNEXUS">
 	<ul>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCNEXUS-Baseline">NCNEXUS Baseline</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCNEXUS-CASAVA">NCNEXUS CASAVA</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NCNEXUS-MergeBAM">NCNEXUS Merge BAM</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCNEXUS-Baseline">NCNEXUS Baseline</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCNEXUS-CASAVA">NCNEXUS CASAVA</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NCNEXUS-MergeBAM">NCNEXUS Merge BAM</a></li>
 	</ul>
       </subsection>
       <subsection name="NEC">
 	<ul>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NEC-Alignment">NEC Alignment</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NEC-VariantCalling">NEC VariantCalling</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NEC-Symlink">NEC Symlink</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NEC-Clean">NEC Clean</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NEC-MergeBAM">NEC MergeBAM</a></li>
-	  <li><a href="https://jdr0887.github.io/MaPSeq-Pipeline-NEC-ID-Check">NEC ID Check</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NEC-Alignment">NEC Alignment</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NEC-VariantCalling">NEC VariantCalling</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NEC-Symlink">NEC Symlink</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NEC-Clean">NEC Clean</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NEC-MergeBAM">NEC MergeBAM</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-NEC-ID-Check">NEC ID Check</a></li>
+	</ul>
+      </subsection>
+      <subsection name="GeneScreen">
+	<ul>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-GS-CASAVA">GeneScreen CASAVA</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-GS-Alignment">GeneScreen Alignment</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-GS-VariantCalling">GeneScreen VariantCalling</a></li>
+	  <li><a href="https://github.com/jdr0887/MaPSeq-Pipeline-GS-Clean">GeneScreen Clean</a></li>
 	</ul>
       </subsection>            
     </section>
