@@ -2,7 +2,7 @@
   <parent>
     <groupId>edu.unc.mapseq</groupId>
     <artifactId>mapseq</artifactId>
-    <version>0.1.37</version>
+    <version>0.1.39</version>
   </parent>
   <name>Massively Parallel Sequencing</name>
   <modelVersion>4.0.0</modelVersion>
@@ -11,6 +11,9 @@
   <version>0.6.51-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://jdr0887.github.io/MaPSeq-API</url>
+  <properties>
+    <maven.site.plugin.skip>false</maven.site.plugin.skip>
+  </properties>  
   <issueManagement>
     <system>GitHub Issues</system>
     <url>https://github.com/jdr0887/MaPSeq-API/issues</url>
