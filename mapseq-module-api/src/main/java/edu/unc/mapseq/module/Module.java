@@ -162,6 +162,11 @@ public abstract class Module implements Callable<ModuleOutput> {
             for (Field field : inputArgumentFieldList) {
 
                 InputArgument arg = field.getAnnotation(InputArgument.class);
+                
+                if (arg.disabled()) {
+                    continue;
+                }
+                
                 String getterMethodName = "get" + StringUtils.capitalize(field.getName());
                 Method getterMethod = this.getClass().getDeclaredMethod(getterMethodName, null);
                 Object o = getterMethod.invoke(this, (Object[]) null);
