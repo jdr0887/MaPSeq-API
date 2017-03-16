@@ -27,4 +27,6 @@ public @interface InputArgument {
 
     boolean wrapValueInSingleQuotes() default false;
 
+    boolean disabled() default false;
+
 }
